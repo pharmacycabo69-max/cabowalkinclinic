@@ -360,7 +360,7 @@ var ecs_ajax_params = {"ajaxurl":"https://www.cabowalkinclinic.com/wp-admin/admi
   d.className='cwc-vd'; d.id='cwc-card';
   d.innerHTML='<div class="cwc-vd__badge"><span class="cwc-vd__dot"></span>AVAILABLE NOW</div>'
    +'<div class="cwc-vd__top">'
-   +'<div class="cwc-vd__ph"><img src="'+PHOTO+'" alt="Dra. Myriam Palacios Alarcon"></div>'
+   +'<div class="cwc-vd__ph"><img src="'+PHOTO+'" alt="Dra. Myriam Palacios Alarcon" onerror="this.style.display=\'none\'"></div>'
    +'<div class="cwc-vd__txt"><p class="cwc-vd__nm">Dra. Myriam Palacios Alarc&oacute;n</p>'
    +'<p class="cwc-vd__ro">M&eacute;dico General &middot; English &amp; Spanish</p>'
    +'<p class="cwc-vd__st">C&eacute;dula profesional 11664989</p></div></div>'
@@ -3145,6 +3145,14 @@ button.elementor-button:hover {
 		</style>
 		<style type="text/css">/** Mega Menu CSS: fs **/</style>
 <style id="cwc-compliance">.elementor-widget-elementskit-testimonial,.elementor-widget-elementskit-team,.cwc-iv-reviews,[class*="cwc-iv-reviews"],.elementor-widget-counter,.elementor-widget-elementskit-funfact,.ekit-wid-con .elementskit-funfact{display:none!important}</style>
+<style id="cwc-header-fix">
+.cwc-concierge-avatar img{object-fit:contain!important;object-position:center!important;background:#fff}
+.cwc-chat__ava{object-fit:contain!important;background:#fff}
+@media(min-width:1024px){
+.cwc-nav a[href*="geriatric"],.cwc-nav a[href*="x-ray"],.cwc-nav a[href*="insurance"],.cwc-nav a[href*="medical-concierge"],.cwc-nav a[href*="travel-health"],.cwc-nav a[href*="ambulance"]{display:none!important}
+.cwc-header-inner{gap:24px!important}
+}
+</style>
 </head>
 <body class="wp-singular page-template-default page page-id-1158 wp-embed-responsive wp-theme-hello-elementor latepoint ehf-template-hello-elementor ehf-stylesheet-hello-elementor jkit-color-scheme hello-elementor-default elementor-default elementor-kit-337">
 
@@ -3309,7 +3317,7 @@ body.home #cwc-h-onecall{display:block}
   /* ---- ONE place to change the action later (e.g. open AI chat) ---- */
   var WHATSAPP_URL = 'https://wa.me/5216242261023';
   function cwcConciergeGo(){ window.open(WHATSAPP_URL, '_blank', 'noopener'); }
-  var IMG = 'https://www.cabowalkinclinic.com/wp-content/uploads/2026/05/cwc-concierge-doctor-natural.jpg';
+  var IMG = '/images/logo.svg';
   function build(){
     var wrap = document.createElement('div');
     wrap.className = 'cwc-concierge';
@@ -3847,6 +3855,7 @@ body.cwc-drawer-open { overflow: hidden; }
     </a>
     <style id="cwc-video-doctor-badge-css">.cwc-nav .video-doctor-item{position:relative;}.cwc-nav .cwc-menu-badge{display:inline-block;background:#14B8A6;color:#fff;font-size:0.65em;padding:2px 6px;border-radius:10px;margin-left:4px;vertical-align:super;font-weight:600;line-height:1;}.cwc-nav .video-doctor-item:hover{color:#14B8A6 !important;}.cwc-nav .video-doctor-item:hover .cwc-menu-badge{background:#0D9488;}</style><nav class="cwc-nav" aria-label="Primary">
       <a href="/">Home</a>
+      <a href="/walk-in-clinic-doctor-cabo-san-lucas/">Walk-In Clinic</a>
       <a href="/video-doctor-consultation/" class="video-doctor-item">Video Doctor 24/7<span class="cwc-menu-badge">$59</span></a>
       <a href="/emergency-care-cabo/">Emergency Care</a>
       <a href="/ambulance-medical-transport-cabo/">Ambulance &amp; Repatriation</a>
