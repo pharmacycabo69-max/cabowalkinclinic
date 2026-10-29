@@ -1,0 +1,40 @@
+@media (min-width: 1024px) {
+  .cwc-hamburger,
+  #cwc-overlay,
+  #cwc-drawer { display: none !important; pointer-events: none !important; }
+  body.cwc-drawer-open { overflow: auto !important; }
+  
+  .cwc-desktop-navbar {
+    display: flex !important; align-items: center; justify-content: space-between;
+    background: #14283C; padding: 12px 32px; position: sticky; top: 0;
+    z-index: 9999; box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-family: 'Heebo', sans-serif;
+  }
+  .cwc-desktop-navbar-brand {
+    font-family: 'Cinzel', serif; color: #FAF7F2; font-size: 15px;
+    letter-spacing: 2px; text-decoration: none; font-weight: 600; white-space: nowrap;
+  }
+  .cwc-desktop-navbar-brand span { color: #D4A85C; }
+  .cwc-desktop-navbar-links {
+    display: flex; align-items: center; gap: 2px;
+    list-style: none; margin: 0; padding: 0;
+  }
+  .cwc-desktop-navbar-links a {
+    color: #FAF7F2 !important; font-size: 13px !important; font-weight: 500 !important;
+    letter-spacing: 0.4px !important; text-decoration: none !important;
+    padding: 8px 12px; border-bottom: 2px solid transparent;
+    transition: all 0.2s; white-space: nowrap;
+  }
+  .cwc-desktop-navbar-links a:hover { color: #D4A85C !important; border-bottom-color: #D4A85C; }
+  .cwc-desktop-navbar-links a.cwc-book-cta {
+    background: linear-gradient(180deg, #E3B077 0%, #D4A85C 100%) !important;
+    color: #14283C !important; padding: 10px 22px !important; border-radius: 8px !important;
+    font-weight: 700 !important; text-transform: uppercase; letter-spacing: 0.6px;
+    margin-left: 8px;
+  }
+  .cwc-desktop-navbar-links a.cwc-book-cta:hover {
+    transform: translateY(-1px); box-shadow: 0 4px 12px rgba(212,168,92,0.4);
+    border-bottom-color: transparent;
+  }
+}
+@media (max-width: 1023px) { .cwc-desktop-navbar { display: none !important; } }

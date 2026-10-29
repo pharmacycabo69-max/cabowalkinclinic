@@ -1,0 +1,8 @@
+/* Center the .cwc-header (blanco)  was justify-content:space-between */
+.cwc-header-inner{justify-content:center!important;gap:36px!important;margin:0 auto!important;}
+.cwc-header-inner > .cwc-brand,.cwc-header-inner > .cwc-logo{margin-right:8px;}
+@media (max-width:1023px){.cwc-header-inner{justify-content:space-between!important;gap:16px!important;}}
+
+/* Hide Hello Elementor default site-footer that emerged after killing Elementor Footer 295 */
+#site-footer.site-footer.dynamic-footer{display:none!important;visibility:hidden!important;height:0!important;}
+body > footer.site-footer{display:none!important;}

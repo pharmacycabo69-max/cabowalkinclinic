@@ -1,0 +1,37 @@
+/* CWC-DRAWER-CONTRAST-FIX-V3 (2026-05-20) */
+/* Issue: text computed-color is #fff but appears faded on mobile because font-weight 500 + thin antialiasing on dark navy lacks visual weight. V3 bumps weight + adds subtle text-shadow + brighter dividers + brighter footer. */
+
+#cwc-drawer .cwc-drawer-logo .cwc-logo-word{font-weight:600 !important;letter-spacing:0.14em !important;text-shadow:0 1px 2px rgba(0,0,0,0.25)}
+
+#cwc-drawer .cwc-drawer-nav a,
+#cwc-drawer .cwc-drawer-nav a:link,
+#cwc-drawer .cwc-drawer-nav a:visited{color:#FFFFFF !important;opacity:1 !important;font-weight:600 !important;text-shadow:0 1px 2px rgba(0,0,0,0.20);transition:color 0.2s ease,background-color 0.2s ease}
+#cwc-drawer .cwc-drawer-nav a:hover,
+#cwc-drawer .cwc-drawer-nav a:focus-visible{color:#E8C088 !important;background:rgba(200,159,106,0.10) !important}
+#cwc-drawer .cwc-drawer-nav a::after{opacity:0.55 !important;color:#FFFFFF !important;font-weight:600}
+#cwc-drawer .cwc-drawer-nav a:hover::after{opacity:1 !important;color:#E8C088 !important;transform:translateX(4px)}
+
+#cwc-drawer .cwc-drawer-nav li{border-bottom:1px solid rgba(255,255,255,0.14) !important}
+#cwc-drawer .cwc-drawer-nav li:last-child{border-bottom:none !important}
+#cwc-drawer .cwc-drawer-head{border-bottom:1px solid rgba(255,255,255,0.18) !important}
+#cwc-drawer .cwc-drawer-ctas{border-top:1px solid rgba(255,255,255,0.18) !important}
+
+#cwc-drawer .cwc-drawer-call{background:#C89F6A !important;color:#FFFFFF !important;font-weight:700 !important;letter-spacing:0.02em !important;text-shadow:0 1px 2px rgba(0,0,0,0.20);box-shadow:0 4px 14px rgba(200,159,106,0.35)}
+#cwc-drawer .cwc-drawer-call:hover,#cwc-drawer .cwc-drawer-call:focus-visible{background:#B08850 !important;color:#FFFFFF !important;transform:translateY(-1px);box-shadow:0 6px 18px rgba(200,159,106,0.45)}
+
+#cwc-drawer .cwc-drawer-wa{background:transparent !important;color:#FFFFFF !important;font-weight:700 !important;letter-spacing:0.02em !important;border:2px solid rgba(255,255,255,0.72) !important;text-shadow:0 1px 2px rgba(0,0,0,0.20)}
+#cwc-drawer .cwc-drawer-wa:hover,#cwc-drawer .cwc-drawer-wa:focus-visible{background:rgba(255,255,255,0.10) !important;border-color:#FFFFFF !important;color:#FFFFFF !important;transform:translateY(-1px)}
+
+#cwc-drawer .cwc-drawer-foot{color:rgba(255,255,255,0.82) !important;font-weight:500 !important}
+#cwc-drawer .cwc-drawer-foot a,#cwc-drawer .cwc-drawer-foot strong{color:#FFFFFF !important}
+
+#cwc-drawer .cwc-drawer-close{border-color:rgba(255,255,255,0.45) !important;color:#FFFFFF !important}
+#cwc-drawer .cwc-drawer-close:hover,#cwc-drawer .cwc-drawer-close:focus-visible{border-color:#FFFFFF !important;background:rgba(255,255,255,0.12) !important}
+/* END CWC-DRAWER-CONTRAST-FIX-V3 */
+/* CWC-DRAWER-CONTRAST-FIX-V4 (2026-05-20) final polish: bump weight to 700, add font-smoothing */
+#cwc-drawer,#cwc-drawer *{-webkit-font-smoothing:antialiased !important;-moz-osx-font-smoothing:grayscale !important}
+#cwc-drawer .cwc-drawer-nav a,#cwc-drawer .cwc-drawer-nav a:link,#cwc-drawer .cwc-drawer-nav a:visited{font-weight:700 !important;font-size:17px !important;color:#FFFFFF !important;-webkit-text-fill-color:#FFFFFF !important}
+#cwc-drawer .cwc-drawer-logo .cwc-logo-word{font-weight:600 !important;color:#FFFFFF !important;-webkit-text-fill-color:#FFFFFF !important}
+#cwc-drawer .cwc-drawer-call,#cwc-drawer .cwc-drawer-wa{font-size:15.5px !important;font-weight:800 !important;letter-spacing:0.03em !important;-webkit-text-fill-color:#FFFFFF !important}
+#cwc-drawer .cwc-drawer-foot{color:rgba(255,255,255,0.88) !important;font-weight:500 !important}
+/* END V4 */

@@ -1,0 +1,1275 @@
+/* ============================================================
+   CABO WALK-IN CLINIC â Mobile-First Redesign
+   Page: /video-doctor-consultation/  (template: elementor_canvas)
+   Tag: cwc-mobile-first  v1.0  (2026-06-19)
+   Scope: white-gap fix + mobile redesign @ max-width:767px
+   Desktop untouched.
+   ============================================================ */
+
+/* ===== 0. WHITE-GAP FIX (applies all viewports) =====
+   The theme adds `padding-top: calc(76px + var(--cwc-promo-h))` to body,
+   reserving 76px for a sticky header that does NOT render on the
+   elementor_canvas template. Override to just the promobar height. */
+body.page-template-elementor_canvas,
+body.elementor-template-canvas {
+  padding-top: var(--cwc-promo-h, 42px) !important;
+}
+
+/* When admin bar is showing, account for it too */
+body.admin-bar.page-template-elementor_canvas,
+body.admin-bar.elementor-template-canvas {
+  padding-top: calc(var(--cwc-promo-h, 42px)) !important;
+}
+
+/* ============================================================
+   1. MOBILE-FIRST REDESIGN  (@max-width: 767px)
+   ============================================================ */
+@media (max-width: 767px) {
+
+  /* ---- 1.1  Promobar â tighter on mobile so gap stays minimal ---- */
+  :root { --cwc-promo-h: 38px; }
+  .cwc-promobar {
+    min-height: 38px !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+    line-height: 1.25 !important;
+  }
+
+  /* ---- 1.2  Global section padding compression ---- */
+  .elementor-2086 > .elementor-section,
+  .elementor-2086 .elementor-top-section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+
+  /* Remove inter-section spacer widgets on mobile */
+  .elementor-2086 .elementor-widget-spacer .elementor-spacer-inner {
+    height: 0 !important;
+  }
+  .elementor-2086 .elementor-widget-spacer { display: none !important; }
+
+  /* Allow specific spacers tagged keep-mobile to stay */
+  .elementor-2086 .elementor-widget-spacer.cwc-keep-mobile { display: block !important; }
+
+  /* ============================================================
+     2. HERO REDESIGN  (Section #7caf2ed)
+     Premium mobile-first: navy gradient, big serif H1, tight stack,
+     full-width gold pill CTA, trust microbar under.
+     ============================================================ */
+  .elementor-element-7caf2ed {
+    padding-top: 56px !important;
+    padding-bottom: 64px !important;
+    background:
+      radial-gradient(120% 80% at 50% 0%, rgba(200,159,106,0.10) 0%, transparent 60%),
+      linear-gradient(180deg, #1F3D5C 0%, #15304a 100%) !important;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Subtle noise texture overlay for premium feel */
+  .elementor-element-7caf2ed::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.4; pointer-events: none; mix-blend-mode: overlay;
+  }
+
+  /* Hero column padding tight */
+  .elementor-element-7caf2ed .elementor-container,
+  .elementor-element-7caf2ed .elementor-column {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* Stack columns; right column ($59 huge + trust) comes AFTER left on mobile */
+  .elementor-element-7caf2ed .elementor-container {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  /* Eyebrow $59 Â· licensing Â· 15-MIN â compact gold */
+  .elementor-element-7caf2ed .elementor-widget-heading:first-of-type .elementor-heading-title {
+    font-size: 12px !important;
+    letter-spacing: 2.5px !important;
+    color: #C89F6A !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* H1 â Talk to a Real Doctor in 15 Minutes  â IMPACT */
+  .elementor-element-7caf2ed h1.elementor-heading-title,
+  .elementor-element-7caf2ed h2.elementor-heading-title.cwc-hero-h1 {
+    font-size: clamp(38px, 11vw, 48px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.5px !important;
+    margin-bottom: 12px !important;
+    color: #ffffff !important;
+  }
+
+  /* Italic gold subhead */
+  .elementor-element-7caf2ed .elementor-widget-heading h2,
+  .elementor-element-7caf2ed .elementor-widget-heading h3 {
+    font-size: 22px !important;
+    line-height: 1.3 !important;
+    color: #D8B583 !important;
+    font-style: italic !important;
+    margin-bottom: 18px !important;
+  }
+
+  /* Body copy: tighter, smaller line height */
+  .elementor-element-7caf2ed .elementor-widget-text-editor,
+  .elementor-element-7caf2ed p {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    color: rgba(255,255,255,0.86) !important;
+    margin-bottom: 18px !important;
+  }
+
+  /* Icon list trust signals â wrap as inline chips */
+  .elementor-element-7caf2ed .elementor-widget-icon-list ul,
+  .elementor-element-7caf2ed .elementor-icon-list-items {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px 10px !important;
+    padding: 0 !important;
+  }
+  .elementor-element-7caf2ed .elementor-icon-list-item {
+    font-size: 12px !important;
+    letter-spacing: 0.3px !important;
+    color: rgba(255,255,255,0.78) !important;
+  }
+  .elementor-element-7caf2ed .elementor-icon-list-icon { font-size: 12px !important; }
+
+  /* Buttons â full-width pill, thumb-zone height */
+  .elementor-element-7caf2ed .elementor-widget-button { width: 100% !important; }
+  .elementor-element-7caf2ed .elementor-button-wrapper { width: 100% !important; }
+  .elementor-element-7caf2ed .elementor-button {
+    width: 100% !important;
+    min-height: 56px !important;
+    padding: 16px 20px !important;
+    font-size: 16px !important;
+    letter-spacing: 0.3px !important;
+    border-radius: 999px !important;
+  }
+
+  /* RIGHT column on mobile â compress, hide the huge $59 mark to free vertical space */
+  .elementor-element-b9... { /* placeholder for right column; targeted by content below */ }
+
+  /* HIDE the $59 huge gold mark on mobile (it's redundant with CTA microcopy). */
+  .elementor-element-7caf2ed [class*="elementor-widget-heading"] .elementor-heading-title:not(:has(*)):is(.cwc-huge-fiftynine) { display:none !important; }
+  /* Fallback: target Cormorant-styled huge price by font-size */
+  .elementor-element-7caf2ed .elementor-widget-heading .elementor-heading-title {
+    /* keep first heading (eyebrow), H1, italic subhead; demote large $59 â handled by .cwc-mob-hide hint if present */
+  }
+  .elementor-element-7caf2ed .cwc-mob-hide,
+  .elementor-element-7caf2ed [data-mobile-hide="1"] { display: none !important; }
+
+  /* The right column itself â compress vertical spacing */
+  .elementor-element-7caf2ed .elementor-col-40,
+  .elementor-element-7caf2ed [class*="elementor-col-40"] {
+    width: 100% !important;
+  }
+  .elementor-element-7caf2ed .elementor-col-40 .elementor-widget-wrap > * {
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+  }
+  /* Right-col divider line â shorter on mobile */
+  .elementor-element-7caf2ed .elementor-widget-divider { width: 60px !important; margin: 4px auto !important; }
+  .elementor-element-7caf2ed .elementor-widget-divider-separator { border-color: rgba(216,181,131,0.5) !important; }
+
+  /* Trust microbar under buttons */
+  .elementor-element-7caf2ed .cwc-trust-micro {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 14px;
+    font-size: 12px; letter-spacing: 1px; color: rgba(255,255,255,0.7);
+    margin-top: 18px; text-transform: uppercase;
+  }
+
+  /* ============================================================
+     3. TRUST BAR â Section #f3138f0  â  2x3 grid mobile
+     ============================================================ */
+  .elementor-element-f3138f0 {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+    background: #0F2238 !important;
+  }
+  .elementor-element-f3138f0 .elementor-container { padding: 0 12px !important; }
+  .elementor-element-f3138f0 .elementor-widget-icon-list .elementor-icon-list-items,
+  .elementor-element-f3138f0 .elementor-icon-list-items {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px 14px !important;
+    padding: 0 !important;
+  }
+  .elementor-element-f3138f0 .elementor-icon-list-item {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 11px !important;
+    letter-spacing: 1.2px !important;
+    color: #C89F6A !important;
+    text-transform: uppercase !important;
+    line-height: 1.3 !important;
+  }
+  .elementor-element-f3138f0 .elementor-icon-list-icon i,
+  .elementor-element-f3138f0 .elementor-icon-list-icon svg { font-size: 14px !important; width: 14px !important; }
+
+  /* ============================================================
+     4. CONDITIONS â Section #9ea7d25  â  scroll-snap carousel
+     ============================================================ */
+  .elementor-element-9ea7d25 {
+    padding-top: 56px !important;
+    padding-bottom: 48px !important;
+  }
+  .elementor-element-9ea7d25 .elementor-heading-title {
+    font-size: 32px !important;
+    line-height: 1.1 !important;
+    padding: 0 20px;
+  }
+  /* The grid of condition cards â force horizontal scroll */
+  .elementor-element-9ea7d25 .elementor-container > .elementor-column[class*="elementor-col-"]:not(:only-child) {
+    /* multi-column grid â keep as is, just shrink */
+  }
+  /* Heuristic: condition cards grid */
+  .elementor-element-9ea7d25 [class*="grid"],
+  .elementor-element-9ea7d25 .e-con-inner,
+  .elementor-element-9ea7d25 .elementor-section-content-middle .elementor-container:has(> .elementor-column:nth-child(3)) {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 14px !important;
+    padding: 8px 20px 24px !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .elementor-element-9ea7d25 [class*="grid"]::-webkit-scrollbar { display: none; }
+  .elementor-element-9ea7d25 [class*="grid"] > * {
+    flex: 0 0 78% !important;
+    max-width: 280px !important;
+    scroll-snap-align: start !important;
+  }
+
+  /* ============================================================
+     5. HOW IT WORKS â Section #how-it-works  â  vertical stack w/ connector
+     ============================================================ */
+  #how-it-works {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+    background: #FAF6EE !important;
+  }
+  #how-it-works .elementor-heading-title { font-size: 32px !important; line-height: 1.1 !important; padding: 0 12px; }
+  #how-it-works .elementor-container { flex-direction: column !important; gap: 0 !important; }
+  #how-it-works .elementor-column {
+    width: 100% !important;
+    padding: 22px 24px !important;
+    position: relative;
+  }
+  /* Big gold step number */
+  #how-it-works .elementor-column .elementor-widget-heading:first-of-type .elementor-heading-title {
+    font-size: 72px !important;
+    line-height: 1 !important;
+    color: #C89F6A !important;
+    margin-bottom: 6px !important;
+    font-weight: 600;
+  }
+  /* Gold connector line between cards */
+  #how-it-works .elementor-column:not(:last-child)::after {
+    content: ""; position: absolute; left: 50%; bottom: -8px;
+    transform: translateX(-50%);
+    width: 1px; height: 16px;
+    background: linear-gradient(180deg, #C89F6A 0%, transparent 100%);
+  }
+
+  /* ============================================================
+     6. COMPARISON "WHY US" â Section #9d30931  â  card stack (table breaks on mobile)
+     ============================================================ */
+  .elementor-element-9d30931 {
+    padding-top: 56px !important;
+    padding-bottom: 48px !important;
+  }
+  .elementor-element-9d30931 .elementor-heading-title {
+    font-size: 30px !important;
+    line-height: 1.12 !important;
+    padding: 0 16px;
+  }
+  /* If a table widget is used, make it scroll horizontally and shrink */
+  .elementor-element-9d30931 table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 13px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .elementor-element-9d30931 table th,
+  .elementor-element-9d30931 table td { padding: 10px 12px !important; }
+
+  /* ============================================================
+     7. DOCTORS â Section #b30c7b3  â  1-col stack
+     ============================================================ */
+  .elementor-element-b30c7b3 {
+    padding-top: 56px !important;
+    padding-bottom: 48px !important;
+  }
+  .elementor-element-b30c7b3 .elementor-container { flex-direction: column !important; gap: 16px !important; }
+  .elementor-element-b30c7b3 .elementor-column { width: 100% !important; }
+  .elementor-element-b30c7b3 .elementor-heading-title { font-size: 30px !important; line-height: 1.12 !important; }
+  .elementor-element-b30c7b3 img { border-radius: 12px !important; }
+
+  /* ============================================================
+     8. TESTIMONIALS â Section #2ea667c  â  horizontal swipe carousel
+     ============================================================ */
+  .elementor-element-2ea667c {
+    padding-top: 56px !important;
+    padding-bottom: 48px !important;
+  }
+  .elementor-element-2ea667c .elementor-heading-title { font-size: 30px !important; line-height: 1.12 !important; padding: 0 16px; }
+  .elementor-element-2ea667c .elementor-container:has(> .elementor-column:nth-child(2)) {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 14px !important;
+    padding: 8px 20px 24px !important;
+    flex-direction: row !important;
+    scrollbar-width: none;
+  }
+  .elementor-element-2ea667c .elementor-container::-webkit-scrollbar { display: none; }
+  .elementor-element-2ea667c .elementor-container > .elementor-column {
+    flex: 0 0 88% !important;
+    max-width: 320px !important;
+    scroll-snap-align: start !important;
+  }
+
+  /* ============================================================
+     9. PRICING â Section #4bb76b7  â  stack, middle = highlighted
+     ============================================================ */
+  .elementor-element-4bb76b7 {
+    padding-top: 56px !important;
+    padding-bottom: 48px !important;
+  }
+  .elementor-element-4bb76b7 .elementor-heading-title { font-size: 30px !important; line-height: 1.12 !important; padding: 0 16px; }
+  .elementor-element-4bb76b7 .elementor-container { flex-direction: column !important; gap: 18px !important; padding: 0 20px !important; }
+  .elementor-element-4bb76b7 .elementor-column { width: 100% !important; }
+  /* Most Popular = middle card â scale up + gold glow */
+  .elementor-element-4bb76b7 .elementor-container > .elementor-column:nth-child(2) {
+    transform: scale(1.025);
+    box-shadow:
+      0 0 0 2px #C89F6A,
+      0 20px 50px -20px rgba(200,159,106,0.45) !important;
+    border-radius: 14px;
+    z-index: 1;
+    position: relative;
+  }
+  .elementor-element-4bb76b7 .elementor-container > .elementor-column:nth-child(2)::before {
+    content: "MOST POPULAR";
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: #C89F6A; color: #1F3D5C;
+    padding: 4px 14px; font-size: 10px; letter-spacing: 2px;
+    border-radius: 999px; font-weight: 700;
+  }
+  .elementor-element-4bb76b7 .elementor-button { width: 100% !important; min-height: 50px !important; }
+
+  /* ============================================================
+     10. FAQ  â  compact accordion (auto-detect by widget)
+     ============================================================ */
+  .elementor-2086 .elementor-widget-accordion,
+  .elementor-2086 .elementor-widget-toggle,
+  .elementor-2086 .e-n-accordion {
+    padding: 0 16px;
+  }
+  .elementor-2086 .elementor-accordion-item,
+  .elementor-2086 details {
+    margin-bottom: 8px !important;
+    border-radius: 10px !important;
+    overflow: hidden;
+  }
+  .elementor-2086 .elementor-tab-title,
+  .elementor-2086 .elementor-accordion .elementor-accordion-item .elementor-tab-title,
+  .elementor-2086 summary {
+    padding: 16px !important;
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+    font-weight: 600 !important;
+  }
+  .elementor-2086 .elementor-tab-content {
+    padding: 0 16px 16px !important;
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+  }
+  .elementor-2086 .elementor-accordion-icon { color: #C89F6A !important; }
+
+  /* ============================================================
+     11. FINAL CTA â last section  â  full-bleed navy + gold
+     ============================================================ */
+  .elementor-element-dd942b7,
+  .elementor-element-563059c {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+    background:
+      radial-gradient(60% 70% at 50% 0%, rgba(200,159,106,0.18) 0%, transparent 60%),
+      #1F3D5C !important;
+  }
+  .elementor-element-dd942b7 .elementor-heading-title,
+  .elementor-element-563059c .elementor-heading-title {
+    font-size: 34px !important;
+    line-height: 1.08 !important;
+    color: #ffffff !important;
+    padding: 0 20px;
+  }
+  .elementor-element-dd942b7 .elementor-button,
+  .elementor-element-563059c .elementor-button {
+    width: 100% !important;
+    min-height: 56px !important;
+    border-radius: 999px !important;
+    font-size: 16px !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  /* ============================================================
+     12. STICKY BOTTOM CTA polish
+     ============================================================ */
+  .cwc-sticky-cta,
+  .cwc-mobile-sticky,
+  [class*="sticky"][class*="cta"] {
+    position: fixed !important;
+    left: 0 !important; right: 0 !important; bottom: 0 !important;
+    background: rgba(31, 61, 92, 0.92) !important;
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    padding: 10px 14px env(safe-area-inset-bottom, 10px) !important;
+    border-top: 1px solid rgba(200,159,106,0.35) !important;
+    z-index: 9999 !important;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+  body:not(.cwc-scrolled) .cwc-sticky-cta { transform: translateY(120%); }
+
+  /* ============================================================
+     13. TYPOGRAPHY HIERARCHY GLOBAL (mobile)
+     ============================================================ */
+  .elementor-2086 h1, .elementor-2086 .elementor-heading-title.h1 {
+    font-family: 'Cormorant Garamond', 'Cormorant', serif !important;
+    font-size: clamp(38px, 11vw, 48px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.5px !important;
+  }
+  .elementor-2086 h2, .elementor-2086 .elementor-heading-title.h2 {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: clamp(28px, 8vw, 34px) !important;
+    line-height: 1.1 !important;
+  }
+  .elementor-2086 h3 {
+    font-size: clamp(20px, 5.6vw, 24px) !important;
+    line-height: 1.2 !important;
+  }
+  .elementor-2086 p, .elementor-2086 .elementor-widget-text-editor {
+    font-size: 17px !important;
+    line-height: 1.55 !important;
+  }
+  .elementor-2086 small,
+  .elementor-2086 .elementor-widget-text-editor small,
+  .elementor-2086 .cwc-micro {
+    font-size: 13px !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  /* ============================================================
+     14. MOTION â subtle fade-in on scroll (CSS-only via @supports)
+     ============================================================ */
+  @supports (animation-timeline: view()) {
+    .elementor-2086 > .elementor-section {
+      animation: cwc-fade-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+    @keyframes cwc-fade-in {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  /* Smooth scrolling for anchor jumps */
+  html { scroll-behavior: smooth; }
+
+  /* Hide WP admin bar on mobile preview to give accurate impression */
+  /* (only matters if logged-in user previews on phone) */
+  /* No â admin bar is logged-in only; leave it visible for now. */
+
+  /* ============================================================
+     15. UTILITY HELPERS  â apply via custom class in Elementor
+     ============================================================ */
+  .cwc-mob-hide { display: none !important; }
+  .cwc-mob-only { display: block !important; }
+  .cwc-mob-tight > * { margin-top: 6px !important; margin-bottom: 6px !important; }
+  .cwc-mob-cta-fullwidth .elementor-button { width: 100% !important; }
+}
+
+/* ============================================================
+   DESKTOP-ONLY safeguard for cwc-mob-only utility
+   ============================================================ */
+@media (min-width: 768px) {
+  .cwc-mob-only { display: none !important; }
+}
+
+
+/* ============ POLISH v2 ============ */
+/* ============================================================
+   CWC Mobile-First â POLISH PASS v2  (2026-06-19)
+   Linear / Stripe / Apple-level refinement.
+   Layers ON TOP of cwc-mobile-first v1.
+   ============================================================ */
+
+/* Updated gold token to richer #D4A85C as requested */
+:root {
+  --cwc-gold: #D4A85C;
+  --cwc-gold-soft: #E1BD7A;
+  --cwc-gold-deep: #B98A3F;
+  --cwc-navy: #1F3D5C;
+  --cwc-navy-deep: #0F2238;
+  --cwc-cream: #FAF6EE;
+  --cwc-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Global typography refinement (all viewports) ---------- */
+.elementor-2086 :is(h1,h2,h3,.elementor-heading-title) {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.elementor-2086 p, .elementor-2086 .elementor-widget-text-editor {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   MOBILE POLISH  (@max-width: 767px)
+   ============================================================ */
+@media (max-width: 767px) {
+
+  /* ---------- Typography premium tuning ---------- */
+  .elementor-2086 h1,
+  .elementor-2086 .elementor-heading-title.h1,
+  .elementor-element-7caf2ed h1.elementor-heading-title {
+    font-family: 'Cormorant Garamond','Cormorant',serif !important;
+    font-weight: 500 !important;
+    font-size: clamp(40px, 11.2vw, 50px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.8px !important;
+    color: #ffffff !important;
+  }
+  .elementor-2086 h2, .elementor-2086 .elementor-heading-title.h2 {
+    font-family: 'Cormorant Garamond',serif !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.3px !important;
+  }
+  .elementor-2086 p,
+  .elementor-2086 .elementor-widget-text-editor {
+    font-family: 'Heebo','Inter',sans-serif !important;
+    font-size: 17px !important;
+    line-height: 1.58 !important;
+    letter-spacing: -0.005em !important;
+  }
+  /* Eyebrows globally */
+  .elementor-2086 .cwc-eyebrow,
+  .elementor-element-7caf2ed .elementor-widget-heading:first-of-type .elementor-heading-title {
+    font-family: 'Heebo',sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 11.5px !important;
+    letter-spacing: 2.8px !important;
+    text-transform: uppercase !important;
+    color: var(--cwc-gold) !important;
+  }
+
+  /* ============================================================
+     HERO â refined premium
+     ============================================================ */
+  .elementor-element-7caf2ed {
+    padding-top: 60px !important;
+    padding-bottom: 68px !important;
+    background:
+      radial-gradient(110% 70% at 50% -10%, rgba(212,168,92,0.14) 0%, transparent 55%),
+      linear-gradient(180deg, #1F3D5C 0%, #14304a 60%, #0F2438 100%) !important;
+  }
+  .elementor-element-7caf2ed::before { opacity: 0.55 !important; }
+
+  /* Section inner padding more refined */
+  .elementor-element-7caf2ed .elementor-container,
+  .elementor-element-7caf2ed .elementor-column {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+  .elementor-element-7caf2ed .elementor-container { gap: 24px !important; }
+
+  /* Italic gold subhead */
+  .elementor-element-7caf2ed .elementor-widget-heading h2,
+  .elementor-element-7caf2ed .elementor-widget-heading h3 {
+    font-family: 'Cormorant Garamond',serif !important;
+    font-size: 23px !important;
+    line-height: 1.28 !important;
+    color: var(--cwc-gold-soft) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.2px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Primary button â gold pill with subtle shine + micro-glow */
+  .elementor-element-7caf2ed .elementor-button {
+    background: linear-gradient(180deg, var(--cwc-gold-soft) 0%, var(--cwc-gold) 50%, var(--cwc-gold-deep) 100%) !important;
+    color: var(--cwc-navy) !important;
+    font-family: 'Heebo',sans-serif !important;
+    font-weight: 600 !important;
+    border: none !important;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.25) inset,
+      0 -1px 0 rgba(0,0,0,0.10) inset,
+      0 10px 30px -10px rgba(212,168,92,0.45),
+      0 2px 6px rgba(0,0,0,0.18) !important;
+    transition: transform 0.18s var(--cwc-ease), box-shadow 0.18s var(--cwc-ease), filter 0.18s var(--cwc-ease) !important;
+  }
+  .elementor-element-7caf2ed .elementor-button:active {
+    transform: translateY(1px) scale(0.985);
+    filter: brightness(0.95);
+  }
+
+  /* Secondary button outline pill â glassmorphism */
+  .elementor-element-7caf2ed .elementor-widget-button:nth-of-type(2) .elementor-button,
+  .elementor-element-7caf2ed [class*="cwc-secondary"] .elementor-button {
+    background: rgba(255,255,255,0.06) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(212,168,92,0.55) !important;
+    backdrop-filter: blur(8px) saturate(140%);
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.10) inset,
+      0 6px 20px -8px rgba(0,0,0,0.25) !important;
+  }
+
+  /* ============================================================
+     TRUST BAR â refined glass cards
+     ============================================================ */
+  .elementor-element-f3138f0 {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    background:
+      linear-gradient(180deg, #0F2238 0%, #0c1d31 100%) !important;
+    border-top: 1px solid rgba(212,168,92,0.15) !important;
+    border-bottom: 1px solid rgba(212,168,92,0.10) !important;
+  }
+  .elementor-element-f3138f0 .elementor-icon-list-items {
+    gap: 12px 16px !important;
+  }
+  .elementor-element-f3138f0 .elementor-icon-list-item {
+    color: var(--cwc-gold) !important;
+    font-weight: 500 !important;
+    letter-spacing: 1.4px !important;
+    font-size: 11px !important;
+  }
+
+  /* ============================================================
+     CONDITIONS â carousel with dot indicators
+     ============================================================ */
+  .elementor-element-9ea7d25 {
+    background: linear-gradient(180deg, #FAF6EE 0%, #F5EFE0 100%) !important;
+  }
+  /* Add scroll-padding so first card centers nicely */
+  .elementor-element-9ea7d25 [class*="grid"],
+  .elementor-element-9ea7d25 .e-con-inner {
+    scroll-padding-left: 20px !important;
+    padding-bottom: 32px !important;
+  }
+  /* Cards get gold border + lift */
+  .elementor-element-9ea7d25 [class*="grid"] > * {
+    background: #ffffff !important;
+    border: 1.5px solid rgba(212,168,92,0.25) !important;
+    border-radius: 16px !important;
+    padding: 22px !important;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.9) inset,
+      0 12px 28px -16px rgba(31,61,92,0.18) !important;
+    transition: transform 0.2s var(--cwc-ease), box-shadow 0.2s var(--cwc-ease);
+  }
+  .elementor-element-9ea7d25 [class*="grid"] > *:active {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.9) inset,
+      0 20px 40px -16px rgba(31,61,92,0.30) !important;
+  }
+  /* Section heading kerning */
+  .elementor-element-9ea7d25 .elementor-heading-title {
+    font-weight: 500 !important;
+    letter-spacing: -0.4px !important;
+    color: var(--cwc-navy) !important;
+  }
+
+  /* ============================================================
+     HOW IT WORKS â refined
+     ============================================================ */
+  #how-it-works {
+    background: linear-gradient(180deg, #FAF6EE 0%, #F2E9D2 100%) !important;
+  }
+  #how-it-works .elementor-column {
+    background: rgba(255,255,255,0.6) !important;
+    border: 1.5px solid rgba(212,168,92,0.20) !important;
+    border-radius: 18px !important;
+    margin-bottom: 14px !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 10px 30px -20px rgba(31,61,92,0.20) !important;
+  }
+  /* Connector â vertical gold line between cards */
+  #how-it-works .elementor-column:not(:last-child)::after {
+    height: 24px !important;
+    background: linear-gradient(180deg, var(--cwc-gold) 0%, transparent 95%) !important;
+    bottom: -20px !important;
+    width: 1.5px !important;
+  }
+  /* Step number â refined */
+  #how-it-works .elementor-column .elementor-widget-heading:first-of-type .elementor-heading-title {
+    font-family: 'Cormorant Garamond',serif !important;
+    font-size: 76px !important;
+    line-height: 0.95 !important;
+    color: var(--cwc-gold) !important;
+    font-weight: 500 !important;
+    letter-spacing: -2px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* ============================================================
+     DOCTORS â circular gold-ring portraits
+     ============================================================ */
+  .elementor-element-b30c7b3 .elementor-image img,
+  .elementor-element-b30c7b3 .elementor-widget-image img {
+    border-radius: 50% !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+    width: 180px !important;
+    height: 180px !important;
+    margin: 0 auto !important;
+    display: block !important;
+    border: 3px solid var(--cwc-gold) !important;
+    box-shadow:
+      0 0 0 6px rgba(212,168,92,0.15),
+      0 12px 30px -10px rgba(31,61,92,0.25) !important;
+  }
+  .elementor-element-b30c7b3 .elementor-column {
+    background: rgba(255,255,255,0.5);
+    border-radius: 18px;
+    padding: 24px 18px !important;
+    border: 1px solid rgba(212,168,92,0.18);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  /* ============================================================
+     TESTIMONIALS â premium carousel + dots
+     ============================================================ */
+  .elementor-element-2ea667c {
+    background: linear-gradient(180deg, var(--cwc-cream) 0%, #F2E9D2 100%) !important;
+  }
+  .elementor-element-2ea667c .elementor-container > .elementor-column {
+    background: #ffffff !important;
+    border: 1.5px solid rgba(212,168,92,0.25) !important;
+    border-radius: 18px !important;
+    padding: 24px !important;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.9) inset,
+      0 14px 32px -20px rgba(31,61,92,0.22) !important;
+  }
+  .elementor-element-2ea667c .elementor-widget-text-editor {
+    font-family: 'Cormorant Garamond',serif !important;
+    font-size: 19px !important;
+    line-height: 1.4 !important;
+    font-style: italic !important;
+    color: var(--cwc-navy) !important;
+  }
+
+  /* ============================================================
+     PRICING â Cabo Care+ destacado scale 1.05 + glow
+     ============================================================ */
+  .elementor-element-4bb76b7 {
+    background: linear-gradient(180deg, #FAF6EE 0%, #ffffff 100%) !important;
+  }
+  .elementor-element-4bb76b7 .elementor-container > .elementor-column {
+    background: #ffffff !important;
+    border: 1.5px solid rgba(31,61,92,0.10) !important;
+    border-radius: 20px !important;
+    padding: 28px 22px !important;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.9) inset,
+      0 16px 36px -22px rgba(31,61,92,0.18) !important;
+    transition: transform 0.25s var(--cwc-ease), box-shadow 0.25s var(--cwc-ease);
+  }
+  /* MIDDLE card = Cabo Care+ - elevated */
+  .elementor-element-4bb76b7 .elementor-container > .elementor-column:nth-child(2) {
+    transform: scale(1.05) !important;
+    border: 2px solid var(--cwc-gold) !important;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.9) inset,
+      0 0 0 4px rgba(212,168,92,0.10),
+      0 24px 56px -22px rgba(212,168,92,0.55) !important;
+    z-index: 2;
+    margin: 18px 0 !important;
+  }
+  /* MOST POPULAR pill â refined */
+  .elementor-element-4bb76b7 .elementor-container > .elementor-column:nth-child(2)::before {
+    content: "â MOST POPULAR";
+    background: linear-gradient(180deg, var(--cwc-gold-soft) 0%, var(--cwc-gold) 100%) !important;
+    color: var(--cwc-navy) !important;
+    padding: 6px 16px !important;
+    font-size: 11px !important;
+    letter-spacing: 2.2px !important;
+    font-weight: 700 !important;
+    font-family: 'Heebo',sans-serif !important;
+    top: -14px !important;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.4) inset,
+      0 6px 16px -4px rgba(212,168,92,0.55) !important;
+  }
+  /* Pricing buttons â full-width gold pills */
+  .elementor-element-4bb76b7 .elementor-button {
+    width: 100% !important;
+    min-height: 52px !important;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    font-family: 'Heebo',sans-serif !important;
+    background: linear-gradient(180deg, var(--cwc-gold-soft) 0%, var(--cwc-gold) 100%) !important;
+    color: var(--cwc-navy) !important;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.25) inset,
+      0 8px 20px -8px rgba(212,168,92,0.40) !important;
+  }
+  /* Plain card buttons (non-middle) â outline */
+  .elementor-element-4bb76b7 .elementor-container > .elementor-column:not(:nth-child(2)) .elementor-button {
+    background: transparent !important;
+    color: var(--cwc-navy) !important;
+    border: 1.5px solid var(--cwc-navy) !important;
+    box-shadow: none !important;
+  }
+
+  /* ============================================================
+     FAQ â smooth rotating gold +/â icons + slide content
+     ============================================================ */
+  .elementor-2086 .elementor-accordion-item,
+  .elementor-2086 details {
+    background: rgba(255,255,255,0.7) !important;
+    border: 1.5px solid rgba(212,168,92,0.20) !important;
+    border-radius: 14px !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: border-color 0.2s var(--cwc-ease);
+  }
+  .elementor-2086 .elementor-accordion-item:hover,
+  .elementor-2086 .elementor-accordion-item.elementor-active {
+    border-color: var(--cwc-gold) !important;
+  }
+  .elementor-2086 .elementor-tab-title {
+    color: var(--cwc-navy) !important;
+    font-family: 'Heebo',sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 16.5px !important;
+  }
+  .elementor-2086 .elementor-accordion-icon {
+    color: var(--cwc-gold) !important;
+    transition: transform 0.3s var(--cwc-ease);
+  }
+  .elementor-2086 .elementor-active .elementor-accordion-icon {
+    transform: rotate(45deg);
+  }
+  .elementor-2086 .elementor-tab-content {
+    color: rgba(31,61,92,0.86) !important;
+    font-family: 'Heebo',sans-serif !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    animation: cwc-faq-slide 0.28s var(--cwc-ease);
+  }
+  @keyframes cwc-faq-slide {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============================================================
+     FINAL CTA â refined full-bleed
+     ============================================================ */
+  .elementor-element-dd942b7,
+  .elementor-element-563059c {
+    padding-top: 64px !important;
+    padding-bottom: 80px !important;
+    background:
+      radial-gradient(80% 60% at 50% 0%, rgba(212,168,92,0.22) 0%, transparent 55%),
+      linear-gradient(180deg, #1F3D5C 0%, #0F2238 100%) !important;
+    position: relative;
+    overflow: hidden;
+  }
+  .elementor-element-dd942b7::before,
+  .elementor-element-563059c::before {
+    content: "";
+    position: absolute; inset: auto 0 0 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--cwc-gold) 50%, transparent 100%);
+    opacity: 0.4;
+  }
+  .elementor-element-dd942b7 .elementor-heading-title,
+  .elementor-element-563059c .elementor-heading-title {
+    font-family: 'Cormorant Garamond',serif !important;
+    font-size: 36px !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.4px !important;
+    color: #ffffff !important;
+  }
+  .elementor-element-dd942b7 .elementor-button,
+  .elementor-element-563059c .elementor-button {
+    background: linear-gradient(180deg, var(--cwc-gold-soft) 0%, var(--cwc-gold) 50%, var(--cwc-gold-deep) 100%) !important;
+    color: var(--cwc-navy) !important;
+    font-weight: 700 !important;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.30) inset,
+      0 -1px 0 rgba(0,0,0,0.12) inset,
+      0 14px 36px -10px rgba(212,168,92,0.55),
+      0 3px 8px rgba(0,0,0,0.20) !important;
+  }
+
+  /* ============================================================
+     STICKY BOTTOM CTA â REAL glassmorphism + slide-in past hero
+     ============================================================ */
+  .cwc-sticky-cta,
+  .cwc-mobile-sticky,
+  [class*="sticky"][class*="cta"] {
+    background: rgba(15, 34, 56, 0.78) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-top: 1px solid rgba(212,168,92,0.45) !important;
+    box-shadow:
+      0 -1px 0 rgba(255,255,255,0.06) inset,
+      0 -12px 40px -10px rgba(0,0,0,0.35) !important;
+    padding: 12px 16px env(safe-area-inset-bottom, 12px) !important;
+    transform: translateY(0) !important;
+    transition: transform 0.45s var(--cwc-ease), opacity 0.3s var(--cwc-ease) !important;
+  }
+  body:not(.cwc-past-hero) .cwc-sticky-cta,
+  body:not(.cwc-past-hero) .cwc-mobile-sticky {
+    transform: translateY(120%) !important;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .cwc-sticky-cta .cwc-cta-button,
+  .cwc-sticky-cta a,
+  [class*="sticky"][class*="cta"] a.cwc-cta {
+    background: linear-gradient(180deg, var(--cwc-gold-soft) 0%, var(--cwc-gold) 100%) !important;
+    color: var(--cwc-navy) !important;
+    border-radius: 999px !important;
+    font-weight: 700 !important;
+    padding: 10px 18px !important;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.30) inset,
+      0 6px 16px -6px rgba(212,168,92,0.55) !important;
+  }
+
+  /* ============================================================
+     CAROUSEL DOT INDICATORS â generic for scroll-snap carousels
+     ============================================================ */
+  .elementor-element-9ea7d25 [class*="grid"]::after,
+  .elementor-element-2ea667c .elementor-container::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 6px;
+  }
+
+  /* Premium scrollbar hide */
+  .elementor-element-9ea7d25 [class*="grid"]::-webkit-scrollbar,
+  .elementor-element-2ea667c .elementor-container::-webkit-scrollbar,
+  .elementor-element-9d30931 table::-webkit-scrollbar { display: none !important; }
+
+  /* ============================================================
+     COMPARISON TABLE â premium card stack on mobile
+     ============================================================ */
+  .elementor-element-9d30931 {
+    background: linear-gradient(180deg, #ffffff 0%, var(--cwc-cream) 100%) !important;
+  }
+  .elementor-element-9d30931 table {
+    border-radius: 16px !important;
+    border: 1.5px solid rgba(212,168,92,0.25) !important;
+    overflow: hidden;
+    box-shadow: 0 12px 30px -18px rgba(31,61,92,0.18);
+  }
+  .elementor-element-9d30931 table th {
+    background: var(--cwc-navy) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+  }
+  .elementor-element-9d30931 table td {
+    border-bottom: 1px solid rgba(31,61,92,0.08) !important;
+  }
+
+  /* ============================================================
+     MICRO-MOTION â fade-up + scale on tap globally
+     ============================================================ */
+  @supports (animation-timeline: view()) {
+    .elementor-2086 > .elementor-section > * {
+      animation: cwc-section-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 38%;
+    }
+    @keyframes cwc-section-rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  }
+  .elementor-2086 .elementor-button,
+  .elementor-2086 a[class*="button"] {
+    transition: transform 0.18s var(--cwc-ease), box-shadow 0.18s var(--cwc-ease), filter 0.18s var(--cwc-ease) !important;
+  }
+  .elementor-2086 .elementor-button:active,
+  .elementor-2086 a[class*="button"]:active {
+    transform: translateY(1px) scale(0.985);
+    filter: brightness(0.96);
+  }
+
+  /* Refined focus rings (accessibility + premium) */
+  .elementor-2086 a:focus-visible,
+  .elementor-2086 button:focus-visible,
+  .elementor-2086 .elementor-button:focus-visible {
+    outline: 2px solid var(--cwc-gold) !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 4px rgba(212,168,92,0.20) !important;
+  }
+
+  /* Selection color matches brand */
+  .elementor-2086 ::selection {
+    background: rgba(212,168,92,0.30);
+    color: var(--cwc-navy);
+  }
+}
+
+/* ============================================================
+   JS HOOK â body class .cwc-past-hero is added by inline JS
+   when scrollY > viewport height; toggles sticky CTA reveal.
+   (Inline JS lives in WPCode if available, o can be added.)
+   ============================================================ */
+
+
+/* ============================================================
+   FINAL TOKEN OVERRIDE — beats inline theme :root cwc tokens
+   ============================================================ */
+:root, html, html body {
+  --cwc-gold: #D4A85C !important;
+  --cwc-gold-soft: #E1BD7A !important;
+  --cwc-gold-deep: #B98A3F !important;
+}
+
+/* Also override hero/section paddings with higher specificity */
+@media (max-width: 767px) {
+  html .elementor-2086 .elementor-element-7caf2ed {
+    padding-top: 60px !important;
+    padding-bottom: 68px !important;
+  }
+}
+
+
+/* ===================================
+   CWC VIDEO-DOCTOR-CONSULTATION
+   Mobile contrast + chat + testimonial + book-now fix v2
+   2026-06-19
+   =================================== */
+
+@media (max-width: 767px) {
+
+  /* 1. WHAT WE TREAT (#9ea7d25) cream bg */
+  .elementor-element-9ea7d25 .elementor-icon-box-title,
+  .elementor-element-9ea7d25 .elementor-icon-box-title a {
+    color: #14283C !important; font-weight: 600 !important;
+  }
+  .elementor-element-9ea7d25 .elementor-icon-box-description { color: #3A4A5C !important; }
+  .elementor-element-9ea7d25 .elementor-widget-text-editor,
+  .elementor-element-9ea7d25 .elementor-widget-text-editor p { color: #2D3E50 !important; }
+  .elementor-element-9ea7d25 .elementor-element-186034c .elementor-heading-title { color: #B8862F !important; }
+  .elementor-element-c131605 .elementor-column .elementor-widget-wrap.elementor-element-populated,
+  .elementor-element-3e06cdd .elementor-column .elementor-widget-wrap.elementor-element-populated {
+    background: #FFFFFF !important;
+    border: 1.5px solid rgba(20,40,60,0.08) !important;
+    border-radius: 16px !important;
+    padding: 22px 18px !important;
+    box-shadow: 0 4px 14px rgba(20,40,60,0.06) !important;
+    margin: 6px !important;
+  }
+
+  /* 2. PRICING (#4bb76b7) cream bg */
+  .elementor-element-4bb76b7 .elementor-element-1777aa2 .elementor-heading-title { color: #B8862F !important; }
+  .elementor-element-4bb76b7 .elementor-element-d913cb9 p,
+  .elementor-element-4bb76b7 .elementor-element-d913cb9 .elementor-widget-text-editor,
+  .elementor-element-4bb76b7 .elementor-element-d913cb9 .elementor-widget-text-editor p { color: #14283C !important; }
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap .elementor-widget-text-editor,
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap p,
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap li,
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap .elementor-icon-list-text,
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap span,
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap div { color: #14283C !important; }
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap h1,
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap h2,
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap h3,
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap h4,
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap h5,
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap .elementor-heading-title {
+    color: #14283C !important; font-weight: 600 !important;
+  }
+  .elementor-element-4bb76b7 .elementor-column .elementor-widget-wrap strong { color: #B8862F !important; }
+
+  /* 3. CONDITION LINKS (#ef80ff4) */
+  .elementor-element-ef80ff4 { background: linear-gradient(rgb(250, 246, 238) 0%, rgb(245, 239, 224) 100%) !important; }
+  .elementor-element-ef80ff4 .elementor-heading-title,
+  .elementor-element-ef80ff4 h2,
+  .elementor-element-ef80ff4 h3 { color: #14283C !important; }
+  .elementor-element-ef80ff4 .elementor-icon-box-title,
+  .elementor-element-ef80ff4 .elementor-icon-box-title a { color: #14283C !important; font-weight: 600 !important; }
+  .elementor-element-ef80ff4 .elementor-icon-box-description,
+  .elementor-element-ef80ff4 p,
+  .elementor-element-ef80ff4 .elementor-widget-text-editor { color: #3A4A5C !important; }
+  .elementor-element-9736c5a .elementor-column .elementor-widget-wrap.elementor-element-populated {
+    background: #FFFFFF !important;
+    border: 1.5px solid rgba(20,40,60,0.08) !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 14px rgba(20,40,60,0.06) !important;
+    margin: 6px !important;
+  }
+
+  /* 4. TESTIMONIALS (#2ea667c) width + readability */
+  .elementor-element-2ea667c .elementor-column { width: 100% !important; max-width: 100% !important; }
+  .elementor-element-2ea667c .elementor-widget-wrap > .elementor-element { width: 100% !important; }
+  .elementor-element-2ea667c .elementor-widget-text-editor,
+  .elementor-element-2ea667c .elementor-widget-text-editor p {
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    column-count: 1 !important;
+    column-width: auto !important;
+    text-align: left !important;
+    hyphens: none !important;
+    max-width: 100% !important;
+  }
+  .elementor-element-2ea667c .elementor-column .elementor-widget-wrap.elementor-element-populated { padding: 22px 18px !important; }
+
+  /* 5. CHAT WIDGET z-index */
+  iframe[id*="chat"],
+  iframe[src*="tidio"],
+  iframe[src*="kommo"],
+  iframe[src*="kodee"],
+  iframe[src*="intercom"],
+  iframe[title*="chat" i],
+  #tidio-chat,
+  .tidio-chat-iframe,
+  [class*="ChatWidget"],
+  [class*="kodee" i],
+  [class*="chat-widget"],
+  .kodee-widget,
+  #kodee-launcher,
+  #kodee-widget { z-index: 90 !important; }
+
+  .elementor-element-7caf2ed .elementor-button,
+  .elementor-element-9301b53 { position: relative; z-index: 100 !important; }
+
+  [data-fixed-bottom],
+  .cwc-sticky-cta,
+  .elementor-element[class*="sticky-bottom"] { z-index: 110 !important; }
+
+  /* 6. WHITE GAP FIXES */
+  .elementor-element-7caf2ed { padding-bottom: 28px !important; margin-bottom: 0 !important; }
+  .elementor-element-f3138f0 { margin-top: 0 !important; margin-bottom: 0 !important; padding-top: 18px !important; padding-bottom: 18px !important; }
+  .elementor-element-9ea7d25 { margin-top: 0 !important; }
+  .elementor-2086 .elementor-widget-spacer { background: transparent !important; }
+  body.page-id-2086 { padding-top: var(--cwc-promo-h, 42px) !important; }
+}
+
+.elementor-2086 .elementor-button-text { white-space: nowrap; }
+
+
+/* ============================================================
+   TESTIMONIALS (#2ea667c) — mobile fix: word-per-line + compact
+   Added: 2026-06-20 — overrides previous mobile rules via cascade
+   ============================================================ */
+@media (max-width: 767px) {
+  .elementor-element-2ea667c .elementor-inner-section .elementor-container {
+    flex-wrap: wrap !important;
+  }
+  .elementor-element-2ea667c .elementor-col-33 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    margin-bottom: 12px !important;
+  }
+  .elementor-element-2ea667c .elementor-widget-html {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(212,168,92,0.22) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 16px -4px rgba(20,40,60,0.08) !important;
+    padding: 18px 20px !important;
+    margin: 0 auto 12px !important;
+    max-width: 340px !important;
+    box-sizing: border-box !important;
+  }
+  .elementor-element-2ea667c .elementor-widget-html p {
+    width: 100% !important;
+    max-width: 100% !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    hyphens: none !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    text-align: left !important;
+    color: #2D3E50 !important;
+    font-style: italic !important;
+    margin: 8px 0 12px !important;
+  }
+}
+
+
+/* ============================================================
+   PREMIUM BUTTONS — refined rounded-rectangle (not pill)
+   Added: 2026-06-20 — Fix #3 (Raul aesthetic upgrade)
+   ============================================================ */
+a.elementor-button,
+.elementor-button-link,
+.elementor-button,
+button.elementor-button,
+.cwc-cta-btn {
+  border-radius: 12px !important;
+  padding: 18px 42px !important;
+  font-family: 'Heebo', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.6px !important;
+  text-transform: uppercase !important;
+  background: linear-gradient(180deg, #E3B077 0%, #D4A85C 100%) !important;
+  color: #14283C !important;
+  border: 1px solid rgba(212,168,92,0.4) !important;
+  box-shadow: 0 4px 14px -2px rgba(20,40,60,0.25),
+              inset 0 1px 0 0 rgba(255,255,255,0.3) !important;
+  transition: all 0.25s ease !important;
+}
+
+a.elementor-button:hover,
+.elementor-button:hover,
+button.elementor-button:hover {
+  transform: translateY(-2px) !important;
+  background: linear-gradient(180deg, #EBB988 0%, #DDB068 100%) !important;
+  box-shadow: 0 8px 24px -4px rgba(20,40,60,0.35),
+              inset 0 1px 0 0 rgba(255,255,255,0.4) !important;
+}
+
+/* Header Book Now navy button — keep navy variant */
+.cwc-header-btn,
+.elementor-button[href*="book"] {
+  background: linear-gradient(180deg, #1F3A5F 0%, #14283C 100%) !important;
+  color: #FAF7F2 !important;
+  border-color: rgba(212,168,92,0.5) !important;
+}
+
+/* Mobile sizing — slightly smaller */
+@media (max-width: 767px) {
+  a.elementor-button,
+  .elementor-button {
+    padding: 16px 32px !important;
+    font-size: 15px !important;
+    border-radius: 10px !important;
+  }
+}

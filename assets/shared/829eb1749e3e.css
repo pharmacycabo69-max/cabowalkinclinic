@@ -1,0 +1,6 @@
+.cwc-concierge-avatar img{object-fit:contain!important;object-position:center!important;background:#fff}
+.cwc-chat__ava{object-fit:contain!important;background:#fff}
+@media(min-width:1024px){
+.cwc-nav a[href*="geriatric"],.cwc-nav a[href*="x-ray"],.cwc-nav a[href*="insurance"],.cwc-nav a[href*="medical-concierge"],.cwc-nav a[href*="travel-health"],.cwc-nav a[href*="ambulance"]{display:none!important}
+.cwc-header-inner{gap:24px!important}
+}

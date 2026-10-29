@@ -1,0 +1,40 @@
+/* CWC — IV Therapy Title Serif Fix (2026-05-21)
+   Scope: 14 IV-therapy landing pages only (body.parent-pageid-473).
+   Force section block TITLES + hero H1 + page entry-title to the brand
+   serif (Cormorant Garamond) to match the premium site typography.
+   TYPOGRAPHY ONLY — no color, button, link, CTA or content changes.
+   Small meta labels (.cwc-iv-meta h4), eyebrows (Inter) and related-card
+   titles (h3) are intentionally left untouched. */
+body.parent-pageid-473 .page-header .entry-title,
+body.parent-pageid-473 .cwc-iv-landing-page h2,
+body.parent-pageid-473 section.cwc-iv-hero h1 {
+  font-family: "Cormorant Garamond", "Playfair Display", Georgia, serif !important;
+  font-weight: 600 !important;
+}
+.cwc-iv-related__grid.cwc-rel2-track{display:flex !important;grid-template-columns:none !important;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:6px 2px 18px;margin:0;}
+.cwc-rel2-track::-webkit-scrollbar{height:7px;}
+.cwc-rel2-track::-webkit-scrollbar-thumb{background:#D9CFC0;border-radius:4px;}
+.cwc-rel2-track::-webkit-scrollbar-track{background:transparent;}
+.cwc-rel2-wrap{position:relative;}
+.cwc-rel2-card{flex:0 0 calc(25% - 12px);scroll-snap-align:start;display:flex;flex-direction:column;background:#fff;border:1px solid #ECE6DD;border-radius:14px;overflow:hidden;text-decoration:none !important;box-shadow:0 4px 14px rgba(31,61,92,.06);transition:transform .15s ease,box-shadow .15s ease;}
+.cwc-rel2-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(31,61,92,.14);}
+.cwc-rel2-img{background:#F4EFE7;line-height:0;}
+.cwc-rel2-img img{width:100%;height:188px;object-fit:cover;object-position:center 32%;display:block;}
+.cwc-rel2-body{padding:14px 15px 15px;display:flex;flex-direction:column;flex:1 1 auto;}
+.cwc-rel2-tag{font-family:'Heebo',sans-serif;font-weight:600;font-size:10px;line-height:1;letter-spacing:1.6px;text-transform:uppercase;color:#C89F6A;margin-bottom:6px;}
+.cwc-rel2-title{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;color:#1F3D5C;margin:0 0 9px;line-height:1.05;}
+.cwc-rel2-list{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:5px;}
+.cwc-rel2-list li{position:relative;padding-left:20px;font-family:'Heebo',sans-serif;font-weight:400;font-size:13px;line-height:1.3;color:#46566a;}
+.cwc-rel2-list li::before{content:'✓';position:absolute;left:0;top:0;color:#C89F6A;font-weight:700;font-size:12px;}
+.cwc-rel2-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:11px;border-top:1px solid #F0EAE0;}
+.cwc-rel2-price{font-family:'Heebo',sans-serif;font-weight:700;font-size:15px;color:#1F3D5C;}
+.cwc-rel2-cta{font-family:'Heebo',sans-serif;font-weight:700;font-size:13px;color:#C89F6A;white-space:nowrap;}
+.cwc-rel2-card:hover .cwc-rel2-cta{text-decoration:underline;}
+.cwc-rel2-arrow{position:absolute;top:34%;transform:translateY(-50%);width:42px !important;height:42px !important;min-width:0 !important;padding:0 !important;border-radius:50% !important;background:#1F3D5C !important;color:#fff !important;border:none !important;cursor:pointer;display:flex !important;align-items:center;justify-content:center;box-shadow:0 5px 16px rgba(31,61,92,.28);z-index:4;opacity:.96;transition:background .15s,transform .15s;}
+.cwc-rel2-arrow:hover{background:#163049 !important;transform:translateY(-50%) scale(1.06);}
+.cwc-rel2-arrow svg{width:18px;height:18px;}
+.cwc-rel2-arrow--prev{left:-8px;}
+.cwc-rel2-arrow--next{right:-8px;}
+@media(max-width:1100px){.cwc-rel2-card{flex-basis:calc(33.333% - 11px);}}
+@media(max-width:820px){.cwc-rel2-card{flex-basis:calc(50% - 8px);}}
+@media(max-width:600px){.cwc-rel2-card{flex-basis:82%;}.cwc-rel2-arrow{display:none;}.cwc-rel2-img img{height:170px;}.cwc-rel2-title{font-size:21px;}}

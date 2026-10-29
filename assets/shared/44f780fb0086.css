@@ -1,0 +1,14 @@
+#cwc-h-onecall{display:none;background:linear-gradient(180deg,#fcfaf6,#f5f1e8);border-top:1px solid #e2d9c8;border-bottom:1px solid #e2d9c8;padding:34px 18px;font-family:Heebo,system-ui,sans-serif;color:#1F3D5C}
+body.home #cwc-h-onecall{display:block}
+#cwc-h-onecall .oc-inner{max-width:1140px;margin:0 auto;text-align:center}
+#cwc-h-onecall .oc-eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#C89F6A;font-weight:800;margin-bottom:6px}
+#cwc-h-onecall h2{margin:.1em 0 .35em;font-family:"Cormorant Garamond","Playfair Display",Georgia,serif;font-size:2.05rem;line-height:1.15;color:#1F3D5C;font-weight:600}
+#cwc-h-onecall p.oc-lead{max-width:760px;margin:0 auto 18px;color:#3a4a5c;line-height:1.6;font-size:1.02rem}
+#cwc-h-onecall .oc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0 8px;text-align:left}
+#cwc-h-onecall .oc-card{background:#fff;border:1px solid #e2d9c8;border-left:4px solid #C89F6A;border-radius:10px;padding:14px 16px}
+#cwc-h-onecall .oc-ic{font-weight:800;color:#C89F6A;letter-spacing:.08em;font-size:.72rem;text-transform:uppercase}
+#cwc-h-onecall .oc-card h3{font-family:"Cormorant Garamond",serif;font-size:1.2rem;color:#1F3D5C;margin:.25em 0 .2em;line-height:1.2}
+#cwc-h-onecall .oc-card p{margin:0;font-size:.93rem;color:#3a4a5c;line-height:1.5}
+#cwc-h-onecall .oc-card a{color:#1F3D5C;font-weight:700;text-decoration:none;border-bottom:1px solid #C89F6A}
+#cwc-h-onecall .oc-cta{margin-top:12px;font-size:1rem;color:#3a4a5c}
+#cwc-h-onecall .oc-cta a{color:#1F3D5C;font-weight:700}
