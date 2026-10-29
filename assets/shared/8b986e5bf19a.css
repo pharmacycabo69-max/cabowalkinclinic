@@ -1,0 +1,131 @@
+/* CWC-DRAWER-CONTRAST-FIX-V3 (2026-05-20) */
+/* Issue: text computed-color is #fff but appears faded on mobile because font-weight 500 + thin antialiasing on dark navy lacks visual weight. V3 bumps weight + adds subtle text-shadow + brighter dividers + brighter footer. */
+
+#cwc-drawer .cwc-drawer-logo .cwc-logo-word{font-weight:600 !important;letter-spacing:0.14em !important;text-shadow:0 1px 2px rgba(0,0,0,0.25)}
+
+#cwc-drawer .cwc-drawer-nav a,
+#cwc-drawer .cwc-drawer-nav a:link,
+#cwc-drawer .cwc-drawer-nav a:visited{color:#FFFFFF !important;opacity:1 !important;font-weight:600 !important;text-shadow:0 1px 2px rgba(0,0,0,0.20);transition:color 0.2s ease,background-color 0.2s ease}
+#cwc-drawer .cwc-drawer-nav a:hover,
+#cwc-drawer .cwc-drawer-nav a:focus-visible{color:#E8C088 !important;background:rgba(200,159,106,0.10) !important}
+#cwc-drawer .cwc-drawer-nav a::after{opacity:0.55 !important;color:#FFFFFF !important;font-weight:600}
+#cwc-drawer .cwc-drawer-nav a:hover::after{opacity:1 !important;color:#E8C088 !important;transform:translateX(4px)}
+
+#cwc-drawer .cwc-drawer-nav li{border-bottom:1px solid rgba(255,255,255,0.14) !important}
+#cwc-drawer .cwc-drawer-nav li:last-child{border-bottom:none !important}
+#cwc-drawer .cwc-drawer-head{border-bottom:1px solid rgba(255,255,255,0.18) !important}
+#cwc-drawer .cwc-drawer-ctas{border-top:1px solid rgba(255,255,255,0.18) !important}
+
+#cwc-drawer .cwc-drawer-call{background:#C89F6A !important;color:#FFFFFF !important;font-weight:700 !important;letter-spacing:0.02em !important;text-shadow:0 1px 2px rgba(0,0,0,0.20);box-shadow:0 4px 14px rgba(200,159,106,0.35)}
+#cwc-drawer .cwc-drawer-call:hover,#cwc-drawer .cwc-drawer-call:focus-visible{background:#B08850 !important;color:#FFFFFF !important;transform:translateY(-1px);box-shadow:0 6px 18px rgba(200,159,106,0.45)}
+
+#cwc-drawer .cwc-drawer-wa{background:transparent !important;color:#FFFFFF !important;font-weight:700 !important;letter-spacing:0.02em !important;border:2px solid rgba(255,255,255,0.72) !important;text-shadow:0 1px 2px rgba(0,0,0,0.20)}
+#cwc-drawer .cwc-drawer-wa:hover,#cwc-drawer .cwc-drawer-wa:focus-visible{background:rgba(255,255,255,0.10) !important;border-color:#FFFFFF !important;color:#FFFFFF !important;transform:translateY(-1px)}
+
+#cwc-drawer .cwc-drawer-foot{color:rgba(255,255,255,0.82) !important;font-weight:500 !important}
+#cwc-drawer .cwc-drawer-foot a,#cwc-drawer .cwc-drawer-foot strong{color:#FFFFFF !important}
+
+#cwc-drawer .cwc-drawer-close{border-color:rgba(255,255,255,0.45) !important;color:#FFFFFF !important}
+#cwc-drawer .cwc-drawer-close:hover,#cwc-drawer .cwc-drawer-close:focus-visible{border-color:#FFFFFF !important;background:rgba(255,255,255,0.12) !important}
+/* END CWC-DRAWER-CONTRAST-FIX-V3 */
+/* CWC-DRAWER-CONTRAST-FIX-V4 (2026-05-20) final polish: bump weight to 700, add font-smoothing */
+#cwc-drawer,#cwc-drawer *{-webkit-font-smoothing:antialiased !important;-moz-osx-font-smoothing:grayscale !important}
+#cwc-drawer .cwc-drawer-nav a,#cwc-drawer .cwc-drawer-nav a:link,#cwc-drawer .cwc-drawer-nav a:visited{font-weight:700 !important;font-size:17px !important;color:#FFFFFF !important;-webkit-text-fill-color:#FFFFFF !important}
+#cwc-drawer .cwc-drawer-logo .cwc-logo-word{font-weight:600 !important;color:#FFFFFF !important;-webkit-text-fill-color:#FFFFFF !important}
+#cwc-drawer .cwc-drawer-call,#cwc-drawer .cwc-drawer-wa{font-size:15.5px !important;font-weight:800 !important;letter-spacing:0.03em !important;-webkit-text-fill-color:#FFFFFF !important}
+#cwc-drawer .cwc-drawer-foot{color:rgba(255,255,255,0.88) !important;font-weight:500 !important}
+/* END V4 */
+/* CWC-HEADER-VISIBILITY-FIX-V5 (2026-05-20) CRITICAL */
+/* Bug: header section had animation:fadeIn + class .elementor-invisible; Elementor's JS that should remove .elementor-invisible is broken (DEthemekit plugin throws "$ is not a function" errors), so the header stays visibility:hidden forever. This breaks the entire menu (logo, nav, hamburger, drawer all invisible because they inherit visibility from the header section). */
+/* Force the entire header (everything inside .elementor-location-header) to be visible no matter what. Animations on header are removed by setting opacity:1 and animation:none on .elementor-invisible. */
+.elementor-location-header .elementor-invisible,
+.elementor-location-header.elementor-invisible,
+.elementor-location-header .elementor-element.elementor-invisible{visibility:visible !important;opacity:1 !important;animation:none !important;-webkit-animation:none !important;transform:none !important}
+.elementor-location-header .elementor-element{visibility:visible !important}
+/* As a defensive layer, also force on the specific top section by id */
+.elementor-location-header .elementor-element-40488cf4{visibility:visible !important;opacity:1 !important}
+/* And remove the entrance animation altogether on header items so the bug can't return */
+.elementor-location-header [data-settings*="animation"]{animation:none !important;-webkit-animation:none !important;visibility:visible !important}
+/* Defensive JS-less fallback: remove .elementor-invisible from header on next paint */
+/* (also handled in <!--CWCSCR41-->
+<style>
+
+/* CWC-DRAWER-FIX-V6 (2026-05-20) NUCLEAR */
+/* Bug #1: V4 added -webkit-font-smoothing:antialiased which renders text THINNER on dark backgrounds; remove it and use subpixel rendering + heavier weight + text-stroke for visual fullness */
+#cwc-drawer,#cwc-drawer *{-webkit-font-smoothing:subpixel-antialiased !important;-moz-osx-font-smoothing:auto !important}
+html body #cwc-drawer .cwc-drawer-nav a,
+html body #cwc-drawer .cwc-drawer-nav a:link,
+html body #cwc-drawer .cwc-drawer-nav a:visited{
+  color:#FFFFFF !important;
+  -webkit-text-fill-color:#FFFFFF !important;
+  opacity:1 !important;
+  filter:none !important;
+  mix-blend-mode:normal !important;
+  font-weight:800 !important;
+  font-size:17.5px !important;
+  letter-spacing:0.015em !important;
+  -webkit-text-stroke:0.7px #FFFFFF !important;
+  text-shadow:0 0 1px rgba(255,255,255,0.5),0 1px 2px rgba(0,0,0,0.45) !important;
+}
+html body #cwc-drawer .cwc-drawer-logo .cwc-logo-word{
+  color:#FFFFFF !important;
+  -webkit-text-fill-color:#FFFFFF !important;
+  opacity:1 !important;
+  font-weight:700 !important;
+  -webkit-text-stroke:0.5px #FFFFFF !important;
+  text-shadow:0 0 1px rgba(255,255,255,0.5),0 1px 2px rgba(0,0,0,0.4) !important;
+}
+html body #cwc-drawer .cwc-drawer-call,
+html body #cwc-drawer .cwc-drawer-wa{
+  color:#FFFFFF !important;
+  -webkit-text-fill-color:#FFFFFF !important;
+  opacity:1 !important;
+  font-weight:800 !important;
+  font-size:15.5px !important;
+  letter-spacing:0.025em !important;
+  -webkit-text-stroke:0.6px #FFFFFF !important;
+  text-shadow:0 0 1px rgba(255,255,255,0.5),0 1px 2px rgba(0,0,0,0.30) !important;
+}
+html body #cwc-drawer .cwc-drawer-foot{color:rgba(255,255,255,0.92) !important;-webkit-text-fill-color:rgba(255,255,255,0.92) !important;font-weight:600 !important}
+
+/* Bug #2: Backdrop should fully disappear after close. Force opacity:0 + display:none when not is-open */
+html body .cwc-drawer-backdrop:not(.is-open){opacity:0 !important;pointer-events:none !important;visibility:hidden !important}
+html body .cwc-drawer-backdrop.is-open{opacity:1 !important;pointer-events:auto !important;visibility:visible !important}
+/* END V6 CSS */
+/* CWC-DRAWER-FIX-V7 (2026-05-20) — Higher specificity to beat V4's #cwc-drawer .cwc-drawer-nav a rule */
+html body #cwc-drawer .cwc-drawer-nav a,
+html body #cwc-drawer .cwc-drawer-nav a:link,
+html body #cwc-drawer .cwc-drawer-nav a:visited,
+html body #cwc-drawer .cwc-drawer-nav li a{
+  -webkit-font-smoothing:subpixel-antialiased !important;
+  -moz-osx-font-smoothing:auto !important;
+  color:#FFFFFF !important;
+  -webkit-text-fill-color:#FFFFFF !important;
+  font-weight:800 !important;
+  font-size:17.5px !important;
+  -webkit-text-stroke:0.8px #FFFFFF !important;
+  text-shadow:0 0 1px #FFFFFF,0 1px 2px rgba(0,0,0,0.5) !important;
+  opacity:1 !important;
+  filter:none !important;
+}
+html body #cwc-drawer .cwc-drawer-logo .cwc-logo-word{
+  -webkit-font-smoothing:subpixel-antialiased !important;
+  color:#FFFFFF !important;-webkit-text-fill-color:#FFFFFF !important;
+  font-weight:700 !important;-webkit-text-stroke:0.5px #FFFFFF !important;
+}
+html body #cwc-drawer .cwc-drawer-call,
+html body #cwc-drawer .cwc-drawer-wa{
+  -webkit-font-smoothing:subpixel-antialiased !important;
+  color:#FFFFFF !important;-webkit-text-fill-color:#FFFFFF !important;
+  font-weight:800 !important;-webkit-text-stroke:0.7px #FFFFFF !important;
+  text-shadow:0 0 1px #FFFFFF,0 1px 2px rgba(0,0,0,0.35) !important;
+}
+/* END V7 */
+/* CWC-DRAWER-FIX-V8 (2026-05-20) — Close BOTH overlays */
+html body #cwc-overlay:not(.is-open),
+html body .cwc-overlay:not(.is-open){opacity:0 !important;pointer-events:none !important;visibility:hidden !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
+/* When drawer is closed (no .is-open on drawer), force ALL overlays out */
+html body:not(.cwc-drawer-open) #cwc-overlay,
+html body:not(.cwc-drawer-open) .cwc-overlay,
+html body:not(.cwc-drawer-open) .cwc-drawer-backdrop{opacity:0 !important;pointer-events:none !important;visibility:hidden !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
+/* END V8 CSS */

@@ -1,8 +1,0 @@
-/* CWC-DRAWER-FIX-V8 (2026-05-20) — Close BOTH overlays */
-html body #cwc-overlay:not(.is-open),
-html body .cwc-overlay:not(.is-open){opacity:0 !important;pointer-events:none !important;visibility:hidden !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
-/* When drawer is closed (no .is-open on drawer), force ALL overlays out */
-html body:not(.cwc-drawer-open) #cwc-overlay,
-html body:not(.cwc-drawer-open) .cwc-overlay,
-html body:not(.cwc-drawer-open) .cwc-drawer-backdrop{opacity:0 !important;pointer-events:none !important;visibility:hidden !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
-/* END V8 CSS */
