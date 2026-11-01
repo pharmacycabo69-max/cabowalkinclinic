@@ -49,3 +49,17 @@
 .cwcb-ok .t{width:56px;height:56px;border-radius:50%;background:#e4f4ea;color:#1b7a43;display:flex;align-items:center;justify-content:center;font-size:28px;margin:4px auto 12px}
 .cwcb-vs{display:flex;flex-direction:column;gap:10px;margin-top:6px}
 @media(max-width:480px){.cwcb-ov{padding:0}.cwcb{border-radius:20px 20px 0 0;margin:auto 0 0}.cwcb-ac{flex-direction:column-reverse}.cwcb-bk{flex:1}}
+.cwc-wa{position:fixed;right:18px;bottom:22px;z-index:55;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.28);transition:transform .15s}
+.cwc-wa:hover{transform:scale(1.06)}.cwc-wa:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 6px #1b8f4a}
+.cwc-wa svg{width:32px;height:32px;fill:currentColor}
+@media(max-width:860px){.cwc-wa{bottom:86px;right:14px;width:54px;height:54px}}
+@media(prefers-reduced-motion:reduce){.cwc-wa{transition:none}}
+@font-face{font-family:"CWC Logo";font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/cormorant-logo.woff2) format("woff2")}
+.brand.cwc-logo{display:inline-flex;align-items:center;gap:9px;flex:0 0 auto;white-space:nowrap;font-family:"CWC Logo","Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:22px;font-weight:500;letter-spacing:.12em;line-height:1;color:var(--navy,#0b2a4a);text-decoration:none}
+.cwc-logo-cross{display:inline-flex}.cwc-logo-cross svg{width:21px;height:21px;display:block}
+header.top .wrap{flex-wrap:nowrap}nav.main{flex-wrap:nowrap}nav.main a{padding:8px 8px;font-size:13.5px;white-space:nowrap}
+@media(max-width:1000px){header.top .wrap{min-height:60px}}
+@media(max-width:480px){.brand.cwc-logo{font-size:17px;gap:6px;letter-spacing:.1em}.cwc-logo-cross svg{width:16px;height:16px}}
+header.top .wrap{max-width:1240px}
+@media(max-width:1180px){nav.main a{padding:8px 6px;font-size:13px}.brand.cwc-logo{font-size:20px}}
+@media(max-width:1090px){nav.main{display:none}header.top .wrap{justify-content:flex-start}}
