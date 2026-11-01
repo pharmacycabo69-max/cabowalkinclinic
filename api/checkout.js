@@ -34,6 +34,8 @@ module.exports = async (req, res) => {
   const time = /^(ASAP|\d{2}:\d{2})$/.test(clean(b.time, 5)) ? clean(b.time, 5) : "";
   const email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(clean(b.email)) ? clean(b.email) : "";
   const details = {
+    service_name: option.name,
+    service_total_usd: String(option.price),
     booking_date: date,
     booking_time: time,
     customer_name: clean(b.name, 100),
