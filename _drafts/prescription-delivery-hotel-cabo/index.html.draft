@@ -3209,6 +3209,10 @@ button.elementor-button:hover {
 }
 		</style>
 		<style type="text/css">/** Mega Menu CSS: fs **/</style>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body class="wp-singular page-template-default page page-id-1018 wp-embed-responsive wp-theme-hello-elementor latepoint ehf-template-hello-elementor ehf-stylesheet-hello-elementor jkit-color-scheme hello-elementor-default elementor-default elementor-kit-337">
 
