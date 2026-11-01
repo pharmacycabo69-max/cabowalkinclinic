@@ -49,11 +49,6 @@
 .cwcb-ok .t{width:56px;height:56px;border-radius:50%;background:#e4f4ea;color:#1b7a43;display:flex;align-items:center;justify-content:center;font-size:28px;margin:4px auto 12px}
 .cwcb-vs{display:flex;flex-direction:column;gap:10px;margin-top:6px}
 @media(max-width:480px){.cwcb-ov{padding:0}.cwcb{border-radius:20px 20px 0 0;margin:auto 0 0}.cwcb-ac{flex-direction:column-reverse}.cwcb-bk{flex:1}}
-.cwc-wa{position:fixed;right:18px;bottom:22px;z-index:55;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.28);transition:transform .15s}
-.cwc-wa:hover{transform:scale(1.06)}.cwc-wa:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 6px #1b8f4a}
-.cwc-wa svg{width:32px;height:32px;fill:currentColor}
-@media(max-width:860px){.cwc-wa{bottom:86px;right:14px;width:54px;height:54px}}
-@media(prefers-reduced-motion:reduce){.cwc-wa{transition:none}}
 @font-face{font-family:"CWC Logo";font-style:normal;font-weight:500;font-display:swap;src:url(/assets/fonts/cormorant-logo.woff2) format("woff2")}
 .brand.cwc-logo{display:inline-flex;align-items:center;gap:9px;flex:0 0 auto;white-space:nowrap;font-family:"CWC Logo","Cormorant Garamond",Georgia,"Times New Roman",serif;font-size:22px;font-weight:500;letter-spacing:.12em;line-height:1;color:var(--navy,#0b2a4a);text-decoration:none}
 .cwc-logo-cross{display:inline-flex}.cwc-logo-cross svg{width:21px;height:21px;display:block}
@@ -63,3 +58,12 @@ header.top .wrap{flex-wrap:nowrap}nav.main{flex-wrap:nowrap}nav.main a{padding:8
 header.top .wrap{max-width:1240px}
 @media(max-width:1180px){nav.main a{padding:8px 6px;font-size:13px}.brand.cwc-logo{font-size:20px}}
 @media(max-width:1090px){nav.main{display:none}header.top .wrap{justify-content:flex-start}}
+.cwc-wa{position:fixed;right:22px;bottom:24px;z-index:55;height:58px;min-width:58px;padding:0 13px;border-radius:29px;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25),0 0 0 3px rgba(255,255,255,.9);transition:transform .15s,box-shadow .15s}
+.cwc-wa svg{width:32px;height:32px;fill:#fff;flex:none}
+.cwc-wa span{max-width:0;overflow:hidden;white-space:nowrap;font:700 15px/1 inherit;font-family:inherit;transition:max-width .25s ease,margin .25s ease}
+.cwc-wa:hover,.cwc-wa:focus-visible{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.3),0 0 0 3px #fff}
+.cwc-wa:hover span,.cwc-wa:focus-visible span{max-width:170px;margin-left:10px}
+.cwc-wa:focus-visible{outline:3px solid #0b2a4a;outline-offset:3px}
+footer.site{padding-bottom:96px}
+@media(max-width:860px){.cwc-wa{bottom:88px;right:14px;height:54px;min-width:54px;padding:0 11px;border-radius:27px}.cwc-wa svg{width:30px;height:30px}.cwc-wa span{display:none}footer.site{padding-bottom:28px}}
+@media(prefers-reduced-motion:reduce){.cwc-wa,.cwc-wa span{transition:none}}
