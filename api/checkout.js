@@ -5,6 +5,8 @@
 const OPTIONS = require("./_prices.json");
 
 const SITE = process.env.SITE_URL || "https://www.cabowalkinclinic.com";
+const clean = (v, n = 200) => (typeof v === "string" ? v.trim().slice(0, n) : "");
+
 const WA_FALLBACK = "https://wa.me/5216242261023?text=" +
   encodeURIComponent("Hi, I'd like to book a service at Cabo Walk-In Clinic");
 
@@ -25,6 +27,20 @@ module.exports = async (req, res) => {
   }
 
   const deposit = Math.round(option.price * 100 / 2); // cents, 50%
+
+  // Optional booking details from the /book/ wizard; shown in the Stripe dashboard.
+  const b = req.body;
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(clean(b.date, 10)) ? clean(b.date, 10) : "";
+  const time = /^(ASAP|\d{2}:\d{2})$/.test(clean(b.time, 5)) ? clean(b.time, 5) : "";
+  const email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(clean(b.email)) ? clean(b.email) : "";
+  const details = {
+    booking_date: date,
+    booking_time: time,
+    customer_name: clean(b.name, 100),
+    customer_phone: clean(b.phone, 40),
+    location: clean(b.location),
+    notes: clean(b.notes, 300),
+  };
   const p = new URLSearchParams({
     mode: "payment",
     "line_items[0][quantity]": "1",
@@ -41,7 +57,17 @@ module.exports = async (req, res) => {
     cancel_url: `${SITE}${option.cancel}`,
   });
   p.set("phone_number_collection[enabled]", "true");
-  if (option.kind === "mobile") {
+  if (email) p.set("customer_email", email);
+  for (const [k, v] of Object.entries(details)) {
+    if (!v) continue;
+    p.set(`metadata[${k}]`, v);
+    p.set(`payment_intent_data[metadata][${k}]`, v);
+  }
+  if (details.booking_date) {
+    p.set("payment_intent_data[description]",
+      `Deposit — ${option.name} (total $${option.price} USD) — ${details.booking_date} ${details.booking_time}`.trim());
+  }
+  if (option.kind === "mobile" && !details.location) {
     p.set("custom_fields[0][key]", "location");
     p.set("custom_fields[0][label][type]", "custom");
     p.set("custom_fields[0][label][custom]", "Hotel / villa and room or address");

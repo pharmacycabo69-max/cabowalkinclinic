@@ -17,6 +17,7 @@
 <!-- Optional: Google Tag Manager -> replace [GTM_ID] and uncomment
 <script src="/assets/shared/3a56060127de.js"></script> -->
 <link rel="stylesheet" href="/assets/shared/aa9c50901312.css">
+<link rel="stylesheet" href="/assets/book/book.v1.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["MedicalClinic", "LocalBusiness"], "@id": "https://www.cabowalkinclinic.com/#clinic", "name": "Cabo Walk-In Clinic", "url": "https://www.cabowalkinclinic.com/", "telephone": "+5216242261023", "hasMap": "https://maps.app.goo.gl/6KLir6R7JC4PyAMd6", "email": "pharmacycabo69@gmail.com", "description": "English-speaking doctors and nurses in Cabo San Lucas: walk-in clinic, home doctor visits, IV therapy and video consultations.", "address": {"@type": "PostalAddress", "streetAddress": "Francisco I. Madero, Centro", "postalCode": "23450", "addressLocality": "Cabo San Lucas", "addressRegion": "Baja California Sur", "addressCountry": "MX"}, "openingHours": "Mo-Su 09:00-22:00", "areaServed": [{"@type": "City", "name": "Cabo San Lucas"}, {"@type": "City", "name": "San José del Cabo"}, {"@type": "Place", "name": "Tourist Corridor, Los Cabos"}], "priceRange": "$$", "currenciesAccepted": "USD, MXN"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.cabowalkinclinic.com/"}, {"@type": "ListItem", "position": 2, "name": "English-Speaking Walk-In Doctor in Cabo San Lucas", "item": "https://www.cabowalkinclinic.com/walk-in-clinic-doctor-cabo-san-lucas/"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do I need an appointment?", "acceptedAnswer": {"@type": "Answer", "text": "No. Walk-ins are welcome from 9 AM to 10 PM every day. You can also message us on WhatsApp first to check the wait."}}, {"@type": "Question", "name": "How much is a walk-in visit?", "acceptedAnswer": {"@type": "Answer", "text": "Walk-in doctor visits start at $80 USD. Any extra services are explained before they are done."}}, {"@type": "Question", "name": "Do you accept travel insurance?", "acceptedAnswer": {"@type": "Answer", "text": "We do not bill insurers directly, but we give you an itemized invoice in English that you can submit for reimbursement."}}, {"@type": "Question", "name": "Can you see children?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Our doctors see adults and children for everyday issues during a trip."}}, {"@type": "Question", "name": "What if it is an emergency?", "acceptedAnswer": {"@type": "Answer", "text": "Call 911. We are not an emergency room."}}]}</script>
@@ -25,7 +26,7 @@
 <body>
 <header class="top"><div class="wrap">
 <a class="brand" href="/">CABO<small>WALK-IN CLINIC</small></a>
-<nav class="main" aria-label="Main"><a href="/">Home</a><a href="/walk-in-clinic-doctor-cabo-san-lucas/" aria-current="page">Walk-In Clinic</a><a href="/home-doctor/">Home Doctor</a><a href="/iv-therapy/">IV Therapy</a><a href="/video-doctor-consultation/">Video Doctor</a><a href="/nurse-care/">Nurse Care</a><a href="/lab-tests/">Lab Tests</a><a href="/contact/">Contact</a></nav>
+<nav class="main" aria-label="Main"><a href="/">Home</a><a href="/walk-in-clinic-doctor-cabo-san-lucas/" aria-current="page">Walk-In Clinic</a><a href="/home-doctor/">Home Doctor</a><a href="/iv-therapy/">IV Therapy</a><a href="/video-doctor-consultation/">Video Doctor</a><a href="/nurse-care/">Nurse Care</a><a href="/lab-tests/">Lab Tests</a><a href="/book/">Book online</a><a href="/contact/">Contact</a></nav>
 <a class="btn btn--call" style="padding:9px 16px;font-size:14px" href="tel:+5216242261023">Call +52 (624) 226 1023</a>
 </div></header>
 <main>
@@ -33,7 +34,7 @@
 <span class="price">Walk-in visit from $80 USD</span>
 <h1>English-Speaking Walk-In Doctor in Cabo San Lucas</h1>
 <p class="lead">See a doctor today at our downtown Cabo San Lucas clinic. No appointment, clear USD pricing and an itemized invoice in English.</p>
-<div class="ctas"><a class="btn btn--wa" href="https://wa.me/5216242261023?text=Hi%2C%20I%20would%20like%20to%20visit%20the%20walk-in%20clinic%20in%20Cabo%20San%20Lucas." target="_blank" rel="noopener">WhatsApp us</a><a class="btn btn--call" href="tel:+5216242261023">Call +52 (624) 226 1023</a></div>
+<div class="ctas"><a class="btn btn--call" href="/book/?service=clinic-consult" data-book="clinic-consult">Book online</a><a class="btn btn--wa" href="https://wa.me/5216242261023?text=Hi%2C%20I%20would%20like%20to%20visit%20the%20walk-in%20clinic%20in%20Cabo%20San%20Lucas." target="_blank" rel="noopener">WhatsApp us</a><a class="btn btn--call" href="tel:+5216242261023">Call +52 (624) 226 1023</a></div>
 <form method="POST" action="/api/checkout" style="margin:14px 0 0"><input type="hidden" name="option" value="clinic-consult"><button class="btn btn--call" type="submit">Pay 50% deposit &middot; $40.00</button></form><p style="font-size:13px;margin:6px 0 0">Secure card payment with Stripe. Balance paid after the service. <a href="/refund-policy/">Refund policy</a>.</p>
 <p class="meta">Clinic hours 9 AM &ndash; 10 PM daily &middot; Mobile service 24/7 &middot; Prices in USD</p>
 </div></div></section>
@@ -54,6 +55,6 @@
 </div>
 <div class="fine">&copy; 2026 Cabo Walk-In Clinic. English-speaking doctors and nurses in Cabo San Lucas. This site provides general information and does not replace professional medical advice. <strong>Not for emergencies &mdash; call 911.</strong></div>
 </div></footer>
-<div class="stickybar"><a class="btn btn--call" href="tel:+5216242261023">Call now</a><a class="btn btn--wa" href="https://wa.me/5216242261023?text=Hi%2C%20I%20would%20like%20to%20visit%20the%20walk-in%20clinic%20in%20Cabo%20San%20Lucas." target="_blank" rel="noopener">WhatsApp</a></div>
+<div class="stickybar"><a class="btn btn--call" href="tel:+5216242261023">Call</a><a class="btn" style="background:var(--navy);color:#fff" href="/book/" data-book="">Book</a><a class="btn btn--wa" href="https://wa.me/5216242261023?text=Hi%2C%20I%20would%20like%20to%20visit%20the%20walk-in%20clinic%20in%20Cabo%20San%20Lucas." target="_blank" rel="noopener">WhatsApp</a></div>
 <script src="/assets/shared/767a05dc1422.js"></script>
-</body></html>
+<script src="/assets/book/book.v1.js" defer></script></body></html>
