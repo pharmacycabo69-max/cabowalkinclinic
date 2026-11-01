@@ -1,0 +1,11 @@
+{
+  "video-consult":   { "name": "Video doctor consultation", "price": 59,  "kind": "video",  "cancel": "/video-doctor-consultation/" },
+  "clinic-consult":  { "name": "Walk-in clinic visit",      "price": 80,  "kind": "clinic", "cancel": "/walk-in-clinic-doctor-cabo-san-lucas/" },
+  "home-doctor":     { "name": "Doctor house call",         "price": 200, "kind": "mobile", "cancel": "/home-doctor/" },
+  "iv-hydration":    { "name": "IV Hydration Drip",         "price": 149, "kind": "mobile", "cancel": "/iv-therapy/" },
+  "iv-recovery":     { "name": "IV Recovery Drip",          "price": 169, "kind": "mobile", "cancel": "/iv-therapy/" },
+  "iv-immune":       { "name": "IV Immune Support",         "price": 159, "kind": "mobile", "cancel": "/iv-therapy/" },
+  "iv-postflight":   { "name": "IV Post-Flight Reset",      "price": 159, "kind": "mobile", "cancel": "/iv-therapy/" },
+  "iv-glow":         { "name": "IV Glow Drip",              "price": 189, "kind": "mobile", "cancel": "/iv-therapy/" },
+  "iv-athletic":     { "name": "IV Athletic Recovery",      "price": 199, "kind": "mobile", "cancel": "/iv-therapy/" }
+}
