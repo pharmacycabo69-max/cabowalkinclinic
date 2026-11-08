@@ -14,8 +14,8 @@
     { k: 'iv-postflight', n: 'IV Post-Flight Reset', p: 159, g: 'IV therapy (nurse comes to you)', m: true },
     { k: 'iv-glow', n: 'IV Glow Drip', p: 189, g: 'IV therapy (nurse comes to you)', m: true },
     { k: 'iv-athletic', n: 'IV Athletic Recovery', p: 199, g: 'IV therapy (nurse comes to you)', m: true },
-    /* internal $1 test product (deposit $0.50, Stripe's minimum): never listed, only opens via ?service=test-pago */
-    { k: 'test-pago', n: 'Test payment (internal)', p: 1, g: 'Internal test', m: false, hidden: true }
+    /* internal $2 test product (deposit $1, above the MX$10 minimum Stripe enforces on a peso account): never listed, only opens via ?service=test-pago */
+    { k: 'test-pago', n: 'Test payment (internal)', p: 2, g: 'Internal test', m: false, hidden: true }
   ];
   var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var WD = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
