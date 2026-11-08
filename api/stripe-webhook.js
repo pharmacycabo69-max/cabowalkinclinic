@@ -10,6 +10,8 @@
 //   NOTIFY_FROM            "Name <orders@your-verified-domain.com>"        (optional; default is Resend's
 //                          onboarding@resend.dev, which only delivers to your own Resend account email)
 //   BUSINESS_NAME          shown in the subject line                       (optional)
+//   ULTRAMSG_INSTANCE / ULTRAMSG_TOKEN / NOTIFY_WHATSAPP   also send the same notice by WhatsApp
+//                          (NOTIFY_WHATSAPP = number(s) with country code, comma-separated)  (optional)
 //
 // It reads the details from the Checkout Session metadata that the checkout endpoint sets:
 //   service_name, service_total_usd, booking_date, booking_time, customer_name,
@@ -84,6 +86,24 @@ async function sendEmail(msg) {
   if (!r.ok) throw new Error(`resend ${r.status}`);
 }
 
+// WhatsApp (UltraMsg) al dueño. Opcional: solo se envía si están ULTRAMSG_INSTANCE, ULTRAMSG_TOKEN y NOTIFY_WHATSAPP.
+// Si falla no rompe nada: el correo ya es el aviso principal y un error aquí no debe hacer que Stripe reintente.
+async function sendWhatsapp(text) {
+  const instance = process.env.ULTRAMSG_INSTANCE, token = process.env.ULTRAMSG_TOKEN
+  const numbers = (process.env.NOTIFY_WHATSAPP || "").split(",").map((s) => s.replace(/\D/g, "")).filter(Boolean)
+  if (!instance || !token || !numbers.length) return
+  await Promise.all(numbers.map(async (n) => {
+    try {
+      const r = await fetch(`https://api.ultramsg.com/${instance}/messages/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ token, to: `${n}@c.us`, body: text }).toString(),
+      })
+      if (!r.ok) console.error("whatsapp notify failed:", r.status)
+    } catch (e) { console.error("whatsapp notify failed:", e.message) }
+  }))
+}
+
 async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -111,7 +131,9 @@ async function handler(req, res) {
   if (!confirmed) return res.status(200).send("ignored"); // unpaid or unrelated event: no email
 
   try {
-    await sendEmail(compose(session));
+    const msg = compose(session);
+    await Promise.allSettled([sendWhatsapp(`💰 ${msg.text}`)]);
+    await sendEmail(msg);
     return res.status(200).send("ok");
   } catch (e) {
     console.error("notify failed:", e.message);
