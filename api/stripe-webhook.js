@@ -234,6 +234,9 @@ async function handler(req, res) {
     event.type === "checkout.session.async_payment_succeeded" ||
     (event.type === "checkout.session.completed" && session && session.payment_status === "paid");
   if (!confirmed) return res.status(200).send("ignored"); // unpaid or unrelated event: no email
+  // La cuenta de Stripe recibe pagos de otros servicios. Solo los del checkout de la clínica (api/checkout.js)
+  // llevan metadata.option, así que cualquier otro pago se ignora: ni correo, ni WhatsApp, ni envío a Turno.
+  if (!session.metadata || !session.metadata.option) return res.status(200).send("ignored: not a clinic booking");
 
   try {
     const msg = compose(session);
