@@ -9,7 +9,8 @@
 //   NOTIFY_EMAIL           recipient(s), comma-separated                   (required)
 //   NOTIFY_FROM            "Name <orders@your-verified-domain.com>"        (optional; default is Resend's
 //                          onboarding@resend.dev, which only delivers to your own Resend account email)
-//   BUSINESS_NAME          shown in the subject line                       (optional)
+//   BUSINESS_NAME          shown in the subject line and email header      (optional)
+//   BRAND_COLOR            #rrggbb for the email header and button         (optional, default #0b2a4a)
 //   ULTRAMSG_INSTANCE / ULTRAMSG_TOKEN / NOTIFY_WHATSAPP   also send the same notice by WhatsApp
 //                          (NOTIFY_WHATSAPP = number(s) with country code, comma-separated)  (optional)
 //
@@ -47,29 +48,96 @@ function verify(raw, header, secret) {
   });
 }
 
+const esc = (v) => String(v == null ? "" : v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const money = (n) => "$" + Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+// "2026-11-09" + "15:00" -> "Monday, November 9 · 3:00 PM". Done by hand so the server's timezone never shifts the date.
+function formatWhen(date, time) {
+  let day = "";
+  const d = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date || "");
+  if (d) day = new Date(Date.UTC(+d[1], +d[2] - 1, +d[3])).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", timeZone: "UTC" });
+  let hour = "";
+  if (time === "ASAP") hour = "As soon as possible";
+  else {
+    const t = /^(\d{2}):(\d{2})$/.exec(time || "");
+    if (t) hour = `${+t[1] % 12 || 12}:${t[2]} ${+t[1] < 12 ? "AM" : "PM"}`;
+  }
+  return [day, hour].filter(Boolean).join(" · ");
+}
+
 function compose(session) {
   const m = session.metadata || {};
   const cd = session.customer_details || {};
   const paid = (session.amount_total || 0) / 100;
   const total = m.service_total_usd ? Number(m.service_total_usd) : null;
+  const hasTotal = total !== null && !Number.isNaN(total);
   const field = (session.custom_fields || []).find((f) => f.key === "location");
   const location = m.location || (field && field.text && field.text.value) || "";
   const when = [m.booking_date, m.booking_time === "ASAP" ? "as soon as possible" : m.booking_time].filter(Boolean).join(" ");
   const service = m.service_name || "service";
+  const name = m.customer_name || cd.name || "";
+  const phone = m.customer_phone || cd.phone || "";
+  const currency = (session.currency || "usd").toUpperCase();
   const lines = [
     `New paid booking: ${service}`,
     `When: ${when || "not specified"} (Cabo time)`,
-    `Customer: ${m.customer_name || cd.name || "-"}`,
-    `Phone: ${m.customer_phone || cd.phone || "-"}`,
+    `Customer: ${name || "-"}`,
+    `Phone: ${phone || "-"}`,
     `Email: ${cd.email || "-"}`,
   ];
   if (location) lines.push(`Location: ${location}`);
   if (m.notes) lines.push(`Notes: ${m.notes}`);
-  lines.push(`Deposit paid: $${paid.toFixed(2)} ${(session.currency || "usd").toUpperCase()}`);
-  if (total !== null && !Number.isNaN(total)) lines.push(`Balance due after service: $${(total - paid).toFixed(2)} (total $${total})`);
+  lines.push(`Deposit paid: $${paid.toFixed(2)} ${currency}`);
+  if (hasTotal) lines.push(`Balance due after service: $${(total - paid).toFixed(2)} (total $${total})`);
   if (session.payment_intent) lines.push(`Stripe: https://dashboard.stripe.com/payments/${session.payment_intent}`);
   const biz = process.env.BUSINESS_NAME ? `${process.env.BUSINESS_NAME} — ` : "";
-  return { subject: `${biz}Paid booking: ${service} — ${when || "no date"}`, text: lines.join("\n") };
+  return {
+    subject: `${biz}Paid booking: ${service} — ${when || "no date"}`,
+    text: lines.join("\n"),
+    html: renderHtml({
+      biz: process.env.BUSINESS_NAME || "Bookings", service, when: formatWhen(m.booking_date, m.booking_time),
+      name, phone, email: cd.email || "", location, notes: m.notes || "", paid, total: hasTotal ? total : null,
+      currency, intent: session.payment_intent || "",
+    }),
+  };
+}
+
+// Email-safe HTML: tables + inline styles (no flex, no web fonts, no external images). Every dynamic value is escaped.
+function renderHtml(d) {
+  const brand = /^#[0-9a-fA-F]{6}$/.test(process.env.BRAND_COLOR || "") ? process.env.BRAND_COLOR : "#0b2a4a";
+  const gold = "#c89f6a", ink = "#1c2a39", mute = "#5a6b7d", line = "#e8e2d6";
+  const digits = String(d.phone).replace(/\D/g, "");
+  const link = (href, text) => `<a href="${esc(href)}" style="color:${brand};text-decoration:underline">${esc(text)}</a>`;
+  const small = (html) => `<br><span style="font-weight:400;font-size:13px">${html}</span>`;
+  const row = (label, valueHtml) =>
+    `<tr><td style="padding:10px 0;border-bottom:1px solid ${line};width:34%;font-size:13px;color:${mute};vertical-align:top">${label}</td>` +
+    `<td style="padding:10px 0;border-bottom:1px solid ${line};font-size:15px;color:${ink};font-weight:600;vertical-align:top">${valueHtml}</td></tr>`;
+  const rows = [
+    row("Customer", esc(d.name) || "&mdash;"),
+    row("Phone", d.phone ? esc(d.phone) + (digits.length >= 8 ? small(link("https://wa.me/" + digits, "Open in WhatsApp")) : "") : "&mdash;"),
+    row("Email", d.email ? link("mailto:" + d.email, d.email) : "&mdash;"),
+  ];
+  if (d.location) rows.push(row("Location", esc(d.location) + small(link("https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(d.location), "Open in Google Maps"))));
+  if (d.notes) rows.push(row("Notes", `<span style="font-weight:400">${esc(d.notes)}</span>`));
+  const balance = d.total !== null ? Math.max(0, d.total - d.paid) : null;
+  const pay = (label, val, strong) =>
+    `<tr><td style="padding:6px 0;font-size:14px;color:${mute}">${label}</td><td align="right" style="padding:6px 0;font-size:${strong ? 18 : 14}px;font-weight:${strong ? 800 : 600};color:${strong ? "#1b7a43" : ink}">${val}</td></tr>`;
+  const button = d.intent
+    ? `<tr><td align="center" style="padding:6px 28px 28px"><table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:${brand};border-radius:999px"><a href="https://dashboard.stripe.com/payments/${encodeURIComponent(d.intent)}" style="display:inline-block;padding:13px 28px;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none">View payment in Stripe</a></td></tr></table></td></tr>`
+    : "";
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Paid booking</title></head>
+<body style="margin:0;padding:0;background:#eef1f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#eef1f5">${esc(d.service)} &middot; ${esc(d.when || "no date")} &middot; deposit ${esc(money(d.paid))} paid</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef1f5"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden">
+<tr><td style="background:${brand};padding:22px 28px"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:${gold};font-weight:700">${esc(d.biz)}</div><div style="font-size:22px;font-weight:800;color:#ffffff;margin-top:4px">New paid booking</div></td></tr>
+<tr><td style="padding:26px 28px 6px"><span style="display:inline-block;background:#e4f4ea;color:#1b7a43;font-size:11px;font-weight:800;letter-spacing:.08em;padding:4px 10px;border-radius:999px">DEPOSIT PAID</span><div style="font-size:24px;font-weight:800;color:${brand};line-height:1.25;margin-top:10px">${esc(d.service)}</div></td></tr>
+<tr><td style="padding:14px 28px 6px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf6ee;border-left:4px solid ${gold};border-radius:8px"><tr><td style="padding:14px 16px"><div style="font-size:12px;color:${mute};text-transform:uppercase;letter-spacing:.08em">When</div><div style="font-size:19px;font-weight:800;color:${ink};margin-top:3px">${esc(d.when) || "Not specified"}</div><div style="font-size:12px;color:${mute};margin-top:2px">Cabo San Lucas time</div></td></tr></table></td></tr>
+<tr><td style="padding:10px 28px 4px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows.join("")}</table></td></tr>
+<tr><td style="padding:18px 28px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8fb;border-radius:12px"><tr><td style="padding:14px 18px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">${pay("Deposit paid (" + esc(d.currency) + ")", esc(money(d.paid)), true)}${balance !== null ? pay("Balance due after the service", esc(money(balance)), false) + pay("Service total", esc(money(d.total)), false) : ""}</table></td></tr></table></td></tr>
+${button}
+<tr><td style="padding:0 28px 24px;font-size:12px;color:${mute};line-height:1.5;border-top:1px solid ${line}"><div style="padding-top:16px">Automated notice. Contact the customer to confirm the exact time. Nothing is stored: the payment is recorded in Stripe.</div></td></tr>
+</table></td></tr></table></body></html>`;
 }
 
 async function sendEmail(msg) {
@@ -80,6 +148,7 @@ async function sendEmail(msg) {
       from: process.env.NOTIFY_FROM || "Bookings <onboarding@resend.dev>",
       to: process.env.NOTIFY_EMAIL.split(",").map((s) => s.trim()).filter(Boolean),
       subject: msg.subject,
+      html: msg.html,
       text: msg.text,
     }),
   });
