@@ -75,6 +75,10 @@ footer.site{padding-bottom:96px}
 .hero .ctas{position:relative;display:inline-block}
 .hero .ctas .cta-ring{position:absolute;inset:0;border-radius:999px;border:2px solid rgba(232,196,128,.9);pointer-events:none;opacity:0}
 
-/* Hero background photo (Cabo arch) under a navy overlay */
-.hero{background:linear-gradient(90deg,rgba(12,44,78,.95) 0%,rgba(12,44,78,.84) 52%,rgba(12,44,78,.5) 100%),url(/images/cabo/arch-sunset.webp) center 38%/cover no-repeat,var(--navy)}
-@media(max-width:860px){.hero{background:linear-gradient(180deg,rgba(12,44,78,.92),rgba(12,44,78,.82)),url(/images/cabo/arch-sunset.webp) center/cover no-repeat,var(--navy)}}
+/* Hero: full-viewport Cabo arch photo under a navy overlay */
+.hero{min-height:calc(100svh - 88px);display:flex;align-items:center;background:linear-gradient(90deg,rgba(8,30,56,.9) 0%,rgba(8,30,56,.7) 42%,rgba(8,30,56,.2) 75%,rgba(8,30,56,.1) 100%),url(/images/cabo/hero-cabo.webp) center/cover no-repeat,var(--navy)}
+.hero>.wrap{width:100%}
+.hero .price,.hero .meta{text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.hero h1,.hero p.lead{text-shadow:0 2px 16px rgba(0,0,0,.4)}
+@media(max-width:860px){.hero{min-height:calc(100svh - 64px);background:linear-gradient(180deg,rgba(8,30,56,.82) 0%,rgba(8,30,56,.6) 60%,rgba(8,30,56,.75) 100%),url(/images/cabo/hero-cabo-m.webp) 70% center/cover no-repeat,var(--navy)}}
+.hero .grid>div:nth-child(2)>div[style*="border-radius:16px"]{background:rgba(8,30,56,.62)!important;border-color:rgba(255,255,255,.3)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
