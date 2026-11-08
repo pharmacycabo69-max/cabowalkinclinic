@@ -173,6 +173,42 @@ async function sendWhatsapp(text) {
   }))
 }
 
+// Reenvía el pago a Turno (panel + WhatsApp al dueño y al cliente). Opcional: solo si están TURNO_WEBHOOK_URL y WEB_PAYMENT_SECRET.
+// No rompe nada si falla: el correo sigue siendo el aviso de respaldo.
+async function forwardToTurno(session) {
+  const url = process.env.TURNO_WEBHOOK_URL, secret = process.env.WEB_PAYMENT_SECRET
+  if (!url || !secret) return false
+  const m = session.metadata || {}
+  const cd = session.customer_details || {}
+  const field = (session.custom_fields || []).find((f) => f.key === "location")
+  try {
+    const r = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-webhook-secret": secret },
+      body: JSON.stringify({
+        org_slug: process.env.TURNO_ORG_SLUG || "cabo-pharmacy",
+        source: "cabowalkinclinic",
+        payment_ref: session.payment_intent || session.id,
+        service_name: m.service_name || "service",
+        customer_name: m.customer_name || cd.name || "",
+        customer_phone: m.customer_phone || cd.phone || "",
+        customer_email: cd.email || session.customer_email || "",
+        booking_date: m.booking_date || "",
+        booking_time: m.booking_time || "",
+        location: m.location || (field && field.text && field.text.value) || "",
+        notes: m.notes || "",
+        currency: session.currency || "usd",
+        paid_amount: (session.amount_total || 0) / 100,
+        total_amount: m.service_total_usd || null,
+        stripe_url: session.payment_intent ? `https://dashboard.stripe.com/payments/${session.payment_intent}` : "",
+        lang: "en",
+      }),
+    })
+    if (!r.ok) console.error("turno forward failed:", r.status)
+    return r.ok
+  } catch (e) { console.error("turno forward failed:", e.message); return false }
+}
+
 async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -201,7 +237,9 @@ async function handler(req, res) {
 
   try {
     const msg = compose(session);
-    await Promise.allSettled([sendWhatsapp(`💰 ${msg.text}`)]);
+    // Si Turno registró el pago, él manda los WhatsApp (dueño y cliente); si no, se usa el aviso directo de respaldo
+    const inTurno = await forwardToTurno(session);
+    if (!inTurno) await Promise.allSettled([sendWhatsapp(`💰 ${msg.text}`)]);
     await sendEmail(msg);
     return res.status(200).send("ok");
   } catch (e) {
