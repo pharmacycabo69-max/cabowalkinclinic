@@ -74,3 +74,7 @@ footer.site{padding-bottom:96px}
 .hero .ctas .btn--call .cta-arrow{display:inline-block;font-weight:800}
 .hero .ctas{position:relative;display:inline-block}
 .hero .ctas .cta-ring{position:absolute;inset:0;border-radius:999px;border:2px solid rgba(232,196,128,.9);pointer-events:none;opacity:0}
+
+/* Hero background photo (Cabo arch) under a navy overlay */
+.hero{background:linear-gradient(90deg,rgba(12,44,78,.95) 0%,rgba(12,44,78,.84) 52%,rgba(12,44,78,.5) 100%),url(/images/cabo/arch-sunset.webp) center 38%/cover no-repeat,var(--navy)}
+@media(max-width:860px){.hero{background:linear-gradient(180deg,rgba(12,44,78,.92),rgba(12,44,78,.82)),url(/images/cabo/arch-sunset.webp) center/cover no-repeat,var(--navy)}}
