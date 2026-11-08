@@ -67,3 +67,10 @@ header.top .wrap{max-width:1240px}
 footer.site{padding-bottom:96px}
 @media(max-width:860px){.cwc-wa{bottom:88px;right:14px;height:54px;min-width:54px;padding:0 11px;border-radius:27px}.cwc-wa svg{width:30px;height:30px}.cwc-wa span{display:none}footer.site{padding-bottom:28px}}
 @media(prefers-reduced-motion:reduce){.cwc-wa,.cwc-wa span{transition:none}}
+
+/* Hero CTA (GSAP-animated) */
+.hero .ctas .btn--call{position:relative;overflow:hidden;isolation:isolate;font-size:20px!important;padding:19px 40px!important;gap:12px;box-shadow:0 10px 30px rgba(201,162,92,.45);will-change:transform}
+.hero .ctas .btn--call .cta-shine{position:absolute;top:0;bottom:0;left:0;width:55%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);transform:translateX(-160%) skewX(-20deg);pointer-events:none;z-index:-1}
+.hero .ctas .btn--call .cta-arrow{display:inline-block;font-weight:800}
+.hero .ctas{position:relative;display:inline-block}
+.hero .ctas .cta-ring{position:absolute;inset:0;border-radius:999px;border:2px solid rgba(232,196,128,.9);pointer-events:none;opacity:0}

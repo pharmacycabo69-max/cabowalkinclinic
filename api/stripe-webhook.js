@@ -177,7 +177,7 @@ async function sendWhatsapp(text) {
 // No rompe nada si falla: el correo sigue siendo el aviso de respaldo.
 async function forwardToTurno(session) {
   const url = process.env.TURNO_WEBHOOK_URL, secret = process.env.WEB_PAYMENT_SECRET
-  if (!url || !secret) return false
+  if (!url || !secret) { console.error("turno forward skipped: missing env", { TURNO_WEBHOOK_URL: !!url, WEB_PAYMENT_SECRET: !!secret }); return false }
   const m = session.metadata || {}
   const cd = session.customer_details || {}
   const field = (session.custom_fields || []).find((f) => f.key === "location")
@@ -204,7 +204,8 @@ async function forwardToTurno(session) {
         lang: "en",
       }),
     })
-    if (!r.ok) console.error("turno forward failed:", r.status)
+    if (!r.ok) console.error("turno forward failed:", r.status, await r.text().catch(() => ""))
+    else console.log("turno forward ok")
     return r.ok
   } catch (e) { console.error("turno forward failed:", e.message); return false }
 }
