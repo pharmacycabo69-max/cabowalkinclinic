@@ -236,21 +236,21 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 
-/* Hero CTA attention animation (GSAP loaded only when a hero CTA exists) */
+/* GSAP effects: hero CTA attention + scroll reveals (GSAP loaded lazily from cdnjs) */
 (function () {
   var btn = document.querySelector('.hero .ctas .btn--call');
-  if (!btn) return;
+  var rv = [].slice.call(document.querySelectorAll('.trust li, .cards.svc .card, .steps .step'));
+  if (!btn && !rv.length) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var arrow = document.createElement('span');
-  arrow.className = 'cta-arrow'; arrow.setAttribute('aria-hidden', 'true'); arrow.textContent = '→';
-  var shine = document.createElement('span'); shine.className = 'cta-shine'; shine.setAttribute('aria-hidden', 'true');
-  btn.appendChild(arrow); btn.appendChild(shine);
-  var ring = document.createElement('span'); ring.className = 'cta-ring'; ring.setAttribute('aria-hidden', 'true');
-  btn.parentNode.appendChild(ring);
+  if (btn) {
+    var arrow = document.createElement('span'); arrow.className = 'cta-arrow'; arrow.setAttribute('aria-hidden', 'true'); arrow.textContent = '\u2192';
+    var shine = document.createElement('span'); shine.className = 'cta-shine'; shine.setAttribute('aria-hidden', 'true');
+    btn.appendChild(arrow); btn.appendChild(shine);
+    var ring = document.createElement('span'); ring.className = 'cta-ring'; ring.setAttribute('aria-hidden', 'true'); btn.parentNode.appendChild(ring);
+  }
   if (reduce) return;
-  function run() {
-    if (!window.gsap) return;
-    var g = window.gsap;
+  function heroCta(g) {
+    if (!btn) return;
     g.from(btn, { scale: .7, opacity: 0, y: 18, duration: .7, ease: 'back.out(2.2)', delay: .35, clearProps: 'opacity,y' });
     var tl = g.timeline({ repeat: -1, repeatDelay: 1.6, delay: 1.4 });
     tl.to(btn, { scale: 1.06, duration: .22, ease: 'power2.out' })
@@ -261,6 +261,18 @@
     btn.addEventListener('mouseenter', function () { g.to(btn, { scale: 1.08, duration: .2 }); });
     btn.addEventListener('mouseleave', function () { g.to(btn, { scale: 1, duration: .3 }); });
   }
+  function reveals(g) {
+    if (!rv.length || !('IntersectionObserver' in window)) return;
+    var vh = innerHeight;
+    var below = rv.filter(function (el) { return el.getBoundingClientRect().top > vh * 0.95; });
+    g.set(below, { opacity: 0, y: 28 });
+    var io = new IntersectionObserver(function (es) {
+      var hit = es.filter(function (e) { return e.isIntersecting; }).map(function (e) { io.unobserve(e.target); return e.target; });
+      if (hit.length) g.to(hit, { opacity: 1, y: 0, duration: .6, ease: 'power3.out', stagger: .09, clearProps: 'opacity,transform' });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    below.forEach(function (el) { io.observe(el); });
+  }
+  function run() { if (!window.gsap) return; heroCta(window.gsap); reveals(window.gsap); }
   function load() {
     var s = document.createElement('script');
     s.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';

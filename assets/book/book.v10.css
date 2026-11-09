@@ -82,3 +82,20 @@ footer.site{padding-bottom:96px}
 .hero h1,.hero p.lead{text-shadow:0 2px 16px rgba(0,0,0,.4)}
 @media(max-width:860px){.hero{min-height:calc(100svh - 64px);background:linear-gradient(180deg,rgba(8,30,56,.82) 0%,rgba(8,30,56,.6) 60%,rgba(8,30,56,.75) 100%),url(/images/cabo/hero-cabo-m.webp) 70% center/cover no-repeat,var(--navy)}}
 .hero .grid>div:nth-child(2)>div[style*="border-radius:16px"]{background:rgba(8,30,56,.62)!important;border-color:rgba(255,255,255,.3)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+
+/* Trust bar */
+.trust{background:#fff;border-bottom:1px solid #e8e2d6;box-shadow:0 8px 24px rgba(11,42,74,.06);position:relative;z-index:2}
+.trust ul{list-style:none;margin:0;padding:22px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.trust li{display:grid;grid-template-columns:44px 1fr;column-gap:12px;align-items:center}
+.trust svg{grid-row:1/3;width:44px;height:44px;padding:10px;border-radius:12px;background:#f6efe0;fill:#b8893a}
+.trust b{font-size:15px;color:var(--navy);line-height:1.2}
+.trust span{font-size:13px;color:var(--mute)}
+@media(max-width:860px){.trust ul{grid-template-columns:1fr 1fr;gap:14px;padding:18px 0}.trust li{grid-template-columns:36px 1fr}.trust svg{width:36px;height:36px;padding:8px}.trust b{font-size:13.5px}.trust span{font-size:12px}}
+/* Service cards */
+.cards.svc .card{position:relative;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s}
+.cards.svc .card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(11,42,74,.14);border-color:var(--gold)}
+.cards.svc .card h3 a{color:inherit;text-decoration:none}
+.cards.svc .card p{flex:1}
+.cards.svc .btn.sm{margin-top:14px;padding:11px 16px;font-size:15px;width:100%}
+.btn--wa{background:#25D366;color:#073b1b}
+.cards.svc .tag{position:absolute;top:-10px;right:14px;background:#d32f2f;color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
