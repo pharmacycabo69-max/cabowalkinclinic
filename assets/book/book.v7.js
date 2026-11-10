@@ -280,3 +280,90 @@
   }
   if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1500 }); else setTimeout(load, 300);
 })();
+
+/* Web chat bot: scripted answers (no API, no credits). The floating WhatsApp button opens it; every path ends in WhatsApp. */
+(function () {
+  var fab = document.querySelector('.cwc-wa');
+  if (!fab) return;
+  var WA = '5216242261023';
+  var es = /^es/i.test(navigator.language || '');
+  var T = es ? {
+    title: 'Cabo Walk-In Clinic', sub: 'Respuestas al instante · Atiende una persona por WhatsApp',
+    hi: '¡Hola! 👋 Soy el asistente de Cabo Walk-In Clinic. ¿En qué te ayudo?', back: '← Menú', wa: 'Continuar en WhatsApp', book: 'Reservar en línea',
+    again: '¿Algo más?', human: 'Hablar con una persona', ask: '¿Qué necesitas y dónde te hospedas?', ph: 'Escribe aquí…', send: 'Enviar',
+    handoff: 'Perfecto, te abro WhatsApp con tu mensaje listo para enviar. 💬',
+    waMsg: 'Hola, tengo una pregunta para Cabo Walk-In Clinic.',
+    menu: [['prices', 'Precios'], ['hours', 'Horarios'], ['hotel', 'Doctor al hotel'], ['iv', 'Terapia IV'], ['ins', 'Seguro / factura'], ['dep', 'Depósito 50%'], ['emg', 'Es una emergencia']],
+    a: {
+      prices: 'Precios en USD:\n• Videoconsulta: $59\n• Consulta en clínica: desde $80\n• Doctor a domicilio: $200\n• Terapia IV: $149–$199\nReservas con 50% de depósito; el resto se paga después del servicio.',
+      hours: 'Clínica: 9 AM – 10 PM todos los días.\nServicio móvil (doctor a tu hotel o villa): 24/7.',
+      hotel: 'Un doctor llega a tu hotel, villa o yate en Cabo San Lucas y el Corredor Turístico. Consulta a domicilio: $200 USD. Casi siempre llega en unos 45 minutos.',
+      iv: 'Terapia IV en tu habitación o villa: Hidratación $149, Inmune $159, Post-vuelo $159, Recuperación $169, Glow $189, Atlética $199.',
+      ins: 'No necesitas seguro para ser atendido. Te damos factura detallada en USD para tu seguro de viaje.',
+      dep: 'Reservas con un depósito del 50% con tarjeta; el saldo se paga después del servicio. Política de reembolso: cabowalkinclinic.com/refund-policy/',
+      emg: '⚠️ Si es una emergencia que pone en riesgo la vida, llama al 911 ahora o ve a urgencias. No esperes respuesta por chat.'
+    }
+  } : {
+    title: 'Cabo Walk-In Clinic', sub: 'Instant answers · A person replies on WhatsApp',
+    hi: "Hi! 👋 I'm the Cabo Walk-In Clinic assistant. How can I help?", back: '← Menu', wa: 'Continue on WhatsApp', book: 'Book online',
+    again: 'Anything else?', human: 'Talk to a person', ask: 'What do you need, and where are you staying?', ph: 'Type here…', send: 'Send',
+    handoff: "Great, I'm opening WhatsApp with your message ready to send. 💬",
+    waMsg: 'Hi! I have a question for Cabo Walk-In Clinic.',
+    menu: [['prices', 'Prices'], ['hours', 'Hours'], ['hotel', 'Doctor at my hotel'], ['iv', 'IV therapy'], ['ins', 'Insurance / invoice'], ['dep', '50% deposit'], ['emg', "It's an emergency"]],
+    a: {
+      prices: 'Prices in USD:\n• Video visit: $59\n• Walk-in clinic visit: from $80\n• Doctor house call: $200\n• IV therapy: $149–$199\nYou reserve with a 50% deposit; the balance is paid after the service.',
+      hours: 'Clinic: 9 AM – 10 PM daily.\nMobile service (doctor to your hotel or villa): 24/7.',
+      hotel: 'A doctor comes to your hotel, villa or yacht in Cabo San Lucas and the Tourist Corridor. House call: $200 USD. Most arrivals are within about 45 minutes.',
+      iv: 'IV therapy in your room or villa: Hydration $149, Immune $159, Post-Flight $159, Recovery $169, Glow $189, Athletic $199.',
+      ins: 'No insurance needed to be seen. We give you an itemized USD invoice you can submit to your travel insurer.',
+      dep: 'You reserve with a 50% card deposit; the balance is paid after the service. Refund policy: cabowalkinclinic.com/refund-policy/',
+      emg: '⚠️ If this is a life-threatening emergency, call 911 now or go to the nearest ER. Do not wait for a chat reply.'
+    }
+  };
+  var box = document.createElement('div');
+  box.className = 'cwc-bot'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', T.title);
+  box.innerHTML = '<header><img src="/images/dra-myriam.webp" alt="" width="38" height="38"><div><b></b><small></small></div><button class="x" type="button" aria-label="Close">×</button></header><div class="log" aria-live="polite"></div><div class="opts"></div>';
+  box.querySelector('b').textContent = T.title; box.querySelector('small').textContent = T.sub;
+  document.body.appendChild(box);
+  var log = box.querySelector('.log'), opts = box.querySelector('.opts'), form = null;
+  function say(t, me) { var d = document.createElement('div'); d.className = 'm' + (me ? ' me' : ''); d.textContent = t; log.appendChild(d); log.scrollTop = log.scrollHeight; }
+  function waUrl(msg) { return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg); }
+  function link(cls, txt, href, ext) { var a = document.createElement('a'); a.className = cls; a.textContent = txt; a.href = href; if (ext) { a.target = '_blank'; a.rel = 'noopener'; } return a; }
+  function btn(txt, fn, cls) { var b = document.createElement('button'); b.type = 'button'; b.textContent = txt; if (cls) b.className = cls; b.onclick = fn; return b; }
+  function clearForm() { if (form) { form.remove(); form = null; } }
+  function track(n) { try { if (window.gtag) gtag('event', n); } catch (e) {} }
+  function menu() {
+    clearForm(); opts.innerHTML = ''; opts.style.display = '';
+    T.menu.forEach(function (m) { opts.appendChild(btn(m[1], function () { answer(m[0], m[1]); })); });
+    opts.appendChild(btn(T.human, human, 'wa'));
+  }
+  function answer(k, label) {
+    say(label, true); say(T.a[k]); opts.innerHTML = '';
+    opts.appendChild(btn(T.back, function () { say(T.again); menu(); }));
+    if (k !== 'emg') opts.appendChild(link('go', T.book, '/book/'));
+    opts.appendChild(link('wa', T.wa, waUrl(label + ' - ' + T.waMsg), true));
+    track('bot_answer_' + k);
+  }
+  function human() {
+    say(T.human, true); say(T.ask); opts.style.display = 'none'; clearForm();
+    form = document.createElement('form');
+    form.innerHTML = '<input type="text" maxlength="300" autocomplete="off"><button type="submit"></button>';
+    var inp = form.querySelector('input'); inp.placeholder = T.ph; form.querySelector('button').textContent = T.send;
+    form.onsubmit = function (e) {
+      e.preventDefault(); var v = inp.value.trim(); if (!v) return;
+      say(v, true); say(T.handoff); clearForm(); track('bot_handoff_whatsapp');
+      window.open(waUrl(v), '_blank', 'noopener');
+      opts.style.display = ''; opts.innerHTML = ''; opts.appendChild(link('wa', T.wa, waUrl(v), true)); opts.appendChild(btn(T.back, function () { say(T.again); menu(); }));
+    };
+    box.appendChild(form); inp.focus();
+  }
+  var started = false;
+  function toggle(open) {
+    var o = open === undefined ? !box.classList.contains('open') : open;
+    box.classList.toggle('open', o);
+    if (o && !started) { started = true; say(T.hi); menu(); track('bot_open'); }
+  }
+  fab.addEventListener('click', function (e) { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); toggle(); });
+  box.querySelector('.x').onclick = function () { toggle(false); };
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggle(false); });
+})();

@@ -99,3 +99,23 @@ footer.site{padding-bottom:96px}
 .cards.svc .btn.sm{margin-top:14px;padding:11px 16px;font-size:15px;width:100%}
 .btn--wa{background:#25D366;color:#073b1b}
 .cards.svc .tag{position:absolute;top:-10px;right:14px;background:#d32f2f;color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+
+/* Web chat bot (rule-based, no API) that hands off to WhatsApp */
+.cwc-bot{position:fixed;right:22px;bottom:96px;z-index:70;width:350px;max-width:calc(100vw - 28px);max-height:min(580px,calc(100vh - 130px));display:none;flex-direction:column;background:#fff;border-radius:18px;box-shadow:0 18px 50px rgba(8,25,45,.35);overflow:hidden;font-family:inherit;color:#1a2433}
+.cwc-bot.open{display:flex;animation:cwcpop .22s ease-out}
+@keyframes cwcpop{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+.cwc-bot header{display:flex;align-items:center;gap:10px;padding:14px 16px;background:#075e54;color:#fff}
+.cwc-bot header img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid #fff}
+.cwc-bot header b{display:block;font-size:15px}.cwc-bot header small{font-size:12px;opacity:.85}
+.cwc-bot .x{margin-left:auto;background:none;border:0;color:#fff;font-size:26px;line-height:1;cursor:pointer;padding:0 4px}
+.cwc-bot .log{flex:1;overflow:auto;padding:14px;background:#efeae2;display:flex;flex-direction:column;gap:8px;min-height:170px}
+.cwc-bot .m{max-width:88%;padding:9px 12px;border-radius:12px;font-size:14.5px;line-height:1.4;white-space:pre-line;background:#fff;align-self:flex-start;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.cwc-bot .m.me{background:#d9fdd3;align-self:flex-end}
+.cwc-bot .opts{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px;background:#fff;border-top:1px solid #e6e1d6}
+.cwc-bot .opts button,.cwc-bot .opts a{font:600 13.5px/1.2 inherit;font-family:inherit;border:1.5px solid #075e54;color:#075e54;background:#fff;border-radius:999px;padding:8px 12px;cursor:pointer;text-decoration:none}
+.cwc-bot .opts .wa{background:#25D366;border-color:#25D366;color:#073b1b}
+.cwc-bot .opts .go{background:#0b2a4a;border-color:#0b2a4a;color:#fff}
+.cwc-bot form{display:flex;gap:6px;padding:10px 12px;background:#fff;border-top:1px solid #e6e1d6}
+.cwc-bot form input{flex:1;min-width:0;font:inherit;font-size:15px;padding:9px 12px;border:1.5px solid #cfc8b8;border-radius:999px}
+.cwc-bot form button{font:700 14px/1 inherit;font-family:inherit;border:0;border-radius:999px;background:#25D366;color:#073b1b;padding:0 16px;cursor:pointer}
+@media(max-width:860px){.cwc-bot{bottom:152px;right:14px}}
