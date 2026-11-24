@@ -6,14 +6,14 @@
   var WA = '5216242261023';
   var SV = [
     { k: 'video-consult', n: 'Video doctor consultation', p: 59, g: 'Doctor visits', m: false },
-    { k: 'clinic-consult', n: 'Walk-in clinic visit', p: 80, g: 'Doctor visits', m: false },
-    { k: 'home-doctor', n: 'Doctor house call', p: 200, g: 'Doctor visits', m: true },
-    { k: 'iv-hydration', n: 'IV Hydration Drip', p: 149, g: 'IV therapy (nurse comes to you)', m: true },
-    { k: 'iv-recovery', n: 'IV Recovery Drip', p: 169, g: 'IV therapy (nurse comes to you)', m: true },
-    { k: 'iv-immune', n: 'IV Immune Support', p: 159, g: 'IV therapy (nurse comes to you)', m: true },
+    { k: 'clinic-consult', n: 'Walk-in clinic visit', p: 99, g: 'Doctor visits', m: false },
+    { k: 'home-doctor', n: 'Doctor house call', p: 199, g: 'Doctor visits', m: true },
+    { k: 'iv-hydration', n: 'IV Hydration Drip', p: 159, g: 'IV therapy (nurse comes to you)', m: true },
+    { k: 'iv-recovery', n: 'IV Recovery Drip', p: 189.99, g: 'IV therapy (nurse comes to you)', m: true },
+    { k: 'iv-immune', n: 'IV Immune Support', p: 179.99, g: 'IV therapy (nurse comes to you)', m: true },
     { k: 'iv-postflight', n: 'IV Post-Flight Reset', p: 159, g: 'IV therapy (nurse comes to you)', m: true },
-    { k: 'iv-glow', n: 'IV Glow Drip', p: 189, g: 'IV therapy (nurse comes to you)', m: true },
-    { k: 'iv-athletic', n: 'IV Athletic Recovery', p: 199, g: 'IV therapy (nurse comes to you)', m: true },
+    { k: 'iv-glow', n: 'IV Glow Drip', p: 179.99, g: 'IV therapy (nurse comes to you)', m: true },
+    { k: 'iv-athletic', n: 'IV Athletic Recovery', p: 179.99, g: 'IV therapy (nurse comes to you)', m: true },
     /* internal $2 test product (deposit $1, above the MX$10 minimum Stripe enforces on a peso account): never listed, only opens via ?service=test-pago */
     { k: 'test-pago', n: 'Test payment (internal)', p: 2, g: 'Internal test', m: false, hidden: true }
   ];
@@ -295,10 +295,10 @@
     waMsg: 'Hola, tengo una pregunta para Cabo Walk-In Clinic.',
     menu: [['prices', 'Precios'], ['hours', 'Horarios'], ['hotel', 'Doctor al hotel'], ['iv', 'Terapia IV'], ['ins', 'Seguro / factura'], ['dep', 'Depósito 50%'], ['emg', 'Es una emergencia']],
     a: {
-      prices: 'Precios en USD:\n• Videoconsulta: $59\n• Consulta en clínica: desde $80\n• Doctor a domicilio: $200\n• Terapia IV: $149–$199\nReservas con 50% de depósito; el resto se paga después del servicio.',
+      prices: 'Precios en USD:\n• Videoconsulta: $59\n• Consulta en clínica: $99\n• Doctor a domicilio: $199\n• Terapia IV a domicilio: $159–$189.99 + impuestos (en clínica $129–$159 + impuestos; grupos de 6+: $119 por persona, impuestos incluidos)\nReservas con 50% de depósito; el resto se paga después del servicio.',
       hours: 'Clínica: 9 AM – 10 PM todos los días.\nServicio móvil (doctor a tu hotel o villa): 24/7.',
-      hotel: 'Un doctor llega a tu hotel, villa o yate en Cabo San Lucas y el Corredor Turístico. Consulta a domicilio: $200 USD. Casi siempre llega en unos 45 minutos.',
-      iv: 'Terapia IV en tu habitación o villa: Hidratación $149, Inmune $159, Post-vuelo $159, Recuperación $169, Glow $189, Atlética $199.',
+      hotel: 'Un doctor llega a tu hotel, villa o yate en Cabo San Lucas y el Corredor Turístico. Consulta a domicilio: $199 USD. Casi siempre llega en unos 45 minutos.',
+      iv: 'Terapia IV en tu habitación o villa: Hidratación $159, Inmune $179.99, Post-vuelo $159, Recuperación $189.99, Glow $179.99, Atlética $179.99 (más impuestos).',
       ins: 'No necesitas seguro para ser atendido. Te damos factura detallada en USD para tu seguro de viaje.',
       dep: 'Reservas con un depósito del 50% con tarjeta; el saldo se paga después del servicio. Política de reembolso: cabowalkinclinic.com/refund-policy/',
       emg: '⚠️ Si es una emergencia que pone en riesgo la vida, llama al 911 ahora o ve a urgencias. No esperes respuesta por chat.'
@@ -311,10 +311,10 @@
     waMsg: 'Hi! I have a question for Cabo Walk-In Clinic.',
     menu: [['prices', 'Prices'], ['hours', 'Hours'], ['hotel', 'Doctor at my hotel'], ['iv', 'IV therapy'], ['ins', 'Insurance / invoice'], ['dep', '50% deposit'], ['emg', "It's an emergency"]],
     a: {
-      prices: 'Prices in USD:\n• Video visit: $59\n• Walk-in clinic visit: from $80\n• Doctor house call: $200\n• IV therapy: $149–$199\nYou reserve with a 50% deposit; the balance is paid after the service.',
+      prices: 'Prices in USD:\n• Video visit: $59\n• Walk-in clinic visit: $99\n• Doctor house call: $199\n• IV therapy at your door: $159–$189.99 + tax (in-clinic $129–$159 + tax; groups of 6+: $119 per person, tax included)\nYou reserve with a 50% deposit; the balance is paid after the service.',
       hours: 'Clinic: 9 AM – 10 PM daily.\nMobile service (doctor to your hotel or villa): 24/7.',
-      hotel: 'A doctor comes to your hotel, villa or yacht in Cabo San Lucas and the Tourist Corridor. House call: $200 USD. Most arrivals are within about 45 minutes.',
-      iv: 'IV therapy in your room or villa: Hydration $149, Immune $159, Post-Flight $159, Recovery $169, Glow $189, Athletic $199.',
+      hotel: 'A doctor comes to your hotel, villa or yacht in Cabo San Lucas and the Tourist Corridor. House call: $199 USD. Most arrivals are within about 45 minutes.',
+      iv: 'IV therapy in your room or villa: Hydration $159, Immune $179.99, Post-Flight $159, Recovery $189.99, Glow $179.99, Athletic $179.99 (plus tax).',
       ins: 'No insurance needed to be seen. We give you an itemized USD invoice you can submit to your travel insurer.',
       dep: 'You reserve with a 50% card deposit; the balance is paid after the service. Refund policy: cabowalkinclinic.com/refund-policy/',
       emg: '⚠️ If this is a life-threatening emergency, call 911 now or go to the nearest ER. Do not wait for a chat reply.'
