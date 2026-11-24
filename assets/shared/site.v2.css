@@ -1,0 +1,66 @@
+/* Cabo Walk-In Clinic - shared UI layer v2 (accessibility + polish).
+   New file name on purpose: /assets/ is served with a 1-year immutable cache. */
+
+/* Skip link */
+.skip-link{position:absolute;left:12px;top:-60px;z-index:200;background:#fff;color:var(--navy);padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.18);transition:top .15s}
+.skip-link:focus{top:12px}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid #1a73e8;outline-offset:3px;border-radius:6px}
+.hero a:focus-visible,.vv a:focus-visible,footer.site a:focus-visible{outline-color:#fff}
+
+/* Header: book button + mobile menu */
+header.top .wrap{gap:12px}
+header.top .hdr-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
+nav.main + .hdr-actions{margin-left:8px}
+header.top .hdr-book{padding:10px 18px;font-size:15px;min-height:44px}
+.nav-toggle{display:none;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:1px solid #e0d9ca;border-radius:999px;background:#fff;color:var(--navy);font:700 15px/1 inherit;cursor:pointer}
+.nav-toggle .nt-bars,.nav-toggle .nt-bars:before,.nav-toggle .nt-bars:after{display:block;width:18px;height:2px;background:currentColor;border-radius:2px;position:relative;transition:transform .2s,opacity .2s}
+.nav-toggle .nt-bars:before,.nav-toggle .nt-bars:after{content:"";position:absolute;left:0}
+.nav-toggle .nt-bars:before{top:-6px}.nav-toggle .nt-bars:after{top:6px}
+header.top.nav-open .nt-bars{background:transparent}
+header.top.nav-open .nt-bars:before{transform:translateY(6px) rotate(45deg)}
+header.top.nav-open .nt-bars:after{transform:translateY(-6px) rotate(-45deg)}
+@media(max-width:1000px){
+  .nav-toggle{display:inline-flex}
+  header.top .hdr-actions{margin-left:auto}
+  header.top nav.main{display:none}
+  header.top.nav-open nav.main{display:flex;flex-direction:column;gap:2px;position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid #e8e2d6;box-shadow:0 18px 30px rgba(11,42,74,.12);padding:8px 16px 16px;margin:0;max-height:calc(100vh - 64px);overflow:auto}
+  header.top.nav-open nav.main a{font-size:17px;padding:14px 12px;border-radius:10px;min-height:48px;display:flex;align-items:center}
+  header.top .wrap{position:relative}
+}
+@media(max-width:420px){header.top .hdr-book{padding:10px 14px}.nav-toggle .nt-label{display:none}}
+
+/* Comfortable tap targets */
+.faq summary{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.faq summary:after{content:"+";font-size:22px;line-height:1;color:var(--gold);flex:none;transition:transform .2s}
+.faq[open] summary:after{transform:rotate(45deg)}
+footer.site a{display:inline-block;padding:3px 0}
+
+/* Cards hover polish */
+.cards .card,.rv blockquote,.htl .htl-zone{transition:box-shadow .2s,transform .2s,border-color .2s}
+a.card:hover,.cards .card:hover{box-shadow:0 12px 28px rgba(11,42,74,.10);border-color:#dccfb8}
+
+/* Doctor availability badge */
+.avail{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#0f7a3d;background:#e9f8ef;border:1px solid #bfe8cf;border-radius:999px;padding:4px 11px}
+.avail:before{content:"";width:8px;height:8px;border-radius:50%;background:#18a957;box-shadow:0 0 0 0 rgba(24,169,87,.6);animation:availpulse 2s infinite}
+@keyframes availpulse{0%{box-shadow:0 0 0 0 rgba(24,169,87,.55)}70%{box-shadow:0 0 0 8px rgba(24,169,87,0)}100%{box-shadow:0 0 0 0 rgba(24,169,87,0)}}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+/* Compact header on phones so logo + Book + Menu fit without horizontal scroll */
+header.top .brand{min-width:0;white-space:nowrap}
+@media(max-width:520px){
+  header.top .wrap{padding:0 14px;gap:8px}
+  header.top .cwc-logo span{font-size:15px!important;letter-spacing:1px!important}
+  header.top .cwc-logo .cwc-logo-cross svg{width:14px!important;height:14px!important}
+  header.top .hdr-book{padding:8px 14px;font-size:14px}
+  .nav-toggle{padding:8px 11px}
+}
+@media(max-width:359px){header.top .hdr-book{display:none}}
+
+/* Footer column titles are h2 for a correct heading outline; keep the h4 look */
+footer.site h2.ft-h{color:#fff;margin:0 0 8px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;line-height:1.6}

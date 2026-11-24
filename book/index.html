@@ -20,18 +20,104 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["MedicalClinic", "LocalBusiness"], "@id": "https://www.cabowalkinclinic.com/#clinic", "name": "Cabo Walk-In Clinic", "url": "https://www.cabowalkinclinic.com/", "telephone": "+5216242261023", "hasMap": "https://maps.app.goo.gl/6KLir6R7JC4PyAMd6", "description": "English-speaking doctors and nurses in Cabo San Lucas: walk-in clinic, home doctor visits, IV therapy and video consultations.", "address": {"@type": "PostalAddress", "streetAddress": "Francisco I. Madero, Centro", "postalCode": "23450", "addressLocality": "Cabo San Lucas", "addressRegion": "Baja California Sur", "addressCountry": "MX"}, "geo": {"@type": "GeoCoordinates", "latitude": 22.8827602, "longitude": -109.9133287}, "openingHours": "Mo-Su 09:00-22:00", "areaServed": [{"@type": "City", "name": "Cabo San Lucas"}, {"@type": "City", "name": "San José del Cabo"}, {"@type": "Place", "name": "Tourist Corridor, Los Cabos"}], "priceRange": "$$", "currenciesAccepted": "USD, MXN"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.cabowalkinclinic.com/"}, {"@type": "ListItem", "position": 2, "name": "Book Online", "item": "https://www.cabowalkinclinic.com/book/"}]}</script>
 
+<link rel="stylesheet" href="/assets/shared/site.v2.css">
 </head>
-<body><header class="top"><div class="wrap">
+<body><a class="skip-link" href="#main">Skip to main content</a><header class="top"><div class="wrap">
 <a class="brand cwc-logo" href="/" aria-label="Cabo Walk-In Clinic &mdash; Home"><span>CABO</span><span class="cwc-logo-cross" aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="#D32F2F"><rect x="9.5" y="2" width="5" height="20" rx="1"></rect><rect x="2" y="9.5" width="20" height="5" rx="1"></rect></g></svg></span><span>WALK-IN CLINIC</span></a>
-<nav class="main" aria-label="Main"><a href="/walk-in-clinic-doctor-cabo-san-lucas/">Walk-In Clinic</a><a href="/home-doctor/">Home Doctor</a><a href="/iv-therapy/">IV Therapy</a><a href="/video-doctor-consultation/">Video Doctor</a><a href="/nurse-care/">Nurse Care</a><a href="/lab-tests/">Lab Tests</a><a href="/book/" aria-current="page">Book online</a><a href="/contact/">Contact</a></nav>
+<nav class="main" id="site-nav" aria-label="Main"><a href="/walk-in-clinic-doctor-cabo-san-lucas/">Walk-In Clinic</a><a href="/home-doctor/">Home Doctor</a><a href="/iv-therapy/">IV Therapy</a><a href="/video-doctor-consultation/">Video Doctor</a><a href="/nurse-care/">Nurse Care</a><a href="/lab-tests/">Lab Tests</a><a href="/book/" aria-current="page">Book online</a><a href="/contact/">Contact</a></nav><div class="hdr-actions"><a class="btn btn--call hdr-book" href="/book/" data-book="">Book</a><button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span class="nt-bars" aria-hidden="true"></span><span class="nt-label">Menu</span></button></div>
 </div></header>
-<main>
-<main class="sec"><div class="wrap" style="max-width:640px"><h1 style="color:var(--navy);margin:0 0 6px">Book online</h1><p class="sub" style="margin-bottom:20px">Pick a service, a date and a time. Pay a 50% deposit by card, or send your request on WhatsApp. Our team confirms availability and the exact time with you.</p><div id="cwcb-inline"><p>Loading the booking calendar&hellip;</p></div><noscript><p class="note">The booking calendar needs JavaScript. You can also <a href="https://wa.me/5216242261023?text=Hi%2C%20I%20would%20like%20to%20book%20a%20service%20at%20Cabo%20Walk-In%20Clinic." target="_blank" rel="noopener">book on WhatsApp</a>.</p></noscript><p class="note">Clinic hours 9 AM &ndash; 10 PM daily &middot; Mobile service 24/7 &middot; Prices in USD. Times are in Cabo San Lucas time. Not for emergencies &mdash; call 911.</p></div></main></main><footer class="site"><div class="wrap">
+<main id="main" class="bk">
+<style>
+.bk .bk-head{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:36px 0 30px}
+.bk .bk-head h1{font-size:clamp(28px,4.6vw,40px);margin:0 0 8px;line-height:1.15}
+.bk .bk-head p{margin:0;opacity:.92;font-size:17px;max-width:640px}
+.bk .bk-steps{display:flex;flex-wrap:wrap;gap:8px 18px;list-style:none;padding:0;margin:16px 0 0;font-size:14px}
+.bk .bk-steps li{display:flex;align-items:center;gap:8px;opacity:.95}
+.bk .bk-steps b{display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--gold);color:#1a1208;align-items:center;justify-content:center;font-size:13px}
+.bk .bk-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start;padding:28px 0 8px}
+@media(max-width:900px){.bk .bk-grid{grid-template-columns:1fr}}
+.bk aside{position:sticky;top:84px;display:grid;gap:14px}
+@media(max-width:900px){.bk aside{position:static}}
+.bk .panel{background:#fff;border:1px solid #e8e2d6;border-radius:16px;padding:18px}
+.bk .panel h2{font-size:16px;color:var(--navy);margin:0 0 10px}
+.bk .rating{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.bk .rating b{font-size:28px;color:var(--navy);line-height:1}
+.bk .rating .st{color:#F4B400;letter-spacing:2px}
+.bk .rating small{display:block;color:var(--mute)}
+.bk .doc{display:flex;gap:10px;align-items:center;margin-top:10px}
+.bk .doc img{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none}
+.bk .doc strong{display:block;color:var(--navy);font-size:15px;line-height:1.2}
+.bk .doc small{color:var(--mute);font-size:13px}
+.bk .doc .avail{margin-top:4px}
+.bk .ticks{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:14px}
+.bk .ticks li{padding-left:24px;position:relative}
+.bk .ticks li:before{content:"\2713";position:absolute;left:0;top:0;color:#18a957;font-weight:800}
+.bk .prices{width:100%;border-collapse:collapse;font-size:14px}
+.bk .prices th,.bk .prices td{padding:7px 0;border-bottom:1px solid #f0ebe1;text-align:left}
+.bk .prices td{text-align:right;font-weight:700;color:var(--navy);white-space:nowrap}
+.bk .prices caption{text-align:left;font-weight:700;color:var(--navy);margin-bottom:6px;font-size:16px}
+.bk .wa{display:flex;align-items:center;justify-content:center;gap:8px;width:100%}
+.bk .bk-faq{max-width:820px;margin:12px 0 0}
+.bk .bk-faq h2{color:var(--navy)}
+</style>
+<section class="bk-head"><div class="wrap">
+<h1>Book a doctor, video visit or IV drip</h1>
+<p>Choose a service, a date and a time. Reserve with a 50% deposit by card, or send your request on WhatsApp. We confirm the exact time with you.</p>
+<ol class="bk-steps" aria-label="How booking works"><li><b>1</b>Pick a service</li><li><b>2</b>Choose date &amp; time</li><li><b>3</b>Your details</li><li><b>4</b>Pay deposit or WhatsApp</li></ol>
+</div></section>
+<div class="wrap bk-grid">
+<section aria-label="Booking calendar">
+<div id="cwcb-inline"><p>Loading the booking calendar&hellip;</p></div>
+<noscript><p class="note">The booking calendar needs JavaScript. You can also <a href="https://wa.me/5216242261023?text=Hi%2C%20I%20would%20like%20to%20book%20a%20service%20at%20Cabo%20Walk-In%20Clinic." target="_blank" rel="noopener">book on WhatsApp</a>.</p></noscript>
+<p class="note">Times are in Cabo San Lucas time (MST). Clinic 9 AM &ndash; 10 PM daily &middot; Mobile service 24/7. Not for emergencies &mdash; call 911.</p>
+</section>
+<aside aria-label="Booking information">
+<div class="panel">
+<a class="rating" href="https://maps.app.goo.gl/6KLir6R7JC4PyAMd6" target="_blank" rel="noopener" aria-label="Rated 4.9 out of 5 from 40 Google reviews"><b>4.9</b><span><span class="st" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span><small>40 reviews on Google</small></span></a>
+<div class="doc"><img src="/images/dr-kevin-adame.jpg" alt="Dr. Kevin Adame" width="48" height="48" loading="lazy"><div><strong>Dr. Kevin Adame</strong><small>C&eacute;dula 14796516</small><br><span class="avail">Available for video calls</span></div></div>
+<div class="doc"><img src="/images/dra-myriam.webp" alt="Dra. Myriam Palacios Alarc&oacute;n" width="48" height="48" loading="lazy"><div><strong>Dra. Myriam Palacios Alarc&oacute;n</strong><small>C&eacute;dula 11664989</small></div></div>
+</div>
+<div class="panel">
+<h2>How payment works</h2>
+<ul class="ticks">
+<li>Pay a 50% deposit by card to reserve</li>
+<li>Secure checkout by Stripe; we never see your card</li>
+<li>Balance paid after the service, by card or cash</li>
+<li>Itemized English invoice for your insurer</li>
+<li><a href="/refund-policy/">Refund &amp; cancellation policy</a></li>
+</ul>
+</div>
+<div class="panel">
+<table class="prices"><caption>Prices (USD, tax included)</caption>
+<tbody>
+<tr><th scope="row">Video visit</th><td>$59</td></tr>
+<tr><th scope="row">Walk-in clinic visit</th><td>$99</td></tr>
+<tr><th scope="row">Doctor house call</th><td>$199</td></tr>
+<tr><th scope="row">IV Hydration or Recovery</th><td>$159</td></tr>
+<tr><th scope="row">Other IV drips</th><td>$169</td></tr>
+</tbody></table>
+</div>
+<div class="panel">
+<h2>Prefer to chat?</h2>
+<p style="margin:0 0 12px;color:var(--mute);font-size:14px">Tell us where you are staying and what you need. We reply right away.</p>
+<a class="btn btn--wa wa" href="https://wa.me/5216242261023?text=Hi%2C%20I%20would%20like%20to%20book%20a%20service%20at%20Cabo%20Walk-In%20Clinic." target="_blank" rel="noopener">Book on WhatsApp</a>
+</div>
+</aside>
+</div>
+<section class="sec" style="padding-top:20px"><div class="wrap bk-faq">
+<h2>Booking questions</h2>
+<details class="faq"><summary>What if I need to cancel?</summary><p>Message us as soon as possible. If our team has not yet left for your location, there is no charge. See our <a href="/refund-policy/">refund policy</a> for details.</p></details>
+<details class="faq"><summary>When do I pay the rest?</summary><p>The remaining 50% is paid after the service, by card or cash.</p></details>
+<details class="faq"><summary>Can I book for today?</summary><p>Yes. Pick today&rsquo;s date if a time is available, or message us on WhatsApp and we will fit you in as soon as possible.</p></details>
+<details class="faq"><summary>Do you come to my hotel?</summary><p>Yes. Doctors and nurses visit any hotel, all-inclusive resort, villa, Airbnb or yacht in Los Cabos.</p></details>
+</div></section>
+</main><footer class="site"><div class="wrap">
 <div class="cols">
-<div><h4>Cabo Walk-In Clinic</h4><p>Francisco I. Madero, between Vicente Guerrero &amp; Miguel Hidalgo<br>Centro, 23450<br>Downtown Cabo San Lucas, B.C.S., Mexico<br>Plus Code V3MP+4M<br><a href="https://maps.app.goo.gl/6KLir6R7JC4PyAMd6" target="_blank" rel="noopener">View on Google Maps</a></p></div>
-<div><h4>Contact</h4><p>WhatsApp: <a href="https://wa.me/5216242261023?text=Hi%21%20I%20have%20a%20question%20for%20Cabo%20Walk-In%20Clinic." target="_blank" rel="noopener">+52 (624) 226 1023</a><br>Clinic hours: 9:00 AM &ndash; 10:00 PM daily<br>Mobile service: 24/7</p></div>
-<div><h4>Services</h4><p><a href="/walk-in-clinic-doctor-cabo-san-lucas/">Walk-in doctor</a><br><a href="/home-doctor/">Home doctor</a><br><a href="/iv-therapy/">IV therapy</a><br><a href="/video-doctor-consultation/">Video consultation</a><br><a href="/nurse-care/">Nurse care</a><br><a href="/lab-tests/">Lab tests</a></p></div>
-<div><h4>Company</h4><p><a href="/about/">About</a><br><a href="/contact/">Contact</a><br><a href="/privacy-policy/">Privacy policy</a><br><a href="/terms-of-service/">Terms of service</a><br><a href="/refund-policy/">Refund policy</a><br><a href="/medical-disclaimer/">Medical disclaimer</a></p></div>
+<div><h2 class="ft-h">Cabo Walk-In Clinic</h2><p>Francisco I. Madero, between Vicente Guerrero &amp; Miguel Hidalgo<br>Centro, 23450<br>Downtown Cabo San Lucas, B.C.S., Mexico<br>Plus Code V3MP+4M<br><a href="https://maps.app.goo.gl/6KLir6R7JC4PyAMd6" target="_blank" rel="noopener">View on Google Maps</a></p></div>
+<div><h2 class="ft-h">Contact</h2><p>WhatsApp: <a href="https://wa.me/5216242261023?text=Hi%21%20I%20have%20a%20question%20for%20Cabo%20Walk-In%20Clinic." target="_blank" rel="noopener">+52 (624) 226 1023</a><br>Clinic hours: 9:00 AM &ndash; 10:00 PM daily<br>Mobile service: 24/7</p></div>
+<div><h2 class="ft-h">Services</h2><p><a href="/walk-in-clinic-doctor-cabo-san-lucas/">Walk-in doctor</a><br><a href="/home-doctor/">Home doctor</a><br><a href="/iv-therapy/">IV therapy</a><br><a href="/video-doctor-consultation/">Video consultation</a><br><a href="/nurse-care/">Nurse care</a><br><a href="/lab-tests/">Lab tests</a></p></div>
+<div><h2 class="ft-h">Company</h2><p><a href="/about/">About</a><br><a href="/contact/">Contact</a><br><a href="/privacy-policy/">Privacy policy</a><br><a href="/terms-of-service/">Terms of service</a><br><a href="/refund-policy/">Refund policy</a><br><a href="/medical-disclaimer/">Medical disclaimer</a></p></div>
 </div>
 <p class="cwc-legal" style="font-size:13px;opacity:.85;margin:18px 0 0;line-height:1.6">Responsable sanitaria: Dra. Rossibel N&uacute;&ntilde;ez &middot; C&eacute;dula profesional 7408277 &middot; Aviso de funcionamiento y de responsable sanitario (COFEPRIS-05-036): 2603045036X00153</p><div class="fine">&copy; 2026 Cabo Walk-In Clinic. English-speaking doctors and nurses in Cabo San Lucas. This site provides general information and does not replace professional medical advice. <strong>Not for emergencies &mdash; call 911.</strong></div>
-</div></footer><div class="stickybar"><a class="btn btn--wa" href="https://wa.me/5216242261023?text=Hi%2C%20I%20have%20a%20question%20for%20Cabo%20Walk-In%20Clinic." target="_blank" rel="noopener">WhatsApp</a></div><script src="/assets/shared/767a05dc1422.js"></script><a class="cwc-wa" href="https://wa.me/5216242261023?text=Hi%21%20I%20have%20a%20question%20for%20Cabo%20Walk-In%20Clinic." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span>Chat on WhatsApp</span></a><script src="/assets/book/book.v7.js" defer></script></body></html>
+</div></footer><div class="stickybar"><a class="btn btn--wa" href="https://wa.me/5216242261023?text=Hi%2C%20I%20have%20a%20question%20for%20Cabo%20Walk-In%20Clinic." target="_blank" rel="noopener">WhatsApp</a></div><script src="/assets/shared/767a05dc1422.js"></script><a class="cwc-wa" href="https://wa.me/5216242261023?text=Hi%21%20I%20have%20a%20question%20for%20Cabo%20Walk-In%20Clinic." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span>Chat on WhatsApp</span></a><script src="/assets/book/book.v7.js" defer></script><script src="/assets/shared/site.v2.js" defer></script>
+</body></html>
