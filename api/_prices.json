@@ -3,10 +3,10 @@
   "clinic-consult":  { "name": "Walk-in clinic visit",      "price": 99,  "kind": "clinic", "cancel": "/walk-in-clinic-doctor-cabo-san-lucas/" },
   "home-doctor":     { "name": "Doctor house call",         "price": 199, "kind": "mobile", "cancel": "/home-doctor/" },
   "iv-hydration":    { "name": "IV Hydration Drip",         "price": 159, "kind": "mobile", "cancel": "/iv-therapy/" },
-  "iv-recovery":     { "name": "IV Recovery Drip",          "price": 189.99, "kind": "mobile", "cancel": "/iv-therapy/" },
-  "iv-immune":       { "name": "IV Immune Support",         "price": 179.99, "kind": "mobile", "cancel": "/iv-therapy/" },
-  "iv-postflight":   { "name": "IV Post-Flight Reset",      "price": 159, "kind": "mobile", "cancel": "/iv-therapy/" },
-  "iv-glow":         { "name": "IV Glow Drip",              "price": 179.99, "kind": "mobile", "cancel": "/iv-therapy/" },
-  "iv-athletic":     { "name": "IV Athletic Recovery",      "price": 179.99, "kind": "mobile", "cancel": "/iv-therapy/" },
+  "iv-recovery":     { "name": "IV Recovery Drip",          "price": 159, "kind": "mobile", "cancel": "/iv-therapy/" },
+  "iv-immune":       { "name": "IV Immune Support",         "price": 169, "kind": "mobile", "cancel": "/iv-therapy/" },
+  "iv-postflight":   { "name": "IV Post-Flight Reset",      "price": 169, "kind": "mobile", "cancel": "/iv-therapy/" },
+  "iv-glow":         { "name": "IV Glow Drip",              "price": 169, "kind": "mobile", "cancel": "/iv-therapy/" },
+  "iv-athletic":     { "name": "IV Athletic Recovery",      "price": 169, "kind": "mobile", "cancel": "/iv-therapy/" },
   "test-pago":       { "name": "Test payment (internal)",   "price": 2,   "kind": "clinic", "cancel": "/book/" }
 }

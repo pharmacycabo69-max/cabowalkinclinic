@@ -232,13 +232,13 @@
       
       // ===== IV Menu (Concierge sales flow) =====
       var IV_CATALOG = [
-        {n:'Hangover Drip', s:'hangover', p:'$189.99', b:'Bounce back fast — anti-nausea support, IV hydration, B-complex', emoji:'💧'},
+        {n:'Hangover Drip', s:'hangover', p:'$159', b:'Bounce back fast — anti-nausea support, IV hydration, B-complex', emoji:'💧'},
         {n:'Hydration Drip', s:'hydration', p:'$159', b:'Replenish after sun, salt water, and long Cabo days', emoji:'🌊'},
-        {n:'Immune Boost', s:'immune-boost', p:'$179.99', b:'High-dose vitamin C and zinc — supports cold and flu recovery', emoji:'🛡️'},
-        {n:'Myers Cocktail', s:'myers-cocktail', p:'$189.99', b:'Classic wellness blend — vitamins, magnesium, B-complex', emoji:'⭐'},
-        {n:'Beauty Glow', s:'beauty-glow', p:'$179.99', b:'Biotin, glutathione, vitamin C — supports skin and hair', emoji:'✨'},
+        {n:'Immune Boost', s:'immune-boost', p:'$169', b:'High-dose vitamin C and zinc — supports cold and flu recovery', emoji:'🛡️'},
+        {n:'Myers Cocktail', s:'myers-cocktail', p:'$169', b:'Classic wellness blend — vitamins, magnesium, B-complex', emoji:'⭐'},
+        {n:'Beauty Glow', s:'beauty-glow', p:'$169', b:'Biotin, glutathione, vitamin C — supports skin and hair', emoji:'✨'},
         {n:'NAD+ Drip', s:'nad-plus', p:'$189', b:'Cellular energy and longevity support', emoji:'🔋'},
-        {n:'B-Complex Energy', s:'b-complex-energy', p:'$179.99', b:'B12, B-complex, amino acids — sustained energy', emoji:'⚡'}
+        {n:'B-Complex Energy', s:'b-complex-energy', p:'$169', b:'B12, B-complex, amino acids — sustained energy', emoji:'⚡'}
       ];
       var IV_TOP3 = ['hangover','hydration','immune-boost'];
 
@@ -295,7 +295,7 @@
       }
 
       function helpPickIV(){
-        sendMsg('Help me pick the right IV drip. Please ask me 2 to 3 short questions about how I feel, any medications I am taking, and known allergies, then recommend ONE IV from the Cabo Walk-In Clinic menu (Hangover \$189.99, Hydration \$159, Immune Boost \$179.99, Myers Cocktail \$189.99, Beauty Glow \$179.99, NAD+ \$189, B-Complex Energy \$179.99, plus tax) with a clear explanation. End with a reminder to tell my nurse about medications and allergies before the drip.');
+        sendMsg('Help me pick the right IV drip. Please ask me 2 to 3 short questions about how I feel, any medications I am taking, and known allergies, then recommend ONE IV from the Cabo Walk-In Clinic menu (Hangover \$159, Hydration \$159, Immune Boost \$169, Myers Cocktail \$169, Beauty Glow \$169, NAD+ \$189, B-Complex Energy \$169, tax included) with a clear explanation. End with a reminder to tell my nurse about medications and allergies before the drip.');
       }
 
       function handleSpecialChip(txt){
@@ -381,11 +381,11 @@
     {t:"In-Home Senior &amp; Geriatric Care",d:"Compassionate, professional care for older travelers and residents, in the comfort of home.",href:"/geriatric-care/",kw:"team-senior-rn"}
   ];
   var DRIPS=[
-    {n:"Hydration Drip",s:"hydration",p:"$159"},{n:"Recovery Drip",s:"hangover",p:"$189.99"},
-    {n:"Myers Cocktail",s:"myers-cocktail",p:"$189.99"},{n:"Immune Boost",s:"immune-boost",p:"$179.99"},
-    {n:"Beauty Glow",s:"beauty-glow",p:"$179.99"},{n:"NAD+ Drip",s:"nad-plus",p:"$189"},
-    {n:"B-Complex Energy",s:"b-complex-energy",p:"$179.99"},{n:"Athletic Recovery",s:"athletic-recovery",p:"$179.99"},
-    {n:"Post-Flight Drip",s:"post-flight",p:"$159"},{n:"Immune Recovery",s:"flu-rescue",p:"$199"},
+    {n:"Hydration Drip",s:"hydration",p:"$159"},{n:"Recovery Drip",s:"hangover",p:"$159"},
+    {n:"Myers Cocktail",s:"myers-cocktail",p:"$169"},{n:"Immune Boost",s:"immune-boost",p:"$169"},
+    {n:"Beauty Glow",s:"beauty-glow",p:"$169"},{n:"NAD+ Drip",s:"nad-plus",p:"$189"},
+    {n:"B-Complex Energy",s:"b-complex-energy",p:"$169"},{n:"Athletic Recovery",s:"athletic-recovery",p:"$169"},
+    {n:"Post-Flight Drip",s:"post-flight",p:"$169"},{n:"Immune Recovery",s:"flu-rescue",p:"$199"},
     {n:"Replenish Drip",s:"detox",p:"$189"},{n:"Hydration Plus",s:"headache-rescue",p:"$169"},
     {n:"Mega Myers",s:"mega-myers",p:"$279"},{n:"Custom Drip",s:"custom-drip",p:"Call"}
   ];
@@ -402,9 +402,9 @@
     +'<div class="cwc-trust"><span><b>&#10003;</b> Bilingual MDs &amp; RNs</span><span><b>&#10003;</b> 24/7 Mobile Service</span></div>'
     +'</div></section>';
   H+='<section class="sec sec--cream"><div class="cwc-wrap"><div class="sechead"><span class="eyebrow">Our Services</span><h2 class="serif">Everything You Need, One Trusted Team</h2><p>Six dedicated services across Cabo San Lucas, San Jos&eacute; del Cabo and the Tourist Corridor — in-clinic or wherever you are staying.</p></div><div class="cwc-grid">'+SERVICES.map(svc).join("")+'</div></div></section>';
-  H+='<section id="cwc-h-iv" class="sec"><div class="cwc-wrap"><div class="sechead"><span class="eyebrow">Mobile IV Therapy</span><h2 class="serif">IV Drips Delivered to Your Room</h2><p>RNs, sealed medical-grade IVs, in-room in about 45 minutes. In-clinic drips from $129 + tax.</p></div><div class="cwc-rail"><button class="cwc-arrow cwc-arrow--prev" aria-label="Previous">&lsaquo;</button><div class="cwc-track">'+DRIPS.map(drip).join("")+'</div><button class="cwc-arrow cwc-arrow--next" aria-label="Next">&rsaquo;</button></div><div class="cwc-ivcta"><a class="cwc-btn cwc-btn--gold" href="/iv-therapy/">View all IV therapies &rarr;</a></div></div></section>';
+  H+='<section id="cwc-h-iv" class="sec"><div class="cwc-wrap"><div class="sechead"><span class="eyebrow">Mobile IV Therapy</span><h2 class="serif">IV Drips Delivered to Your Room</h2><p>RNs, sealed medical-grade IVs, in-room in about 45 minutes. In-clinic drips from $129, tax included.</p></div><div class="cwc-rail"><button class="cwc-arrow cwc-arrow--prev" aria-label="Previous">&lsaquo;</button><div class="cwc-track">'+DRIPS.map(drip).join("")+'</div><button class="cwc-arrow cwc-arrow--next" aria-label="Next">&rsaquo;</button></div><div class="cwc-ivcta"><a class="cwc-btn cwc-btn--gold" href="/iv-therapy/">View all IV therapies &rarr;</a></div></div></section>';
   H+='<section class="sec sec--cream"><div class="cwc-wrap"><div class="sechead"><span class="eyebrow">Why Cabo Walk-In Clinic</span><h2 class="serif">Care You Can Trust, Priced With Honesty</h2></div><div class="cwc-feat">'
-    +feat("$","Transparent USD Pricing","Clear published prices — $99 walk-in visit, $199 house call, IV from $159 + tax. No surprises.")
+    +feat("$","Transparent USD Pricing","Clear published prices — $99 walk-in visit, $199 house call, IV from $159, tax included. No surprises.")
     +feat("&#10010;","English-Speaking Clinicians","English-speaking doctors and nurses, on call for your hotel, villa or yacht.")
     +feat("24/7","Same-Day &amp; Around the Clock","Walk in 9am–10pm daily; mobile dispatch 24/7 to your hotel, villa or yacht.")
     +feat("&#10003;","Travel-Insurance Invoices","Itemized invoices for Allianz, GeoBlue, IMG, Aetna Int&rsquo;l and Cigna Global reimbursement.")
@@ -429,15 +429,15 @@
   'use strict';
   var ORDER=['hangover','hydration','myers-cocktail','immune-boost','beauty-glow','nad-plus','b-complex-energy','athletic-recovery','post-flight','flu-rescue','detox','headache-rescue','mega-myers','custom-drip'];
   var DATA={
-    'hangover':{t:'Hangover Drip',tag:'Recovery',p:'$189.99',d:'45–60 min',b:['Rehydration & electrolytes','Anti-nausea + B-complex','Headache & fatigue relief']},
+    'hangover':{t:'Hangover Drip',tag:'Recovery',p:'$159',d:'45–60 min',b:['Rehydration & electrolytes','Anti-nausea + B-complex','Headache & fatigue relief']},
     'hydration':{t:'Hydration Drip',tag:'Recovery',p:'$159',d:'30–45 min',b:['Sun & sweat recovery','Electrolyte replenishment','Day-of arrival pick-me-up']},
-    'myers-cocktail':{t:'Myers Cocktail',tag:'Wellness',p:'$189.99',d:'45–60 min',b:['Classic vitamin + mineral blend','Energy & immune support','The original IV formula']},
-    'immune-boost':{t:'Immune Boost',tag:'Immunity',p:'$179.99',d:'60–90 min',b:['High-dose vitamin C + zinc','Immune-system defense','Great before you fly']},
-    'beauty-glow':{t:'Beauty Glow',tag:'Beauty',p:'$179.99',d:'45–60 min',b:['Glutathione + biotin','Skin hydration & glow','Antioxidant support']},
+    'myers-cocktail':{t:'Myers Cocktail',tag:'Wellness',p:'$169',d:'45–60 min',b:['Classic vitamin + mineral blend','Energy & immune support','The original IV formula']},
+    'immune-boost':{t:'Immune Boost',tag:'Immunity',p:'$169',d:'60–90 min',b:['High-dose vitamin C + zinc','Immune-system defense','Great before you fly']},
+    'beauty-glow':{t:'Beauty Glow',tag:'Beauty',p:'$169',d:'45–60 min',b:['Glutathione + biotin','Skin hydration & glow','Antioxidant support']},
     'nad-plus':{t:'NAD+ Drip',tag:'Longevity',p:'$189',d:'90–150 min',b:['Cellular energy (NAD+)','Mental clarity & focus','Healthy-aging support']},
-    'b-complex-energy':{t:'B-Complex Energy',tag:'Energy',p:'$179.99',d:'45–60 min',b:['Full B-complex boost','Sustained clean energy','No caffeine crash']},
-    'athletic-recovery':{t:'Athletic Recovery',tag:'Recovery',p:'$179.99',d:'60–90 min',b:['Amino acids + electrolytes','Faster muscle recovery','Post-workout rehydration']},
-    'post-flight':{t:'Post-Flight Drip',tag:'Recovery',p:'$159',d:'45–60 min',b:['Beat jet lag','Rehydration + B12','Recover from travel fatigue']},
+    'b-complex-energy':{t:'B-Complex Energy',tag:'Energy',p:'$169',d:'45–60 min',b:['Full B-complex boost','Sustained clean energy','No caffeine crash']},
+    'athletic-recovery':{t:'Athletic Recovery',tag:'Recovery',p:'$169',d:'60–90 min',b:['Amino acids + electrolytes','Faster muscle recovery','Post-workout rehydration']},
+    'post-flight':{t:'Post-Flight Drip',tag:'Recovery',p:'$169',d:'45–60 min',b:['Beat jet lag','Rehydration + B12','Recover from travel fatigue']},
     'flu-rescue':{t:'Flu Rescue',tag:'Immunity',p:'$199',d:'60–90 min',b:['Fever & body-ache relief','Fluids + anti-nausea','Immune support']},
     'detox':{t:'Detox Drip',tag:'Wellness',p:'$189',d:'60–75 min',b:['Liver support','Glutathione antioxidant','Reset after excess']},
     'headache-rescue':{t:'Headache Rescue',tag:'Recovery',p:'$169',d:'30–45 min',b:['Migraine & tension relief','Magnesium + fluids','Optional pain medication']},
