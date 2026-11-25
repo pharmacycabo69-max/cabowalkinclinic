@@ -5,7 +5,7 @@ Source of truth: Prompt Maestro V3.1 (2026-11-24) plus owner answers in session.
 ## Decisions needed from the owner
 | # | Item | Conflict / gap | Current dev state | Blocks |
 |---|---|---|---|---|
-| D1 | **IV drip prices** | V3.1 §2: "IV Therapy 159". Owner in chat (2026-11-24, before V3.1): Hydration and Recovery $159, other drips $169 (tax included). Production and dev both charge $159/$169. | Unchanged ($159/$169) | Publishing |
+| D1 | **IV drip prices: RESOLVED 2026-11-25** | Owner confirmed in this session: Hydration and Recovery $159, all other drips $169, USD tax included (RMC list does not apply) | Same in production (7a40177) and dev | — |
 | D2 | **NAD+ price** | V3.1: $279. Site and chatbot: $189 (not bookable online). | Unchanged, flagged | NAD+ copy |
 | D3 | **Special drips** (Flu Rescue $199, Detox $189, Headache Rescue $169, Mega Myers $279, Post-Flight) | Not confirmed in V3.1; need medical and price validation | Unchanged on legacy pages | Phase 2 |
 | D4 | **$50 fixed deposit** | Proposed in a screenshot, not confirmed. Today: 50% deposit. | Unchanged (50%) | Checkout |
