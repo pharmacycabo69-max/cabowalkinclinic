@@ -56,3 +56,6 @@ Source of truth: Prompt Maestro V3.1 (2026-11-24) plus owner answers in session.
 | D28 | **Lab tests page** | Rebuilt without prices ($149/$99/$129/$159/$119 removed) and without the "24–48 h results" or "no referral" claims | Quote-based | Santa Fe catalog, then publish confirmed prices |
 | D29 | **Real photos** | Lab and nursing images are illustrative (AI-style stock), not real staff | In use | Owner: real photos of the clinic, team, lab draw and X-ray |
 | D30 | **Review avatars** | Initial-letter avatars instead of reviewers' Google photos (third-party personal images need consent) | In use | — |
+
+## D31 — Aesthetics prices: tax included? (2026-11-24)
+Aesthetics prices on /aesthetic-medicine-cabo/ were copied from medicinaesteticaencabo.com per owner instruction (lips $600, 3-syringe pack $1,600, upper face $550, brow $180, jawline $170, gummy smile $170, masseter $350, skin booster $300, polynucleotides $350, collagen stimulators $1,000/$1,200, PDO $20/thread, depigmenting peel $1,500). That site does not say whether tax is included, so the page says "Prices in USD" and "final price confirmed at your evaluation" without "tax included". Owner to confirm, and to confirm the aesthetic evaluation fee.
