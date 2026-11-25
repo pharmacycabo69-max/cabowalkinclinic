@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
     customer_name: clean(b.name, 100),
     customer_phone: clean(b.phone, 40),
     location: clean(b.location),
-    notes: clean(b.notes, 300),
+    // notes are NOT sent to Stripe: free text may contain health information (V4 privacy rule)
   };
   const p = new URLSearchParams({
     mode: "payment",

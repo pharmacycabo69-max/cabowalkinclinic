@@ -112,7 +112,7 @@
         '<label for="cwcb-ph">WhatsApp / phone *</label><input id="cwcb-ph" data-f="phone" type="tel" autocomplete="tel" placeholder="+1 555 000 0000" value="' + esc(S.phone) + '">' +
         '<label for="cwcb-em">Email</label><input id="cwcb-em" data-f="email" type="email" autocomplete="email" placeholder="you@email.com" value="' + esc(S.email) + '">' +
         (mob ? '<label for="cwcb-lc">Hotel / villa and room, or address *</label><input id="cwcb-lc" data-f="loc" autocomplete="street-address" value="' + esc(S.loc) + '">' : '') +
-        '<label for="cwcb-nt">Notes (optional)</label><textarea id="cwcb-nt" data-f="notes" rows="2" placeholder="Anything we should know">' + esc(S.notes) + '</textarea></div>' +
+        '<label for="cwcb-nt">Access notes (optional)</label><textarea id="cwcb-nt" data-f="notes" rows="2" placeholder="Room number, gate code, parking. Please share symptoms with the doctor, not here.">' + esc(S.notes) + '</textarea></div>' +
         (S.err ? '<div class="cwcb-er" role="alert">' + esc(S.err) + '</div>' : '') +
         '<div class="cwcb-ac"><button class="cwcb-bt cwcb-bk" type="button" data-back>&larr; Back</button><button class="cwcb-bt cwcb-n" type="button" data-next>Review</button></div>');
     }

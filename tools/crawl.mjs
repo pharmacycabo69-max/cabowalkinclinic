@@ -40,7 +40,7 @@ for (const u of [...new Set([...routes, ...inSitemap])].sort()) {
     canon.endsWith(u), pick(/<title>([\s\S]*?)<\/title>/i, h), pick(/<title>([\s\S]*?)<\/title>/i, h).length,
     pick(/<meta name="description" content="([^"]*)"/i, h), pick(/<meta name="description" content="([^"]*)"/i, h).length,
     pick(/<h1[^>]*>([\s\S]*?)<\/h1>/i, h).replace(/<[^>]+>/g, ''), (h.match(/<h1[\s>]/gi) || []).length,
-    (h.match(/hreflang="([^"]+)"/g) || []).join(' '), types, (h.match(/AW-\d+/) || [''])[0], /track\.v2\.js/.test(h),
+    (h.match(/hreflang="([^"]+)"/g) || []).join(' '), types, (h.match(/AW-\d+/) || [''])[0], /track\.v\d+\.js/.test(h),
     /data-book|\/book\//.test(main), /wa\.me\//.test(h), (main.match(/href="\//g) || []).length, words]);
 }
 writeFileSync(outFile, rows.map(r => r.map(esc).join(',')).join('\n'));
