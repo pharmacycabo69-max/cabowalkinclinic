@@ -21,7 +21,7 @@
     "cta": {"en": "Verify My Insurance", "es": "Verificar mi seguro"}
   },
   "locations": [
-    {"location_id": "cwc-clinic", "name": "Cabo Walk-In Clinic", "type": "medical clinic", "status": "active", "verified": "2026-11-24 (Google Maps listing CID 16166639102671751891)"}
+    {"location_id": "cwc-clinic", "name": "Cabo Walk-In Clinic", "type": "medical clinic", "status": "active", "note": "Only location shown on this site (owner 2026-11-25: no pharmacy/locations content here)"}
   ],
   "medical_team_public": [
     {"id": "kevin-gonzalez-adame", "name": "Dr. Kevin González Adame", "title": "Médico Cirujano y Partero", "institution": "IPN", "cedula": "14796516", "role": "operating physician; video consultations", "languages": ["es", "en"], "photo": "images/dr-kevin-adame*.jpg (owner-provided)", "status": "confirmed"},

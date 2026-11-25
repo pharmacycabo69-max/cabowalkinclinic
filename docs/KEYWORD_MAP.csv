@@ -1,0 +1,25 @@
+url,primary_keyword,secondary_keywords,intent,status_2026-11-25,notes
+/,english speaking doctor cabo san lucas,"walk-in clinic cabo; doctor cabo san lucas; medical clinic cabo; house call doctor cabo",transactional/local,live,home owns brand + generic doctor intent; insurance and prices in meta description
+/walk-in-clinic-doctor-cabo-san-lucas/,walk in clinic cabo san lucas,"doctor near me cabo; medical clinic cabo san lucas; consulta médica cabo",transactional/local,live,
+/home-doctor/,house call doctor cabo,"hotel doctor cabo; doctor on call cabo; médico a domicilio cabo",transactional,live,Ads landing candidate; house call $199
+/video-doctor-consultation/,video doctor consultation cabo,"online doctor cabo; telemedicine cabo",transactional,live,Dr. Kevin González Adame featured
+/iv-therapy/,iv therapy cabo,"iv hydration cabo; mobile iv therapy cabo; hotel iv therapy cabo",transactional,live,$159/$169 tax included; NAD+ $279
+/hangover-iv-drip-cabo-san-lucas/,hangover iv cabo,"hangover iv drip cabo san lucas; bachelor party iv cabo",transactional,live,
+/immune-boost-iv-drip-los-cabos/,immune iv drip cabo,"vitamin iv cabo",transactional,live,
+/jet-lag-post-flight-iv-los-cabos/,post flight iv cabo,"jet lag iv los cabos",transactional,live,
+/iv-therapy-san-jose-del-cabo/,iv therapy san jose del cabo,,transactional/local,live,
+/nurse-care/,home nursing cabo,"in-room nurse cabo; nurse care cabo san lucas",transactional,live,
+/post-op-nursing-care-cabo/,post op nursing care cabo,"medical tourism aftercare cabo",transactional,live,
+/lab-tests/,blood test cabo,"lab tests cabo; blood work cabo; mobile lab testing cabo; análisis clínicos cabo",transactional,"live (rebuilt, no prices)",no competitor confirms in-hotel blood draws -> differentiator
+/radiology-x-ray-cabo-san-lucas/,x ray cabo san lucas,"radiology los cabos; radiografías cabo; x-ray at hotel cabo",transactional,"ready (indexable in dev)",no dedicated English-speaking X-ray clinic found in search
+/x-ray-imaging-cabo/,ct scan cabo,"mri cabo; ultrasound cabo; diagnostic imaging cabo",transactional,live (refocused),coordinated at partner hospital; avoids cannibalizing the X-ray page
+/insurance-billing-cabo/,clinic that accepts us insurance cabo,"travel insurance doctor cabo; international insurance accepted cabo; does medicare cover mexico",transactional/informational,"live (rebuilt)",US/Canada subject to verification; never promise coverage
+/aesthetic-medicine-cabo/,aesthetic medicine cabo,"lip fillers cabo; facial rejuvenation cabo; skin brightening cabo; medicina estética los cabos",transactional,"ready (indexable in dev)",no brand names (no "Botox"); NOT an Ads landing page (prescription-drug policy)
+/urgent-care-near-me-cabo-san-lucas/,urgent care cabo san lucas,"same-day doctor cabo",transactional,live,non-emergency; 911 notice
+/tourist-medical-clinic-cabo-san-lucas/,tourist medical clinic cabo,"medical services for tourists cabo; travel doctor cabo",transactional,live,
+/after-hours-weekend-doctor-cabo/,after hours doctor cabo,"weekend doctor cabo",transactional,live,after-hours by appointment (no 24/7)
+/english-speaking-doctor-san-jose-del-cabo/,doctor san jose del cabo,"english speaking doctor san jose del cabo",transactional/local,live,
+/doctor-near-los-cabos-airport-sjd/,doctor near sjd airport,,transactional/local,live,
+/doctor-near-cabo-san-lucas-cruise-port/,doctor near cruise port cabo,,transactional/local,live,
+/food-poisoning-doctor-cabo/,food poisoning doctor cabo,"stomach bug doctor cabo",transactional,live,
+/about/,cabo walk-in clinic doctors,"english speaking doctors cabo team",navigational/trust,live,cedulas + responsable sanitaria

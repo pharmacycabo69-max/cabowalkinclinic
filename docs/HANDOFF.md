@@ -37,6 +37,16 @@
 - Aesthetic medicine draft page (noindex).
 - Proposed 301s for the 110 legacy pages (`docs/REDIRECT_MAP.csv`, `vercel.json`).
 
+## Added 2026-11-25 (round 2)
+- Removed `/locations/` and all pharmacy/locations links (owner).
+- Radiology published (indexable, nav, sitemap), no prices.
+- Lab page rebuilt without prices or result-time claims, with 2 photos.
+- Aesthetic medicine made indexable and linked only from footer and About (out of Ads).
+- Home: "Why travelers choose us" section; reviews redesigned (6 Google reviews, avatars, dates).
+- Insurance FAQ about US plans and Medicare.
+- SEO fixes: Immune title, imaging title, San José IV prices ("from $159").
+- `docs/KEYWORD_MAP.csv`; service-level competitor search added to the audit.
+
 ## Decisions waiting on the owner
 See `PENDING_BUSINESS_DATA.md`. The most urgent:
 - **D9:** is cabobaymedical.com part of the network?

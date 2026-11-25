@@ -36,3 +36,10 @@ Everything is on branch `dev/prompt-v3-1`; `main` and production are untouched. 
 - `/aesthetic-medicine-cabo/`: `noindex, nofollow`, not linked, not in sitemap.
 - `vercel.json`: valid JSON. 110 redirects, all destinations exist. 3 targets were corrected by hand (the San José walk-in pages go to the San José doctor page so they don't imply a San José clinic; Tourist Corridor IV goes to `/iv-therapy/`). **Redirects are not exercised by the local static server.** Verify them on a Vercel preview before merging.
 - Lab weight baseline (local dev server, mobile iframe): home 226 KB / 18 requests; book 79 KB / 15; home-doctor 259 KB / 18; iv-therapy 233 KB / 18; insurance 178 KB / 17; locations 178 KB / 17. Field CWV not available (PSI quota).
+
+## Update 2026-11-25 (round 2)
+- 9 pages audited at 390px (home, lab, radiology, aesthetics, insurance, about, imaging, San José IV, Immune).
+  - No forbidden text, including "Locations", "RMC", "Botox" and "Draft".
+  - No broken images, no a11y issues, 1 H1 each, no overflow, valid JSON-LD.
+  - Visible prices consistent: $59 / $99 / $199 / $159 / $169 / $279. The lab, radiology and aesthetics pages carry no prices for their own services.
+- Checked visually on mobile: home "Why travelers choose us", reviews grid, lab hero.

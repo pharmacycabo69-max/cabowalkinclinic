@@ -56,3 +56,13 @@ Most competitors **hide prices**. The two that show them either add tax or contr
 | 6 | Radiology and lab pages with confirmed catalog (25/11) | Medium | Medium | Draft |
 | 7 | Aesthetic medicine section (4 categories, Rosibel profile per §3.1) | Medium | Medium | Pending data/photo |
 | 8 | Rebuild or 301 the 110 legacy noindex pages in phases | Medium (crawl budget, quality) | High | Planned |
+
+## Service-level search check (2026-11-25, WebSearch, US index)
+| Query | What ranks / appears | Opportunity for this site |
+|---|---|---|
+| X-ray clinic Cabo San Lucas English speaking | Hospitals (BlueNet, Hospiten, Amerimed) and directories (WhatClinic); **no dedicated English-speaking X-ray clinic found** | `/radiology-x-ray-cabo-san-lucas/`: X-ray at the clinic or the hotel, results explained in English |
+| blood test lab Cabo San Lucas hotel nurse | Labs (Laboratorio Carle, Helena Lab, MILAB, Healthy Cabo, Santa Fe Lab) mostly from COVID-era guides; **none confirms in-hotel blood draws** | `/lab-tests/`: nurse blood draw at the hotel, doctor explains the results; quote-based |
+| lip fillers botox Cabo San Lucas | Directories (RealSelf, Fresha), Dr. Agapito Alvarez Vega (Doctoralia), Facial Aesthetics (brand claims), Clínica IMA (SJD) | `/aesthetic-medicine-cabo/`: physician-led, evaluation first, no brand names; keep it out of Ads |
+| Cabo clinic accepts US travel insurance | World Class Clinic (formerly Balboa; old listing), BlueNet, Hospiten (contact form), Air Doctor (app) | Insurance page with a written verification process + a Medicare/US-plan FAQ (added) |
+
+Also seen in the area: **The Drip Spa** (IV, on Francisco I. Madero) and **Pure Cabo** (mobile IV, round-the-clock claim). Both are added to the watch list.

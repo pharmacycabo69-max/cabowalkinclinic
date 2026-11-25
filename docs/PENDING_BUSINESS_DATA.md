@@ -15,7 +15,7 @@ Source of truth: Prompt Maestro V3.1 (2026-11-24) plus owner answers in session.
 | D8 | **08:00–09:00 window** | Coverage not confirmed | Not advertised | — |
 | D9 | **cabobaymedical.com** | Owner confirmed 2026-11-25: **not ours**. Third party showing our physician and cédula and our earlier copy | Not referenced on our site | Case file kept **outside the public repo** (owner has it); attorney review |
 | D10 | **Luis Antonio Camacho Villegas** | Title pending (owner said "Técnico Radiólogo" in chat; V3.1 says pending) | Shown with cédula only, as an external imaging collaborator | Title proof |
-| D11 | **Radiology catalog** | Equipment, location (clinic vs portable), modalities, price, result time, interpreting physician | Page kept as a **noindex draft** | Catalog 25/11 |
+| D11 | **Radiology** | Owner asked to publish it without prices (X-ray at the clinic and the hotel, confirmed by the owner earlier) | `/radiology-x-ray-cabo-san-lucas/` indexable, in nav and sitemap, quote via WhatsApp | Catalog details (equipment, result times) when available |
 | D12 | **Laboratorios Santa Fe catalog** | Not received | Not published | Catalog 25/11 |
 | D13 | **Aesthetic medicine** (4 categories) | Techniques, prices, authorized photo of Dra. Rosibel | Not published | Data + photo |
 | D14 | **Dra. Myriam Aisse Palacios Alarcón** | Updated constancia requested; photo is low-res (202 px) | Published as physician "subject to availability" | Constancia + better photo |
@@ -49,7 +49,10 @@ Source of truth: Prompt Maestro V3.1 (2026-11-24) plus owner answers in session.
 ## Added 2026-11-25
 | # | Item | Status | Dev state | Blocks |
 |---|---|---|---|---|
-| D24 | **Celeste Pharmacy and Ocean Pharmacy** | RMC's LOCATIONS_MASTER says "commercial relationship to confirm"; hours inherited | `/locations/` shows only the 3 RMC Pharmacy stores (Plaza Gali, Plaza Embarcadero, Mercado Marina) plus the clinic | Owner confirms the relationship |
+| D24 | **Locations / pharmacies** | Owner 2026-11-25: **no pharmacy or locations content on this site** | `/locations/` removed with all its links; RMC data not used here | — |
 | D25 | **301 redirects for the 110 legacy WordPress pages** | Mapping in `docs/REDIRECT_MAP.csv` and `vercel.json`; HTML files kept for rollback | In dev only | Owner OK + **check that no Google Ads final URL points to a legacy URL** (a 301 keeps the visit, but Ads may flag a destination mismatch) |
-| D26 | **Aesthetic medicine page** | Draft `/aesthetic-medicine-cabo/` (noindex, nofollow, unlinked, not in sitemap); 4 categories only; Dra. Rosibel as medical lead | Draft | Techniques, prices, risk text, authorized photo |
+| D26 | **Aesthetic medicine page** | Owner asked to add it "without affecting Ads" | `/aesthetic-medicine-cabo/` indexable, linked only from footer and About (not from home or service landing pages), no brand names, prices or techniques | Authorized photo of Dra. Rosibel; keep it out of Google Ads |
 | D27 | **Core Web Vitals field data** | PageSpeed API daily quota exhausted 2026-11-25; local lab weight only | — | Re-run PSI or use Search Console CWV |
+| D28 | **Lab tests page** | Rebuilt without prices ($149/$99/$129/$159/$119 removed) and without the "24–48 h results" or "no referral" claims | Quote-based | Santa Fe catalog, then publish confirmed prices |
+| D29 | **Real photos** | Lab and nursing images are illustrative (AI-style stock), not real staff | In use | Owner: real photos of the clinic, team, lab draw and X-ray |
+| D30 | **Review avatars** | Initial-letter avatars instead of reviewers' Google photos (third-party personal images need consent) | In use | — |
