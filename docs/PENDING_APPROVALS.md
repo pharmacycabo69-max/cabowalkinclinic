@@ -4,7 +4,7 @@ Nada de esto está publicado. Todo vive en la rama `dev/v4-redesign`.
 
 | # | Decisión | Qué hice en desarrollo | Por qué necesita aprobación |
 |---|---|---|---|
-| A1 | **Médico a domicilio $189 (V4) vs $199 (tu mensaje del 24-nov)** | Puse $189 en checkout (`api/_prices.json`), reservas, 44 páginas y schema | Cambia el cobro real. Si los anuncios dicen $199, conviene alinearlos. |
+| A1 | ~~Médico a domicilio $189 vs $199~~ **Resuelto 2026-11-25: $189 (propietario)** | $189 en checkout, reservas, páginas y schema | Al publicar: alinear anuncios que digan $199 |
 | A2 | Publicar la rama en producción | Nada publicado | Regla de V4 y CLAUDE.md |
 | A3 | Rayos X en hotel | Ahora dice "a solicitud, sujeto a confirmación" | V4 pide validar equipo, alcance y permisos antes de ofrecerlo |
 | A4 | Precios de estética **+ impuestos** (los demás servicios dicen impuestos incluidos) | Sin cambios (tú los confirmaste el 24-nov) | V4 dice "estética sin precio confirmado: cotización"; tú los confirmaste. Confirma que siguen vigentes. |

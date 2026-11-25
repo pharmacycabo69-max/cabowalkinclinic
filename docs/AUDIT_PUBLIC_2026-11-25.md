@@ -8,7 +8,7 @@ Tests: `node tools/test.mjs` → **551 passed, 0 failed**.
 
 | ID | Pri | URL / file | Evidence (reproduced) | Impact | Change | Status |
 |---|---|---|---|---|---|---|
-| F1 | P0 | site-wide, `api/_prices.json`, `book.v8.js` | House call shown and charged $199; V4 policy $189 | price contradiction vs V4 | $189 in checkout, wizard v9, 44 pages, schema | implemented, tested — **needs owner OK before publishing** (owner said $199 on 2026-11-24) |
+| F1 | P0 | site-wide, `api/_prices.json`, `book.v8.js` | House call shown and charged $199; V4 policy $189 | price contradiction vs V4 | $189 in checkout, wizard v9, 44 pages, schema | implemented, tested — owner confirmed $189 on 2026-11-25 |
 | F2 | P0 | `book.v8.js` chatbot | Bot listed in-clinic IV $129–$159 "+ impuestos" and groups $119 (EN said tax included) | contradictory/unconfirmed prices | bot rewritten: tax included, IV from $159, NAD+ $279, groups/lab/X-ray/aesthetics = quote | implemented |
 | F3 | P0 | /iv-therapy/, /hangover-…/, /immune-boost-…/, /iv-therapy-san-jose-del-cabo/ | "Groups of 6+ pay $119", "$129 at our clinic"; hangover FAQ schema said $159 while page says $169 | unconfirmed prices, schema ≠ page | replaced with "group pricing is quoted on request"; FAQ schema regenerated from visible text | implemented, tested |
 | F4 | P0 | `api/checkout.js` | free-text booking "notes" sent to Stripe metadata | health data in payment metadata (V4 §4/§10) | notes no longer sent to Stripe; field relabelled "Access notes… share symptoms with the doctor, not here" | implemented, tested (mock) |

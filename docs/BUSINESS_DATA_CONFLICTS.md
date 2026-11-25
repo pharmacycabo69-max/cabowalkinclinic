@@ -2,7 +2,7 @@
 
 | Field | Source A | Source B | Applied in dev | Resolution needed |
 |---|---|---|---|---|
-| House call price | Owner chat 2026-11-24: "$199" (live in production) | V4 §4: "home doctor $189" | $189 | owner confirmation (PENDING_APPROVALS A1) |
+| House call price | Owner chat 2026-11-24: "$199" (live in production) | V4 §4: "home doctor $189" | $189 | **resolved 2026-11-25: owner confirmed $189** |
 | IV price | V4: "IV estándar $159" | Owner 2026-11-24: Hydration/Recovery $159, others $169 | $159 / $169 ("from $159") | none — V4 sets the standard price only |
 | Group IV price | old pages/bot: $119 pp (6+) | V4: groups = quote | quote | confirm if a group price exists |
 | In-clinic IV price | old bot: $129–$159 | not in checkout | removed | confirm if in-clinic IV is cheaper |

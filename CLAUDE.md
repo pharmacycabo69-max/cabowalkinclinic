@@ -8,7 +8,7 @@ Static site (HTML + Vercel serverless `api/`), deployed by Vercel from `main` of
 
 ## Hard rules
 - Never push to `main` or deploy without explicit owner approval. Work on a `dev/*` branch.
-- Prices (V4 2026-11-25): video $59, clinic $99, house call $189 (pending owner OK vs $199), IV $159 standard / $169 others, NAD+ $279, USD tax included. Groups, lab, imaging: quote. Checkout prices live in `api/_prices.json`. The booking wizard (`assets/book/book.v*.js`) must match. Never change charges without owner approval.
+- Prices (V4 2026-11-25): video $59, clinic $99, house call $189 (owner confirmed 2026-11-25), IV $159 standard / $169 others, NAD+ $279, USD tax included. Groups, lab, imaging: quote. Checkout prices live in `api/_prices.json`. The booking wizard (`assets/book/book.v*.js`) must match. Never change charges without owner approval.
 - Hours: clinic 9:00–17:00 daily. After-hours visits 17:00–08:00 by appointment, subject to doctor confirmation. Never write "24/7", "immediate availability" or arrival-time promises. The partner hospital's "24/7 emergency" is the only exception.
 - Insurance: US and Canada health and travel insurance accepted **subject to verification**. Never promise coverage, direct billing, reimbursement or no deductible. Never name insurers as partners. No Mexican national insurance. Never ask for policy documents in public forms, URLs or analytics.
 - **Dra. Rosibel Núñez Rojo (§3.1):** her full profile (title, UAG, cédula 7408277, photo once authorized) is allowed on this domain, plus her role as responsable sanitaria of this clinic only. Keep her data out of the other five brands.
