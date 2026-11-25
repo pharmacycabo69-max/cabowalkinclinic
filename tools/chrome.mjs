@@ -111,7 +111,14 @@ ${col(f.company, f.coLinks)}
   return { util, header, footer, other };
 }
 
-const HEAD_ADD = '<link rel="preload" href="/assets/fonts/source-serif-4-600-latin.woff2" as="font" type="font/woff2" crossorigin>\n<link rel="stylesheet" href="/assets/shared/site.v4.css">';
+// CSS bundle: base + booking + v3 + v4, content-hashed so the immutable /assets/ cache is safe.
+import { createHash } from 'node:crypto';
+const CSS_PARTS = ['assets/shared/aa9c50901312.css', 'assets/book/book.v11.css', 'assets/shared/site.v3.css', 'assets/shared/site.v4.css'];
+const CSS_SRC = CSS_PARTS.map(p => `/* ${p} */\n` + readFileSync(join(root, p), 'utf8')).join('\n');
+const BUNDLE = `cwc.${createHash('sha1').update(CSS_SRC).digest('hex').slice(0, 10)}.css`;
+writeFileSync(join(root, 'assets/shared', BUNDLE), CSS_SRC);
+
+const HEAD_ADD ='<link rel="preload" href="/assets/fonts/source-serif-4-600-latin.woff2" as="font" type="font/woff2" crossorigin>\n<link rel="stylesheet" href="/assets/shared/site.v4.css">';
 
 export function applyChrome(html, path) {
   const lang = path.startsWith('/es/') ? 'es' : 'en';
@@ -124,11 +131,14 @@ export function applyChrome(html, path) {
   if (!/<footer class="site">[\s\S]*?<\/footer>/.test(h)) throw new Error('no footer ' + path);
   h = h.replace(/<footer class="site">[\s\S]*?<\/footer>/, c.footer);
   h = h.replace(/<a class="skip-link" href="#main">[^<]*<\/a>/, `<a class="skip-link" href="#main">${T[lang].skip}</a>`);
-  // assets
-  if (!h.includes('/assets/shared/site.v4.css')) {
-    if (h.includes('<link rel="stylesheet" href="/assets/shared/site.v3.css">')) h = h.replace('<link rel="stylesheet" href="/assets/shared/site.v3.css">', '<link rel="stylesheet" href="/assets/shared/site.v3.css">\n' + HEAD_ADD);
-    else h = h.replace('</head>', HEAD_ADD + '\n</head>');
-  }
+  // assets: one render-blocking stylesheet (content-hashed bundle of base + booking + v3 + v4 layers)
+  const CSS_RE = /<link rel="stylesheet" href="\/assets\/(?:shared\/aa9c50901312\.css|book\/book\.v11\.css|shared\/site\.v3\.css|shared\/site\.v4\.css|shared\/cwc\.[0-9a-f]{10}\.css)">\n?/g;
+  if (CSS_RE.test(h)) {
+    let first = true;
+    h = h.replace(CSS_RE, () => (first ? (first = false, `<link rel="stylesheet" href="/assets/shared/${BUNDLE}">\n`) : ''));
+  } else h = h.replace('</head>', `<link rel="stylesheet" href="/assets/shared/${BUNDLE}">\n</head>`);
+  if (!h.includes('source-serif-4-600-latin.woff2" as="font"')) h = h.replace(`<link rel="stylesheet" href="/assets/shared/${BUNDLE}">`, `${HEAD_ADD.split('\n')[0]}\n<link rel="stylesheet" href="/assets/shared/${BUNDLE}">`);
+  h = h.replace(/\n\n+(<link rel="stylesheet" href="\/assets\/shared\/cwc)/, '\n$1');
   h = h.replace(/\/assets\/shared\/site\.v2\.js/g, '/assets/shared/site.v3.js');
   // hreflang for real pairs only
   h = h.replace(/<link rel="alternate" hreflang="[^"]+" href="[^"]+">\n?/g, '');

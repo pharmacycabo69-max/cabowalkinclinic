@@ -7,3 +7,5 @@
 - b61d5e1 Spanish pages (6) + hreflang, contact rebuilt, team universities, Rosibel visibility, home X-ray on request.
 - 1fdd279 Notes out of Stripe metadata; unconfirmed group/in-clinic IV prices removed; claim fixes; test suite.
 - (next) Illustrative-image alt texts, V4 docs, CLAUDE.md update, after captures.
+- e38998b Ads landing template + 9 landings, English-speaking URL restored, no own X-ray facility claims, mobile action bar, attribution + booking events.
+- (next) CSS bundle, LCP preload, video wording (no online prescriptions), Ads/conversion/performance doc.
