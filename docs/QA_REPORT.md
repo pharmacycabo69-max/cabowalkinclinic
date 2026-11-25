@@ -43,3 +43,8 @@ Everything is on branch `dev/prompt-v3-1`; `main` and production are untouched. 
   - No broken images, no a11y issues, 1 H1 each, no overflow, valid JSON-LD.
   - Visible prices consistent: $59 / $99 / $199 / $159 / $169 / $279. The lab, radiology and aesthetics pages carry no prices for their own services.
 - Checked visually on mobile: home "Why travelers choose us", reviews grid, lab hero.
+
+## Audit 2026-11-24 (second pass, all 35 sitemap pages)
+Checked: status, title/description length, one H1, canonical, noindex, img alt/size, JSON-LD parse, forbidden phrases (24/7, round-the-clock, immediate, Botox, COFEPRIS), broken internal links (0).
+Fixed: nurse-care had an empty "service" card ("Day, night and holidays") left from a 24/7 removal; geriatric-care "live-in / around-the-clock" card; "triage in minutes" arrival promises (emergency, ambulance); "rehydration is immediate" (hangover IV); "feel normal within 24 hours" (jet-lag); "assessed immediately" and "round-the-clock private-duty nursing" (post-op); X-ray and lab titles over 60 chars; thin nurse-care and geriatric-care pages rebuilt (design + FAQ); /wp-json/ stub now served with X-Robots-Tag noindex.
+Kept on purpose: "24/7 emergency" about the partner hospital (allowed exception); "guarantee" only in disclaimers.

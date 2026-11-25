@@ -113,6 +113,10 @@
   ],
   "headers": [
     {
+      "source": "/wp-json/(.*)",
+      "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow" } ]
+    },
+    {
       "source": "/wp-content/(.*)",
       "headers": [
         {
