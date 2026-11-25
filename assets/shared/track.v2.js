@@ -1,6 +1,6 @@
 (function(){
   window.dataLayer=window.dataLayer||[];
-  var LABELS={whatsapp_click:'',phone_click:'',booking_submit:''}; /* paste Google Ads conversion labels, e.g. 'AW-16881895258/AbC123' */
+  var LABELS={whatsapp_click:'',phone_click:'',booking_submit:'',booking_paid:''}; /* paste Google Ads conversion labels, e.g. 'AW-16881895258/AbC123' */
   function ev(n,extra){
     var d={event:n,page_path:location.pathname};for(var k in extra||{})d[k]=extra[k];
     dataLayer.push(d);
@@ -19,4 +19,6 @@
     if(f.matches('[data-booking],.latepoint-form,form[class*="latepoint"]'))ev('booking_submit',{form:f.id||f.className});
   },true);
   document.addEventListener('latepoint:booking_completed',function(){ev('booking_submit');});
+
+  try{if(/^\/thanks\/?$/.test(location.pathname)&&!sessionStorage.getItem('cwc_paid')){sessionStorage.setItem('cwc_paid','1');setTimeout(function(){ev('booking_paid');},300);}}catch(e){}
 })();
