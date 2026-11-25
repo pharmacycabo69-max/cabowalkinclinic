@@ -14,7 +14,7 @@ Source of truth: Prompt Maestro V3.1 (2026-11-24) plus owner answers in session.
 | D7 | **Clinic hours 9:00–17:00** | Google Business Profile shows closing at 10 PM | Site changed in dev | **Update GBP hours to match before publishing** |
 | D8 | **08:00–09:00 window** | Coverage not confirmed | Not advertised | — |
 | D9 | **cabobaymedical.com** | Owner confirmed 2026-11-25: **not ours**. Third party showing our physician and cédula and our earlier copy | Not referenced on our site | Case file kept **outside the public repo** (owner has it); attorney review |
-| D10 | **Luis Antonio Camacho Villegas** | Title pending (owner said "Técnico Radiólogo" in chat; V3.1 says pending) | Shown with cédula only, as an external imaging collaborator | Title proof |
+| D10 | **Luis Antonio Camacho Villegas: RESOLVED** | Owner confirmed 2026-11-25: Técnico Radiólogo | Shown as Técnico Radiólogo, cédula 4359616 (home, X-ray page, About, schema) | — |
 | D11 | **Radiology** | Owner asked to publish it without prices (X-ray at the clinic and the hotel, confirmed by the owner earlier) | `/radiology-x-ray-cabo-san-lucas/` indexable, in nav and sitemap, quote via WhatsApp | Catalog details (equipment, result times) when available |
 | D12 | **Laboratorios Santa Fe catalog** | Not received | Not published | Catalog 25/11 |
 | D13 | **Aesthetic medicine** (4 categories) | Techniques, prices, authorized photo of Dra. Rosibel | Not published | Data + photo |

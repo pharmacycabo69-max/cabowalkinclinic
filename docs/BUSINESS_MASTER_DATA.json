@@ -28,7 +28,7 @@
     {"id": "myriam-aisse-palacios", "name": "Dra. Myriam Aisse Palacios Alarcón", "title": "Médico General", "institution": "Centro de Estudios Universitarios Xochicalco", "cedula": "11664989", "role": "backup physician, subject to availability", "status": "confirmed; updated constancia requested"},
     {"id": "rosibel-nunez-rojo", "name": "Dra. Rosibel Núñez Rojo", "title": "Médico Cirujano", "institution": "Universidad Autónoma de Guadalajara", "cedula": "7408277", "role": "responsable sanitaria (this clinic only); aesthetic medicine", "visibility_rule": "§3.1: full profile allowed ONLY on cabowalkinclinic and pharmacydoctors; other 5 brands: name only, in aesthetics section", "photo": "pending authorization", "status": "confirmed"},
     {"id": "jenifer-arciga", "name": "Lic. Jenifer Alexandra Arciga Acosta", "title": "Licenciatura en Radiología e Imagenología", "institution": "Universidad ITEC", "cedula": "13435891", "role": "external imaging collaborator (not a medical specialist)", "status": "confirmed"},
-    {"id": "luis-camacho", "name": "Luis Antonio Camacho Villegas", "title": "pending", "cedula": "4359616", "role": "external imaging collaborator", "status": "title pending"}
+    {"id": "luis-camacho", "name": "Luis Antonio Camacho Villegas", "title": "Técnico Radiólogo", "cedula": "4359616", "role": "external imaging collaborator (X-ray)", "status": "confirmed (owner 2026-11-25)"}
   ],
   "service_catalog": [
     {"service_id": "video-consult", "name_en": "Video doctor consultation", "price_usd_tax_incl": 59, "price_type": "fixed", "deposit": "50%", "status": "available"},
