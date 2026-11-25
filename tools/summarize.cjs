@@ -1,0 +1,12 @@
+const f=process.argv[2];const t=require('fs').readFileSync(f,'utf8').split('\n').slice(1).map(l=>l.split('","').map(s=>s.replace(/^"|"$/g,'')));
+const st={};t.forEach(r=>st[r[1]]=(st[r[1]]||0)+1);console.log('status',JSON.stringify(st));
+const live=t.filter(r=>r[1]==='200');const idx=live.filter(r=>!/noindex/.test(r[4]));console.log('200 pages',live.length,'noindex',live.length-idx.length,'indexable',idx.length);
+console.log('no AW tag:',live.filter(r=>!r[14]).map(r=>r[0]).join(' ')||'-');
+console.log('no conversion js:',live.filter(r=>r[15]!=='true').map(r=>r[0]).join(' ')||'-');
+console.log('indexable not in sitemap:',idx.filter(r=>r[3]!=='true').map(r=>r[0]).join(' ')||'-');
+console.log('canonical mismatch:',idx.filter(r=>r[5]!=='true').map(r=>r[0]).join(' ')||'-');
+console.log('h1!=1:',idx.filter(r=>r[11]!=='1').map(r=>r[0]+'('+r[11]+')').join(' ')||'-');
+console.log('title>62 or <30:',idx.filter(r=>+r[7]>62||+r[7]<30).map(r=>r[0]+'('+r[7]+')').join(' ')||'-');
+console.log('desc>165 or <90:',idx.filter(r=>+r[9]>165||+r[9]<90).map(r=>r[0]+'('+r[9]+')').join(' ')||'-');
+console.log('hreflang present:',idx.filter(r=>r[12]).length);
+console.log('thin <300 words:',idx.filter(r=>+r[19]<300).map(r=>r[0]+'('+r[19]+')').join(' ')||'-');
