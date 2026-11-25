@@ -14,7 +14,7 @@ Static site (HTML + Vercel serverless `api/`), deployed by Vercel from `main` of
 - **Dra. Rosibel Núñez Rojo (§3.1):** her full profile (title, UAG, cédula 7408277, photo once authorized) is allowed on this domain, plus her role as responsable sanitaria of this clinic only. Keep her data out of the other five brands.
 - Credentials: show only the name, title, cédula and role confirmed by the owner. Never publish a CURP, signatures, QR codes or documents. Jenifer Arciga is a Licenciada (not a medical specialist). Luis Camacho is a Técnico Radiólogo.
 - No COFEPRIS certification claims or official seals. Show the aviso de funcionamiento number only.
-- Drafts (radiology, lab, aesthetics catalogs) stay `noindex`, out of `sitemap.xml` and unlinked.
+- Radiology, lab and aesthetics pages are published (owner request) but quote-based: no prices, techniques or result times until the owner confirms them. Aesthetics is linked only from the footer and About, never from Ads landing pages. No pharmacy or locations content on this site.
 - `/assets/` is cached for a year (immutable). Change a file's **name** (`.vN`) whenever you change its content, and update every page that references it.
 - `_drafts/`, `docs/` and `CLAUDE.md` are excluded from deploy (`.vercelignore`). The repo is public: never commit costs, margins, patient data or secrets.
 - Windows: 4 legacy files have `?` in their names; the checkout uses sparse-checkout to skip them (`git -c core.protectNTFS=false ...` if git complains).
