@@ -12,7 +12,7 @@
     var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;
     var h=a.getAttribute('href')||'';
     /* privacy: never send the prefilled WhatsApp text (may contain health info) to analytics or ads */
-    if(/wa.me|api.whatsapp.com/.test(h))ev('whatsapp_click',{link_url:h.split('?')[0]});
+    if(/wa\.me|api\.whatsapp\.com/.test(h))ev('whatsapp_click',{link_url:h.split('?')[0]});
     else if(/^tel:/.test(h))ev('phone_click',{link_url:'tel'});
   },true);
   document.addEventListener('submit',function(e){
