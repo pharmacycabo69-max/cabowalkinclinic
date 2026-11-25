@@ -10,7 +10,7 @@ Source of truth: Prompt Maestro V3.1 (2026-11-24) plus owner answers in session.
 | D3 | **Special drips** (Flu Rescue $199, Detox $189, Headache Rescue $169, Mega Myers $279, Post-Flight) | Not confirmed in V3.1; need medical and price validation | Unchanged on legacy pages | Phase 2 |
 | D4 | **$50 fixed deposit** | Proposed in a screenshot, not confirmed. Today: 50% deposit. | Unchanged (50%) | Checkout |
 | D5 | **Travel Wellness Panel** | $149 (site) vs $249 (earlier reference) | Unchanged, flagged | Lab page |
-| D6 | **House call: RESOLVED $199** | Owner final answer "$199" (2026-11-24, relayed by session "Unify Cabo Walk-In Clinic prices"), cancelling the earlier $189 | Dev reverted to $199 (copy, schema, booking v8, `api/_prices.json`) = same as production; checkout unchanged | — |
+| D6 | **House call: RESOLVED $199** | Owner confirmed "$199" directly in this session (2026-11-25), cancelling the earlier $189 | Dev reverted to $199 (copy, schema, booking v8, `api/_prices.json`) = same as production; checkout unchanged | — |
 | D7 | **Clinic hours 9:00–17:00** | Google Business Profile shows closing at 10 PM | Site changed in dev | **Update GBP hours to match before publishing** |
 | D8 | **08:00–09:00 window** | Coverage not confirmed | Not advertised | — |
 | D9 | **cabobaymedical.com** | Owner confirmed 2026-11-25: **not ours**. Third party showing our physician and cédula and our earlier copy | Not referenced on our site | Case file kept **outside the public repo** (owner has it); attorney review |
