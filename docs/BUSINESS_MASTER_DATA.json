@@ -33,7 +33,7 @@
   "service_catalog": [
     {"service_id": "video-consult", "name_en": "Video doctor consultation", "price_usd_tax_incl": 59, "price_type": "fixed", "deposit": "50%", "status": "available"},
     {"service_id": "clinic-consult", "name_en": "Walk-in clinic visit", "price_usd_tax_incl": 99, "price_type": "fixed", "deposit": "50%", "status": "available"},
-    {"service_id": "home-doctor", "name_en": "Doctor house call", "price_usd_tax_incl": 189, "price_type": "fixed", "deposit": "50%", "status": "confirmed (owner 2026-11-24); production still $199 until approval"},
+    {"service_id": "home-doctor", "name_en": "Doctor house call", "price_usd_tax_incl": 199, "price_type": "fixed", "deposit": "50%", "status": "confirmed (owner final 2026-11-24); same as production"},
     {"service_id": "iv-hydration", "name_en": "IV Hydration Drip", "price_usd_tax_incl": 159, "status": "confirmed"},
     {"service_id": "iv-recovery", "name_en": "IV Recovery Drip", "price_usd_tax_incl": 159, "status": "confirmed (owner 2026-11-25)"},
     {"service_id": "iv-immune", "name_en": "IV Immune Support", "price_usd_tax_incl": 169, "status": "confirmed (owner 2026-11-25)"},

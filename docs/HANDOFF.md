@@ -16,7 +16,7 @@
 
 ## What changed in dev (`git log dev/prompt-v3-1`)
 1. **Hours and availability (P0):** clinic 9:00–17:00. After-hours visits 17:00–08:00 by appointment, subject to doctor confirmation. Removed every "24/7" claim except the partner hospital's ER. Removed arrival-time promises ("~45 min", "within the hour", "30–45 min"). Schema hours are 09:00–17:00.
-2. **House call $189** in copy, schema, chatbot, booking (book.v8.js) and `api/_prices.json`. The other IV prices are unchanged pending D1.
+2. **House call stays $199** (owner final decision; an earlier $189 was reverted). IV prices confirmed by the owner: $159 Hydration and Recovery, $169 other drips, tax included. Beauty Glow description fixed from $189 to $169. NAD+ pages still $189, pending D2.
 3. **Team:**
    - Dr. Kevin González Adame (Médico Cirujano y Partero).
    - Dra. Myriam Aisse Palacios Alarcón (backup, subject to availability).
@@ -36,7 +36,7 @@ See `PENDING_BUSINESS_DATA.md`. The most urgent:
 - **D9:** is cabobaymedical.com part of the network?
 - **D1/D2:** IV and NAD+ prices.
 - **D7:** update the Google Business hours to 9–17 before publishing.
-- **D6:** approve publishing the $189 checkout.
+- **D6:** resolved, house call $199 (no checkout change).
 - **D16:** refund terms.
 
 ## Next tasks (in order)

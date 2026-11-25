@@ -7,7 +7,7 @@
   var SV = [
     { k: 'video-consult', n: 'Video doctor consultation', p: 59, g: 'Doctor visits', m: false },
     { k: 'clinic-consult', n: 'Walk-in clinic visit', p: 99, g: 'Doctor visits', m: false },
-    { k: 'home-doctor', n: 'Doctor house call', p: 189, g: 'Doctor visits', m: true },
+    { k: 'home-doctor', n: 'Doctor house call', p: 199, g: 'Doctor visits', m: true },
     { k: 'iv-hydration', n: 'IV Hydration Drip', p: 159, g: 'IV therapy (nurse comes to you)', m: true },
     { k: 'iv-recovery', n: 'IV Recovery Drip', p: 159, g: 'IV therapy (nurse comes to you)', m: true },
     { k: 'iv-immune', n: 'IV Immune Support', p: 169, g: 'IV therapy (nurse comes to you)', m: true },
@@ -295,9 +295,9 @@
     waMsg: 'Hola, tengo una pregunta para Cabo Walk-In Clinic.',
     menu: [['prices', 'Precios'], ['hours', 'Horarios'], ['hotel', 'Doctor al hotel'], ['iv', 'Terapia IV'], ['ins', 'Seguro / factura'], ['dep', 'Depósito 50%'], ['emg', 'Es una emergencia']],
     a: {
-      prices: 'Precios en USD:\n• Videoconsulta: $59\n• Consulta en clínica: $99\n• Doctor a domicilio: $189\n• Terapia IV a domicilio: $159–$169 + impuestos (en clínica $129–$159 + impuestos; grupos de 6+: $119 por persona, impuestos incluidos)\nReservas con 50% de depósito; el resto se paga después del servicio.',
+      prices: 'Precios en USD:\n• Videoconsulta: $59\n• Consulta en clínica: $99\n• Doctor a domicilio: $199\n• Terapia IV a domicilio: $159–$169 + impuestos (en clínica $129–$159 + impuestos; grupos de 6+: $119 por persona, impuestos incluidos)\nReservas con 50% de depósito; el resto se paga después del servicio.',
       hours: 'Clínica: 9:00 a 17:00 todos los días.\nVisitas fuera de horario (17:00 a 08:00): con cita, sujetas a confirmación médica.',
-      hotel: 'Un doctor llega a tu hotel, villa o yate en Cabo San Lucas y el Corredor Turístico. Consulta a domicilio: $189 USD. Te confirmamos el horario de llegada al reservar.',
+      hotel: 'Un doctor llega a tu hotel, villa o yate en Cabo San Lucas y el Corredor Turístico. Consulta a domicilio: $199 USD. Te confirmamos el horario de llegada al reservar.',
       iv: 'Terapia IV en tu habitación o villa: Hidratación $159, Inmune $169, Post-vuelo $169, Recuperación $159, Glow $169, Atlética $169 (impuestos incluidos).',
       ins: 'Aceptamos seguros médicos y de viaje internacionales de Estados Unidos y Canadá, sujetos a verificación de la póliza y confirmación de cobertura. Escríbenos para verificar tu póliza antes del servicio. No aceptamos seguros nacionales mexicanos. También puedes pagar como paciente particular.',
       dep: 'Reservas con un depósito del 50% con tarjeta; el saldo se paga después del servicio. Política de reembolso: cabowalkinclinic.com/refund-policy/',
@@ -311,9 +311,9 @@
     waMsg: 'Hi! I have a question for Cabo Walk-In Clinic.',
     menu: [['prices', 'Prices'], ['hours', 'Hours'], ['hotel', 'Doctor at my hotel'], ['iv', 'IV therapy'], ['ins', 'Insurance'], ['dep', '50% deposit'], ['emg', "It's an emergency"]],
     a: {
-      prices: 'Prices in USD:\n• Video visit: $59\n• Walk-in clinic visit: $99\n• Doctor house call: $189\n• IV therapy at your door: $159–$169, tax included (in-clinic $129–$159, tax included; groups of 6+: $119 per person, tax included)\nYou reserve with a 50% deposit; the balance is paid after the service.',
+      prices: 'Prices in USD:\n• Video visit: $59\n• Walk-in clinic visit: $99\n• Doctor house call: $199\n• IV therapy at your door: $159–$169, tax included (in-clinic $129–$159, tax included; groups of 6+: $119 per person, tax included)\nYou reserve with a 50% deposit; the balance is paid after the service.',
       hours: 'Clinic: 9 AM – 5 PM daily.\nAfter-hours visits (5 PM – 8 AM): by appointment, subject to doctor confirmation.',
-      hotel: 'A doctor comes to your hotel, villa or yacht in Cabo San Lucas and the Tourist Corridor. House call: $189 USD. We confirm the arrival time with you when you book.',
+      hotel: 'A doctor comes to your hotel, villa or yacht in Cabo San Lucas and the Tourist Corridor. House call: $199 USD. We confirm the arrival time with you when you book.',
       iv: 'IV therapy in your room or villa: Hydration $159, Immune $169, Post-Flight $169, Recovery $159, Glow $169, Athletic $169 (tax included).',
       ins: 'We accept international health and travel insurance from the United States and Canada, subject to policy verification and coverage confirmation. Message us to verify your eligibility before your visit. Self-pay is always available.',
       dep: 'You reserve with a 50% card deposit; the balance is paid after the service. Refund policy: cabowalkinclinic.com/refund-policy/',
