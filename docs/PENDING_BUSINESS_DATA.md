@@ -13,7 +13,7 @@ Source of truth: Prompt Maestro V3.1 (2026-11-24) plus owner answers in session.
 | D6 | **House call $189** | Relayed from the owner by another session; matches V3.1 | **Changed in dev** (copy + `api/_prices.json` + booking v8). Production still charges $199. | Owner approval to publish |
 | D7 | **Clinic hours 9:00–17:00** | Google Business Profile shows closing at 10 PM | Site changed in dev | **Update GBP hours to match before publishing** |
 | D8 | **08:00–09:00 window** | Coverage not confirmed | Not advertised | — |
-| D9 | **cabobaymedical.com** | Same physician and cédula, old copy of our site | Not referenced | Owner: is it ours? |
+| D9 | **cabobaymedical.com** | Owner confirmed 2026-11-25: **not ours**. Third party showing our physician and cédula and our earlier copy | Not referenced on our site | Case file kept **outside the public repo** (owner has it); attorney review |
 | D10 | **Luis Antonio Camacho Villegas** | Title pending (owner said "Técnico Radiólogo" in chat; V3.1 says pending) | Shown with cédula only, as an external imaging collaborator | Title proof |
 | D11 | **Radiology catalog** | Equipment, location (clinic vs portable), modalities, price, result time, interpreting physician | Page kept as a **noindex draft** | Catalog 25/11 |
 | D12 | **Laboratorios Santa Fe catalog** | Not received | Not published | Catalog 25/11 |
@@ -34,3 +34,14 @@ Source of truth: Prompt Maestro V3.1 (2026-11-24) plus owner answers in session.
   - Dra. Rosibel Núñez Rojo, Médico Cirujano (UAG), cédula 7408277, responsable sanitaria (full profile allowed on this domain per §3.1).
   - Lic. Jenifer Alexandra Arciga Acosta, Lic. en Radiología e Imagenología, cédula 13435891, external collaborator.
 - Insurance: US and Canada health and travel insurance accepted, subject to verification. Mexican national insurance not accepted.
+
+## Decisions relayed by other sessions (2026-11-24), not yet confirmed directly in this session
+Source cited by the other sessions: repo `pharmacycabo69-max/rmcpharmacy.com`, docs/decisions.md D11–D17. They **conflict with the owner's direct instruction in this session** (Hydration and Recovery $159, other drips $169), so nothing below has been applied here until the owner confirms which list governs Cabo Walk-In Clinic.
+| # | Relayed decision | Current dev state |
+|---|---|---|
+| D19 | IV at home $159; IV in clinic (Recovery) $129 | Dev: Recovery $159; no in-clinic IV prices |
+| D20 | NAD+ $279 at home and in clinic | Dev: $189 on legacy pages (D2) |
+| D21 | Multivitamin IV $189 at home / $154 in clinic | Not on this site |
+| D22 | IV groups 3+: $139 per person | Main shows "groups of 6 or more pay $119 per person" |
+| D23 | Delivery 7:00–23:00 daily (replaces V3.1 08:00–23:30); never 24/7 | Delivery hours not shown on this site |
+| — | House call $189 | **Applied in dev** (D6) |

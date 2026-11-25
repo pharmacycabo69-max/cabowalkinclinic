@@ -21,9 +21,7 @@ Also found in the searches: **The Drip Spa**, an IV provider on Francisco I. Mad
 ## P0 finding — cabobaymedical.com
 The H1 is "Premium Walk-In & Mobile Healthcare in Cabo San Lucas" and the page uses "One call covers everything in Cabo". Its structure matches the **old Cabo Walk-In Clinic copy**. It lists **Dra. Myriam Palacios Alarcón with cédula 11664989**, our physician and cédula, and shows our old price points ($59 / $200 / $119 / $80). Ownership is **not inferred**.
 
-Owner decision needed:
-- **If it belongs to the network:** consolidate it or clearly differentiate it. Duplicate content splits rankings and confuses Google.
-- **If it does not:** it is unauthorized use of our physician's credential and copied content. Legal review and a takedown are recommended.
+**Owner confirmed (2026-11-25): it is not part of the network.** A private case file with evidence and draft actions was prepared outside this public repo. Next step: attorney review.
 
 ## Price comparison (public prices, as published)
 | Service | Cabo Walk-In Clinic (dev, tax included) | Competitors observed |
