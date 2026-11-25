@@ -14,3 +14,5 @@ Nada de esto está publicado. Todo vive en la rama `dev/v4-redesign`.
 | A8 | Etiquetas de conversión de Google Ads | `LABELS` vacíos en `track.v3.js` | Las da la cuenta de Ads |
 | A9 | Revisar URLs finales y textos de anuncios (24/7, $199, precios viejos) antes de publicar | Sin cambios en Ads | No modifico campañas |
 | A10 | Horario en Google Business Profile = 9–17 | — | Lo cambias tú en el perfil |
+| A11 | Documentos del proveedor de radiología (sede, estudios, equipo, permisos, tiempos, tarifas) | Página de rayos X sin instalaciones propias, todo por cotización | Sin esos documentos no se publican sede, precios ni disponibilidad |
+| A12 | Qué campañas usar: walk-in, médico bilingüe, turistas, domicilio, seguros, laboratorio, rayos X. IV con prueba pequeña; video y estética solo orgánico | Landings listas en dev | Política de Google Ads (medicamentos con receta y telemedicina) |
