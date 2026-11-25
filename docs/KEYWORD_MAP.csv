@@ -23,3 +23,9 @@ url,primary_keyword,secondary_keywords,intent,status_2026-11-25,notes
 /doctor-near-cabo-san-lucas-cruise-port/,doctor near cruise port cabo,,transactional/local,live,
 /food-poisoning-doctor-cabo/,food poisoning doctor cabo,"stomach bug doctor cabo",transactional,live,
 /about/,cabo walk-in clinic doctors,"english speaking doctors cabo team",navigational/trust,live,cedulas + responsable sanitaria
+/es/,clinica medica cabo san lucas,"medico bilingue cabo; consulta medica cabo san lucas",transactional/local,"dev (V4)",hreflang pair of /
+/es/clinica-medica-cabo-san-lucas/,clinica sin cita cabo san lucas,"consulta medica sin cita cabo",transactional/local,"dev (V4)",pair of walk-in page
+/es/medico-a-domicilio-cabo-san-lucas/,medico a domicilio cabo san lucas,"medico a hotel los cabos; doctor a domicilio cabo",transactional,"dev (V4)",pair of /home-doctor/
+/es/videoconsulta-medica/,videoconsulta medica los cabos,"consulta medica en linea cabo",transactional,"dev (V4)",pair of video page
+/es/seguros-medicos-internacionales-cabo/,seguro medico internacional cabo,"seguro de viaje medico cabo san lucas",transactional/informational,"dev (V4)",subject to verification
+/es/contacto/,clinica cabo san lucas ubicacion,"como llegar clinica centro cabo",navigational,"dev (V4)",
