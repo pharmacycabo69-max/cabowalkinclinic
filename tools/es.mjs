@@ -33,7 +33,7 @@ function page({ path, title, desc, crumb, main, faqs = [], sticky }) {
     h += `<script type="application/ld+json">${JSON.stringify(fq)}</script>\n`;
   }
   const faqHtml = faqs.length ? `<section class="sec alt"><div class="wrap"><h2>Preguntas frecuentes</h2>${faqs.map(([q, a]) => `<details class="faq"><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></section>` : '';
-  let t = tail.replace(/<div class="stickybar">[\s\S]*?<\/div>(?=<script)/, `<div class="stickybar">${sticky}</div>`)
+  let t = tail.replace(/<div class="stickybar">[\s\S]*?<\/div>(?=s*<script)/, `<div class="stickybar">${sticky}</div>`)
     .replace(/aria-label="Chat with us on WhatsApp"/, 'aria-label="Escríbenos por WhatsApp"').replace(/<span>Chat on WhatsApp<\/span>/, '<span>WhatsApp</span>')
     .replace(/https:\/\/wa\.me\/5216242261023\?text=[^"]*/g, WA('Hola, tengo una pregunta para Cabo Walk-In Clinic.'));
   const html = `${h}</head>\n<body><a class="skip-link" href="#main">Ir al contenido</a><header class="top"><div class="wrap"></div></header><main id="main" class="home4" lang="es">${main}${faqHtml}</main>${t.replace(/^[\s\S]*?(<footer class="site">)/, '$1')}`;

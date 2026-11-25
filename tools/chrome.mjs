@@ -139,6 +139,13 @@ export function applyChrome(html, path) {
     h = h.replace(/(<link rel="canonical"[^>]*>)\n?/, `$1\n${alt}`);
   }
   if (lang === 'es') h = h.replace(/<html lang="[^"]*"/, '<html lang="es"');
+  // mobile action bar: page CTA + Call + WhatsApp (idempotent)
+  h = h.replace(/<div class="stickybar">([\s\S]*?)<\/div>(?=\s*<script)/, (m, inner) => {
+    inner = inner.replace(/<a class="sb-ic[\s\S]*?<\/a>/g, '');
+    const call = `<a class="sb-ic" href="tel:+526242261023" aria-label="${lang === 'es' ? 'Llamar a la clínica' : 'Call the clinic'}">${I.phone}</a>`;
+    const wa = /wa\.me/.test(inner) ? '' : `<a class="sb-ic sb-wa" href="${WA}?text=${encodeURIComponent(lang === 'es' ? 'Hola, tengo una pregunta para Cabo Walk-In Clinic.' : 'Hi! I have a question for Cabo Walk-In Clinic.')}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.05 0A11.9 11.9 0 001.74 17.84L.06 24l6.3-1.65A11.9 11.9 0 1012.05 0zm0 21.8a9.9 9.9 0 01-5.04-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.9 9.9 0 1118.27-5.27 9.9 9.9 0 01-9.89 9.9z"/></svg></a>`;
+    return `<div class="stickybar">${inner}${call}${wa}</div>`;
+  });
   return h;
 }
 

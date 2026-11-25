@@ -167,6 +167,8 @@
       track('booking_submit', { method: 'stripe', service: o.k, value: o.p / 2, currency: 'USD' });
       var f = document.createElement('form'); f.method = 'POST'; f.action = '/api/checkout'; f.style.display = 'none';
       var d = { option: o.k, date: S.date, time: S.time, name: S.name, phone: S.phone, email: S.email, location: S.loc, notes: S.notes };
+      try { var at = JSON.parse(localStorage.getItem('cwc_attr') || '{}'); ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) { if (at[k]) d[k] = String(at[k]).slice(0, 120); }); } catch (x) {}
+      try { window.cwcTrack && window.cwcTrack('booking_submit', { service: o.k, value: o.p / 2, currency: 'USD' }); } catch (x) {}
       Object.keys(d).forEach(function (k) { var i = document.createElement('input'); i.type = 'hidden'; i.name = k; i.value = d[k]; f.appendChild(i); });
       document.body.appendChild(f); f.submit();
     }

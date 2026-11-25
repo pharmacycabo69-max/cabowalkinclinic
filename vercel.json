@@ -30,7 +30,6 @@
     { "source": "/doctor-iv-therapy-puerto-los-cabos/", "destination": "/iv-therapy/", "permanent": true },
     { "source": "/doctor-walk-in-care-san-jose-del-cabo/", "destination": "/english-speaking-doctor-san-jose-del-cabo/", "permanent": true },
     { "source": "/energy-b12-iv-drip-cabo-san-lucas/", "destination": "/iv-therapy/", "permanent": true },
-    { "source": "/english-speaking-doctor-cabo-san-lucas/", "destination": "/home-doctor/", "permanent": true },
     { "source": "/english-speaking-doctor-house-call-hotel-cabo/", "destination": "/home-doctor/", "permanent": true },
     { "source": "/english-speaking-doctor-marina-cabo-san-lucas/", "destination": "/home-doctor/", "permanent": true },
     { "source": "/english-speaking-doctor-medano-beach/", "destination": "/home-doctor/", "permanent": true },
