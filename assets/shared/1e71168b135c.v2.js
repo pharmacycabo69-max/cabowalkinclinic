@@ -237,7 +237,7 @@
         {n:'Immune Boost', s:'immune-boost', p:'$169', b:'High-dose vitamin C and zinc — supports cold and flu recovery', emoji:'🛡️'},
         {n:'Myers Cocktail', s:'myers-cocktail', p:'$169', b:'Classic wellness blend — vitamins, magnesium, B-complex', emoji:'⭐'},
         {n:'Beauty Glow', s:'beauty-glow', p:'$169', b:'Biotin, glutathione, vitamin C — supports skin and hair', emoji:'✨'},
-        {n:'NAD+ Drip', s:'nad-plus', p:'$189', b:'Cellular energy and longevity support', emoji:'🔋'},
+        {n:'NAD+ Drip', s:'nad-plus', p:'$279', b:'Cellular energy and longevity support', emoji:'🔋'},
         {n:'B-Complex Energy', s:'b-complex-energy', p:'$169', b:'B12, B-complex, amino acids — sustained energy', emoji:'⚡'}
       ];
       var IV_TOP3 = ['hangover','hydration','immune-boost'];
@@ -295,7 +295,7 @@
       }
 
       function helpPickIV(){
-        sendMsg('Help me pick the right IV drip. Please ask me 2 to 3 short questions about how I feel, any medications I am taking, and known allergies, then recommend ONE IV from the Cabo Walk-In Clinic menu (Hangover \$159, Hydration \$159, Immune Boost \$169, Myers Cocktail \$169, Beauty Glow \$169, NAD+ \$189, B-Complex Energy \$169, tax included) with a clear explanation. End with a reminder to tell my nurse about medications and allergies before the drip.');
+        sendMsg('Help me pick the right IV drip. Please ask me 2 to 3 short questions about how I feel, any medications I am taking, and known allergies, then recommend ONE IV from the Cabo Walk-In Clinic menu (Hangover \$159, Hydration \$159, Immune Boost \$169, Myers Cocktail \$169, Beauty Glow \$169, NAD+ \$279, B-Complex Energy \$169, tax included) with a clear explanation. End with a reminder to tell my nurse about medications and allergies before the drip.');
       }
 
       function handleSpecialChip(txt){
@@ -383,7 +383,7 @@
   var DRIPS=[
     {n:"Hydration Drip",s:"hydration",p:"$159"},{n:"Recovery Drip",s:"hangover",p:"$159"},
     {n:"Myers Cocktail",s:"myers-cocktail",p:"$169"},{n:"Immune Boost",s:"immune-boost",p:"$169"},
-    {n:"Beauty Glow",s:"beauty-glow",p:"$169"},{n:"NAD+ Drip",s:"nad-plus",p:"$189"},
+    {n:"Beauty Glow",s:"beauty-glow",p:"$169"},{n:"NAD+ Drip",s:"nad-plus",p:"$279"},
     {n:"B-Complex Energy",s:"b-complex-energy",p:"$169"},{n:"Athletic Recovery",s:"athletic-recovery",p:"$169"},
     {n:"Post-Flight Drip",s:"post-flight",p:"$169"},{n:"Immune Recovery",s:"flu-rescue",p:"$199"},
     {n:"Replenish Drip",s:"detox",p:"$189"},{n:"Hydration Plus",s:"headache-rescue",p:"$169"},
@@ -434,7 +434,7 @@
     'myers-cocktail':{t:'Myers Cocktail',tag:'Wellness',p:'$169',d:'45–60 min',b:['Classic vitamin + mineral blend','Energy & immune support','The original IV formula']},
     'immune-boost':{t:'Immune Boost',tag:'Immunity',p:'$169',d:'60–90 min',b:['High-dose vitamin C + zinc','Immune-system defense','Great before you fly']},
     'beauty-glow':{t:'Beauty Glow',tag:'Beauty',p:'$169',d:'45–60 min',b:['Glutathione + biotin','Skin hydration & glow','Antioxidant support']},
-    'nad-plus':{t:'NAD+ Drip',tag:'Longevity',p:'$189',d:'90–150 min',b:['Cellular energy (NAD+)','Mental clarity & focus','Healthy-aging support']},
+    'nad-plus':{t:'NAD+ Drip',tag:'Longevity',p:'$279',d:'90–150 min',b:['Cellular energy (NAD+)','Mental clarity & focus','Healthy-aging support']},
     'b-complex-energy':{t:'B-Complex Energy',tag:'Energy',p:'$169',d:'45–60 min',b:['Full B-complex boost','Sustained clean energy','No caffeine crash']},
     'athletic-recovery':{t:'Athletic Recovery',tag:'Recovery',p:'$169',d:'60–90 min',b:['Amino acids + electrolytes','Faster muscle recovery','Post-workout rehydration']},
     'post-flight':{t:'Post-Flight Drip',tag:'Recovery',p:'$169',d:'45–60 min',b:['Beat jet lag','Rehydration + B12','Recover from travel fatigue']},

@@ -31,6 +31,12 @@
 7. **Assets versioned** (old ones are cached as immutable for a year): `book.v8.js`, `site.v3.css`, `1e71168b135c.v2.js`, `10bc88080fc1.v2.js`.
 8. **Docs** (`docs/`, excluded from deploy via `.vercelignore`): URL_INVENTORY.csv, COMPETITOR_MATRIX.csv, COMPETITOR_AUDIT.md, PENDING_BUSINESS_DATA.md, BUSINESS_MASTER_DATA.json, QA_REPORT.md and this file. Plus `CLAUDE.md`.
 
+## Added 2026-11-25
+- NAD+ $279 (owner).
+- New `/locations/` page (clinic + 3 RMC stores; Celeste and Ocean pending D24), linked in nav, footer, home and sitemap.
+- Aesthetic medicine draft page (noindex).
+- Proposed 301s for the 110 legacy pages (`docs/REDIRECT_MAP.csv`, `vercel.json`).
+
 ## Decisions waiting on the owner
 See `PENDING_BUSINESS_DATA.md`. The most urgent:
 - **D9:** is cabobaymedical.com part of the network?

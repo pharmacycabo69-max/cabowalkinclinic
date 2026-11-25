@@ -29,3 +29,10 @@ Note: the preview tool sometimes renders the gold button empty in screenshots. T
 
 ## Rollback
 Everything is on branch `dev/prompt-v3-1`; `main` and production are untouched. To discard it, delete the branch. To revert part of it, revert the individual commits listed in `HANDOFF.md`.
+
+## Update 2026-11-25
+- NAD+ is $279 on all NAD+ pages, the chatbot and the menus. The only remaining $189 is the Detox drip (pending D3).
+- `/locations/` (new, indexable, in sitemap and nav): 1 H1, no a11y issues, valid JSON-LD (Pharmacy entities), no overflow at 390px. Checked visually on mobile.
+- `/aesthetic-medicine-cabo/`: `noindex, nofollow`, not linked, not in sitemap.
+- `vercel.json`: valid JSON. 110 redirects, all destinations exist. 3 targets were corrected by hand (the San José walk-in pages go to the San José doctor page so they don't imply a San José clinic; Tourist Corridor IV goes to `/iv-therapy/`). **Redirects are not exercised by the local static server.** Verify them on a Vercel preview before merging.
+- Lab weight baseline (local dev server, mobile iframe): home 226 KB / 18 requests; book 79 KB / 15; home-doctor 259 KB / 18; iv-therapy 233 KB / 18; insurance 178 KB / 17; locations 178 KB / 17. Field CWV not available (PSI quota).

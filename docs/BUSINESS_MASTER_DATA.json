@@ -40,7 +40,7 @@
     {"service_id": "iv-postflight", "name_en": "IV Post-Flight Reset", "price_usd_tax_incl": 169, "status": "confirmed (owner 2026-11-25)"},
     {"service_id": "iv-glow", "name_en": "IV Glow Drip", "price_usd_tax_incl": 169, "status": "confirmed (owner 2026-11-25)"},
     {"service_id": "iv-athletic", "name_en": "IV Athletic Recovery", "price_usd_tax_incl": 169, "status": "confirmed (owner 2026-11-25)"},
-    {"service_id": "iv-nad", "name_en": "NAD+", "price_usd_tax_incl": null, "status": "conflict D2 (site $189 vs V3.1 $279); not bookable online"},
+    {"service_id": "iv-nad", "name_en": "NAD+", "price_usd_tax_incl": 279, "status": "confirmed (owner 2026-11-25); not bookable online"},
     {"service_id": "xray", "name_en": "X-ray", "price_type": "quote", "status": "draft (D11)"},
     {"service_id": "lab-wellness-panel", "name_en": "Travel Wellness Panel", "status": "conflict D5 ($149 vs $249)"},
     {"service_id": "aesthetics", "categories": ["Lip Fillers", "Facial Botulinum Toxin Treatments", "Facial Rejuvenation", "Skin Brightening Treatments"], "status": "pending (D13)"}

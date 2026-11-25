@@ -6,7 +6,7 @@ Source of truth: Prompt Maestro V3.1 (2026-11-24) plus owner answers in session.
 | # | Item | Conflict / gap | Current dev state | Blocks |
 |---|---|---|---|---|
 | D1 | **IV drip prices: RESOLVED 2026-11-25** | Owner confirmed in this session: Hydration and Recovery $159, all other drips $169, USD tax included (RMC list does not apply) | Same in production (7a40177) and dev | — |
-| D2 | **NAD+ price** | V3.1: $279. Site and chatbot: $189 (not bookable online). | Unchanged, flagged | NAD+ copy |
+| D2 | **NAD+ price: RESOLVED $279** | Owner confirmed 2026-11-25 (matches V3.1) | Dev: NAD+ pages, chatbot and menus at $279 (not bookable online) | — |
 | D3 | **Special drips** (Flu Rescue $199, Detox $189, Headache Rescue $169, Mega Myers $279, Post-Flight) | Not confirmed in V3.1; need medical and price validation | Unchanged on legacy pages | Phase 2 |
 | D4 | **$50 fixed deposit** | Proposed in a screenshot, not confirmed. Today: 50% deposit. | Unchanged (50%) | Checkout |
 | D5 | **Travel Wellness Panel** | $149 (site) vs $249 (earlier reference) | Unchanged, flagged | Lab page |
@@ -45,3 +45,11 @@ Source of truth: Prompt Maestro V3.1 (2026-11-24) plus owner answers in session.
 | D22 | IV groups 3+: $139 per person | Main shows "groups of 6 or more pay $119 per person" |
 | D23 | Delivery 7:00–23:00 daily (replaces V3.1 08:00–23:30); never 24/7 | Delivery hours not shown on this site |
 | — | House call $189 | **Applied in dev** (D6) |
+
+## Added 2026-11-25
+| # | Item | Status | Dev state | Blocks |
+|---|---|---|---|---|
+| D24 | **Celeste Pharmacy and Ocean Pharmacy** | RMC's LOCATIONS_MASTER says "commercial relationship to confirm"; hours inherited | `/locations/` shows only the 3 RMC Pharmacy stores (Plaza Gali, Plaza Embarcadero, Mercado Marina) plus the clinic | Owner confirms the relationship |
+| D25 | **301 redirects for the 110 legacy WordPress pages** | Mapping in `docs/REDIRECT_MAP.csv` and `vercel.json`; HTML files kept for rollback | In dev only | Owner OK + **check that no Google Ads final URL points to a legacy URL** (a 301 keeps the visit, but Ads may flag a destination mismatch) |
+| D26 | **Aesthetic medicine page** | Draft `/aesthetic-medicine-cabo/` (noindex, nofollow, unlinked, not in sitemap); 4 categories only; Dra. Rosibel as medical lead | Draft | Techniques, prices, risk text, authorized photo |
+| D27 | **Core Web Vitals field data** | PageSpeed API daily quota exhausted 2026-11-25; local lab weight only | — | Re-run PSI or use Search Console CWV |
