@@ -1,0 +1,252 @@
+/* Cabo Walk-In Clinic — design layer v4 (2026-11-25). Evolutionary refresh on top of base + v3.
+   Keeps the brand: navy, gold, cream, red cross, Cormorant logotype. Adds an editorial serif for headings,
+   a utility bar, a services menu, clinic card, price board, symptom chips and credential badges.
+   New file name on purpose: /assets/ is cached immutable for a year. */
+
+@font-face{font-family:"CWC Serif";src:url(/assets/fonts/source-serif-4-600-latin.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
+
+:root{
+  --navy:#0b2a4a;--navy2:#123a63;--navy3:#08192e;--gold:#c89f6a;--gold2:#a67c45;--gold-soft:#f3e7d6;
+  --cream:#f7f4ee;--paper:#fffdf9;--line:#e6dfd2;--ink:#1c2a39;--mute:#556677;--red:#d32f2f;--ok:#167a43;--wa:#1fa855;
+  --r-sm:10px;--r:16px;--r-lg:22px;--shadow:0 1px 2px rgba(11,42,74,.06),0 8px 24px rgba(11,42,74,.07);
+  --serif:"CWC Serif",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,.serif{font-family:var(--serif);font-weight:600;letter-spacing:-.012em}
+h1{line-height:1.08}
+h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;color:var(--navy)}
+h3{letter-spacing:-.005em}
+p.sub{font-size:17px;line-height:1.6}
+.wrap{max-width:1160px;padding:0 20px}
+section.sec{padding:64px 0}
+@media(max-width:700px){section.sec{padding:46px 0}.wrap{padding:0 16px}}
+.eyebrow{display:block;font:700 12.5px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);margin:0 0 8px}
+
+/* ---------- Utility bar ---------- */
+.utilbar{background:var(--navy3);color:#d6e0ea;font-size:13.5px}
+.utilbar .wrap{display:flex;align-items:center;gap:6px 22px;min-height:38px;flex-wrap:wrap}
+.utilbar a{color:#fff;text-decoration:none}
+.utilbar a:hover{text-decoration:underline}
+.utilbar .ub-sep{opacity:.35}
+.utilbar .ub-lang{margin-left:auto;font-weight:700}
+.utilbar svg{width:14px;height:14px;fill:currentColor;vertical-align:-2px;margin-right:6px;opacity:.85}
+.open-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#9aa7b4;margin-right:7px;vertical-align:1px}
+.is-open .open-dot{background:#3ecf7c}
+@media(max-width:760px){.utilbar .ub-addr,.utilbar .ub-sep{display:none}.utilbar .wrap{gap:4px 14px;min-height:34px;font-size:12.5px}}
+
+/* ---------- Header ---------- */
+header.top{border-bottom:1px solid var(--line);background:rgba(255,255,255,.97);backdrop-filter:saturate(1.2) blur(6px)}
+header.top .wrap{min-height:68px}
+header.top nav.main{gap:2px;align-items:center}
+header.top nav.main a,header.top nav.main .nav-svc>button{font:600 15px/1 var(--sans);color:var(--ink);padding:11px 12px;border-radius:10px;text-decoration:none;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+header.top nav.main a:hover,header.top nav.main .nav-svc>button:hover,header.top nav.main a[aria-current="page"]{background:var(--cream);color:var(--navy)}
+header.top .wrap{position:relative}
+.nav-svc{position:static}
+.nav-svc>button:after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .15s}
+.nav-svc.open>button:after{transform:rotate(-135deg) translateY(-1px)}
+.svc-panel{display:none;position:absolute;right:20px;top:calc(100% - 4px);width:580px;max-width:calc(100vw - 40px);background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 24px 60px rgba(11,42,74,.16);padding:10px;grid-template-columns:1fr 1fr;gap:2px;z-index:80}
+.nav-svc.open .svc-panel{display:grid}
+.svc-panel a{display:flex!important;flex-direction:column;align-items:flex-start!important;gap:2px!important;padding:12px 14px!important;border-radius:12px!important;line-height:1.25!important}
+.svc-panel a b{font-size:15px;color:var(--navy)}
+.svc-panel a small{font:500 13px/1.35 var(--sans);color:var(--mute)}
+.svc-panel a .pr{color:var(--gold2);font-weight:700}
+header.top .hdr-book{background:var(--navy);color:#fff;border-radius:999px;padding:11px 20px;font-weight:700}
+header.top .hdr-book:hover{background:var(--navy2)}
+@media(max-width:1000px){
+  header.top.nav-open nav.main{padding:10px 16px 18px}
+  .nav-svc{width:100%}
+  .nav-svc>button{width:100%;justify-content:space-between;font-size:17px!important;padding:14px 12px!important;min-height:48px}
+  .svc-panel{position:static;width:auto;box-shadow:none;border:0;padding:0 0 6px;grid-template-columns:1fr;background:var(--cream);border-radius:12px}
+  .svc-panel a{padding:11px 14px!important;min-height:0!important}
+}
+
+/* ---------- Buttons ---------- */
+.btn{border-radius:999px;font-weight:700;letter-spacing:.005em;transition:background .15s,box-shadow .15s,transform .15s,border-color .15s}
+.btn:active{transform:translateY(1px)}
+.btn--navy{background:var(--navy);color:#fff}.btn--navy:hover{background:var(--navy2)}
+.btn--call{background:var(--gold);color:#1a1208}.btn--call:hover{background:#d4b080}
+.btn--wa{background:var(--wa);color:#fff}.btn--wa:hover{background:#178f47}
+.btn--line{background:#fff;color:var(--navy);border:1.5px solid #cdd6df}.btn--line:hover{border-color:var(--navy)}
+.btn--onnavy{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55)}.btn--onnavy:hover{border-color:#fff}
+.btn svg{width:18px;height:18px;fill:currentColor;flex:none}
+
+/* ---------- Home hero (v4) ---------- */
+.h4{background:var(--paper);border-bottom:1px solid var(--line);padding:42px 0 54px;position:relative;overflow:hidden}
+.h4:before{content:"";position:absolute;right:-180px;top:-220px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,var(--gold-soft) 0%,rgba(243,231,214,0) 70%);pointer-events:none}
+.h4 .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;position:relative}
+.h4 h1{font-size:clamp(34px,4.6vw,56px);color:var(--navy);margin:10px 0 16px}
+.h4 h1 em{font-style:normal;color:var(--gold2)}
+.h4 .lead{font-size:18.5px;line-height:1.6;color:#2b3a4a;max-width:600px;margin:0 0 22px}
+.h4 .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.h4 .ctas .btn{padding:14px 22px}
+@media(max-width:900px){.h4{padding:22px 0 40px}.h4 .wrap{grid-template-columns:1fr;gap:26px}.h4 .ctas .btn{flex:1 1 auto}}
+
+/* Clinic card: address + hours + status */
+.clinic-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;max-width:600px}
+.clinic-card>div{padding:14px 18px}
+.clinic-card>div+div{border-left:1px dashed var(--line)}
+.clinic-card small{display:block;font:700 11.5px/1.3 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin-bottom:4px}
+.clinic-card b{display:block;color:var(--navy);font-size:15.5px;line-height:1.35}
+.clinic-card span{display:block;color:var(--mute);font-size:14px;line-height:1.4}
+.clinic-card a{font-weight:700;font-size:14px}
+@media(max-width:520px){.clinic-card{grid-template-columns:1fr}.clinic-card>div+div{border-left:0;border-top:1px dashed var(--line)}}
+
+/* Doctor visual in hero */
+.doc-visual{position:relative;max-width:420px;margin-left:auto}
+.doc-visual .ph{border-radius:200px 200px 24px 24px;overflow:hidden;background:#eef1f4;box-shadow:0 30px 70px rgba(11,42,74,.18)}
+.doc-visual img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;object-position:center 20%}
+.cred{position:absolute;left:-28px;bottom:26px;background:#fff;border-radius:14px;box-shadow:0 14px 34px rgba(11,42,74,.18);padding:12px 16px;display:flex;gap:12px;align-items:center;max-width:300px;border:1px solid var(--line)}
+.cred .x{width:38px;height:38px;border-radius:10px;background:#fdecec;display:flex;align-items:center;justify-content:center;flex:none}
+.cred b{display:block;color:var(--navy);font-size:15px;line-height:1.25}
+.cred small{display:block;color:var(--mute);font-size:12.5px;line-height:1.35}
+.cred2{position:absolute;right:-14px;top:30px;background:var(--navy);color:#fff;border-radius:14px;padding:10px 14px;font-size:13px;line-height:1.3;box-shadow:0 12px 28px rgba(11,42,74,.25)}
+.cred2 b{display:block;color:#f1d9bd;font-size:16px}
+@media(max-width:900px){.doc-visual{max-width:320px;margin:0 auto}.cred{left:-10px;bottom:14px;max-width:250px}.cred2{right:-8px}}
+@media(max-width:420px){.doc-visual{max-width:260px}}
+
+/* ---------- Symptom chips ---------- */
+.why-in{margin:0 0 6px}
+.why-in p{margin:0 0 10px;font-weight:700;color:var(--navy);font-size:15px}
+.chips2{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.chips2 a{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid #d9d1c2;color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:600;transition:border-color .15s,background .15s,transform .15s}
+.chips2 a:hover{border-color:var(--navy);background:var(--cream)}
+.chips2 a span{color:var(--gold2);font-weight:700}
+
+/* ---------- Trust strip ---------- */
+.trust{background:var(--navy);color:#dfe7f0}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.trust .t{padding:20px 18px;border-left:1px solid rgba(255,255,255,.12)}
+.trust .t:first-child{border-left:0}
+.trust b{display:block;font:600 22px/1.15 var(--serif);color:#fff}
+.trust span{font-size:13.5px;line-height:1.4}
+@media(max-width:860px){.trust .wrap{grid-template-columns:1fr 1fr}.trust .t:nth-child(3){border-left:0}.trust .t{border-top:1px solid rgba(255,255,255,.12)}.trust .t:nth-child(-n+2){border-top:0}}
+
+/* ---------- Service grid ---------- */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:980px){.svc{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.svc{grid-template-columns:1fr}}
+.svc a.s{position:relative;display:flex;flex-direction:column;gap:8px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;text-decoration:none;color:var(--ink);transition:box-shadow .2s,transform .2s,border-color .2s}
+.svc a.s:hover{box-shadow:0 18px 40px rgba(11,42,74,.10);transform:translateY(-2px);border-color:#d8cbb5}
+.svc .s .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.svc .s h3{margin:0;font-size:19px;color:var(--navy);line-height:1.25}
+.svc .s .price{font:600 22px/1 var(--serif);color:var(--navy);white-space:nowrap}
+.svc .s .price small{display:block;font:600 11px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--mute);text-align:right;margin-top:4px}
+.svc .s p{margin:0;color:var(--mute);font-size:15px;line-height:1.55}
+.svc .s .go{margin-top:auto;padding-top:6px;font-weight:700;color:var(--navy);font-size:15px}
+.svc .s .go:after{content:" \2192";transition:margin .15s}
+.svc a.s:hover .go:after{margin-left:4px}
+.svc .s.primary{background:var(--navy);border-color:var(--navy);color:#dfe7f0}
+.svc .s.primary h3,.svc .s.primary .price,.svc .s.primary .go{color:#fff}
+.svc .s.primary p,.svc .s.primary .price small{color:#c6d3e0}
+.svc .s .tag{position:absolute;top:-11px;left:18px;background:var(--gold);color:#1a1208;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.svc2{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+@media(max-width:860px){.svc2{grid-template-columns:1fr 1fr}}
+.svc2 a{display:block;background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+.svc2 a b{display:block;color:var(--navy);font-size:15.5px}
+.svc2 a small{color:var(--mute);font-size:13.5px}
+.svc2 a:hover{border-color:var(--navy)}
+
+/* ---------- Price board (menu style) ---------- */
+.board{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:8px 26px;box-shadow:var(--shadow)}
+.board .row{display:flex;align-items:baseline;gap:12px;padding:15px 0;border-bottom:1px solid #efe8dc}
+.board .row:last-child{border-bottom:0}
+.board .row .n{font-weight:700;color:var(--navy);font-size:16.5px}
+.board .row .n small{display:block;font-weight:500;color:var(--mute);font-size:13.5px;margin-top:2px}
+.board .row .dots{flex:1;border-bottom:2px dotted #d9cfbd;transform:translateY(-4px);min-width:20px}
+.board .row .v{font:600 21px/1 var(--serif);color:var(--navy);white-space:nowrap}
+.board .row .v.q{font:700 14px/1 var(--sans);color:var(--gold2)}
+.board-note{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:14px;color:var(--mute)}
+.board-note span:before{content:"\2713  ";color:var(--ok);font-weight:800}
+
+/* ---------- Doctor / credential cards ---------- */
+.docs{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:820px){.docs{grid-template-columns:1fr}}
+.doc{display:grid;grid-template-columns:132px 1fr;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.doc img{width:132px;height:100%;min-height:170px;object-fit:cover;object-position:center 18%}
+.doc .b{padding:18px 20px;display:flex;flex-direction:column;gap:4px}
+.doc h3{margin:0;color:var(--navy);font-size:18px;line-height:1.25}
+.doc .role{font-size:14.5px;color:var(--ink)}
+.doc .meta{font-size:13.5px;color:var(--mute)}
+.doc .lic{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin-top:6px;background:#eef3f8;color:var(--navy);font-weight:700;font-size:12.5px;border-radius:999px;padding:4px 10px}
+.doc .lic:before{content:"";width:12px;height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23167a43' d='M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3zm-1 13l6-6-1.4-1.4L11 12.2 8.4 9.6 7 11l4 4z'/%3E%3C/svg%3E") center/contain no-repeat}
+@media(max-width:420px){.doc{grid-template-columns:104px 1fr}.doc img{width:104px}}
+.docs-small{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+@media(max-width:820px){.docs-small{grid-template-columns:1fr}}
+.docs-small .doc{grid-template-columns:84px 1fr}.docs-small .doc img{width:84px;min-height:110px}
+
+/* ---------- Choose-the-right-care table ---------- */
+.choose{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-size:15px}
+.choose th,.choose td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid #efe8dc}
+.choose thead th{background:var(--cream);color:var(--navy);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.choose tbody th{color:var(--navy);width:28%}
+.choose tr:last-child td,.choose tr:last-child th{border-bottom:0}
+.choose td a{font-weight:700}
+.choose .er th{color:var(--red)}
+@media(max-width:700px){.choose thead{display:none}.choose,.choose tbody,.choose tr,.choose th,.choose td{display:block;width:100%!important}.choose tr{border-bottom:1px solid var(--line)}.choose th,.choose td{border:0;padding:8px 16px}.choose tbody th{padding-top:14px}.choose td:last-child{padding-bottom:14px}}
+
+/* ---------- Location block ---------- */
+.loc{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:#fff}
+.loc .info{padding:28px}
+.loc .info dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:12px 18px}
+.loc .info dt{font:700 12px/1.6 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.loc .info dd{margin:0;color:var(--ink);font-size:15.5px}
+.loc .map{background:var(--cream);min-height:320px;position:relative}
+.loc .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.loc .map .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:24px;background:linear-gradient(135deg,#eef2f6,#f7f4ee)}
+@media(max-width:820px){.loc{grid-template-columns:1fr}.loc .map{min-height:260px}}
+
+/* ---------- Steps v4 ---------- */
+.steps4{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s}
+@media(max-width:760px){.steps4{grid-template-columns:1fr}}
+.steps4 li{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;counter-increment:s;position:relative}
+.steps4 li:before{content:counter(s,decimal-leading-zero);font:600 30px/1 var(--serif);color:var(--gold);display:block;margin-bottom:10px}
+.steps4 b{display:block;color:var(--navy);font-size:17px;margin-bottom:4px}
+.steps4 span{color:var(--mute);font-size:15px;line-height:1.55}
+
+/* ---------- Reviews refinement ---------- */
+.rv figure{border-radius:var(--r)!important}
+.rv blockquote{font-family:var(--serif);font-size:17px!important;line-height:1.55!important;color:var(--ink)}
+
+/* ---------- FAQ ---------- */
+details.faq{border-radius:14px;border-color:var(--line);transition:border-color .15s,box-shadow .15s}
+details.faq[open]{border-color:#d8cbb5;box-shadow:var(--shadow)}
+details.faq summary{font-size:16.5px}
+details.faq p{color:#3b4a5a;line-height:1.65}
+
+/* ---------- Generic polish for existing inner pages ---------- */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#12406b 100%)}
+.hero h1{font-family:var(--serif);font-weight:600}
+.hero .img{border-radius:22px}
+.card,.step{border-color:var(--line);border-radius:var(--r)}
+.note{border-left-color:var(--gold);border-radius:0 10px 10px 0;background:var(--paper)}
+.cta-band{background:linear-gradient(135deg,var(--navy),#12406b)}
+
+/* ---------- Footer ---------- */
+footer.site{background:var(--navy3);padding:52px 0 30px}
+footer.site .cols{grid-template-columns:1.3fr 1fr 1fr 1fr;gap:28px}
+@media(max-width:900px){footer.site .cols{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){footer.site .cols{grid-template-columns:1fr}}
+footer.site .ft-brand{font-family:"Cormorant Garamond",var(--serif);font-size:22px;letter-spacing:.12em;color:#fff;margin:0 0 10px}
+footer.site .ft-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+footer.site .ft-badges span{border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:4px 10px;font-size:12px;color:#cfd8e3}
+
+/* ---------- Sticky mobile bar ---------- */
+.stickybar{gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
+.stickybar .btn{border-radius:14px}
+
+/* ---------- Motion ---------- */
+@media (prefers-reduced-motion: no-preference){
+  .js .rise{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+  .js .rise.in{opacity:1;transform:none}
+}
+
+/* fixes after first visual pass */
+header.top .hdr-book{white-space:nowrap}
+@media(max-width:520px){header.top .hdr-book{padding:9px 14px;font-size:14px}}
+.clinic-card b span{display:inline;color:inherit;font-size:inherit}
+.h4 h1{hyphens:none;overflow-wrap:normal}
+@media(max-width:520px){.h4 h1{font-size:33px}.h4 .lead{font-size:17px}}
+.trust .t span{color:#c9d5e2;display:block}
+.trust .t b{color:#fff}
+@media(max-width:520px){.trust .t{padding:16px 14px}.trust b{font-size:19px}}

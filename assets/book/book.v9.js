@@ -236,50 +236,7 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 
-/* GSAP effects: hero CTA attention + scroll reveals (GSAP loaded lazily from cdnjs) */
-(function () {
-  var btn = document.querySelector('.hero .ctas .btn--call');
-  var rv = [].slice.call(document.querySelectorAll('.trust li, .cards.svc .card, .steps .step'));
-  if (!btn && !rv.length) return;
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (btn) {
-    var arrow = document.createElement('span'); arrow.className = 'cta-arrow'; arrow.setAttribute('aria-hidden', 'true'); arrow.textContent = '\u2192';
-    var shine = document.createElement('span'); shine.className = 'cta-shine'; shine.setAttribute('aria-hidden', 'true');
-    btn.appendChild(arrow); btn.appendChild(shine);
-    var ring = document.createElement('span'); ring.className = 'cta-ring'; ring.setAttribute('aria-hidden', 'true'); btn.parentNode.appendChild(ring);
-  }
-  if (reduce) return;
-  function heroCta(g) {
-    if (!btn) return;
-    g.from(btn, { scale: .7, opacity: 0, y: 18, duration: .7, ease: 'back.out(2.2)', delay: .35, clearProps: 'opacity,y' });
-    var tl = g.timeline({ repeat: -1, repeatDelay: 1.6, delay: 1.4 });
-    tl.to(btn, { scale: 1.06, duration: .22, ease: 'power2.out' })
-      .to(btn, { scale: 1, duration: .5, ease: 'elastic.out(1,.4)' })
-      .fromTo(shine, { x: '-160%' }, { x: '380%', duration: .8, ease: 'power1.inOut' }, 0)
-      .fromTo(ring, { opacity: .9, scale: 1 }, { opacity: 0, scale: 1.28, duration: .9, ease: 'power1.out' }, 0);
-    g.to(arrow, { x: 6, duration: .55, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-    btn.addEventListener('mouseenter', function () { g.to(btn, { scale: 1.08, duration: .2 }); });
-    btn.addEventListener('mouseleave', function () { g.to(btn, { scale: 1, duration: .3 }); });
-  }
-  function reveals(g) {
-    if (!rv.length || !('IntersectionObserver' in window)) return;
-    var vh = innerHeight;
-    var below = rv.filter(function (el) { return el.getBoundingClientRect().top > vh * 0.95; });
-    g.set(below, { opacity: 0, y: 28 });
-    var io = new IntersectionObserver(function (es) {
-      var hit = es.filter(function (e) { return e.isIntersecting; }).map(function (e) { io.unobserve(e.target); return e.target; });
-      if (hit.length) g.to(hit, { opacity: 1, y: 0, duration: .6, ease: 'power3.out', stagger: .09, clearProps: 'opacity,transform' });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    below.forEach(function (el) { io.observe(el); });
-  }
-  function run() { if (!window.gsap) return; heroCta(window.gsap); reveals(window.gsap); }
-  function load() {
-    var s = document.createElement('script');
-    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
-    s.onload = run; s.async = true; document.head.appendChild(s);
-  }
-  if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1500 }); else setTimeout(load, 300);
-})();
+/* v9: GSAP CTA pulse/shine and scripted reveals removed (heavy, third-party CDN, attention-grabbing loop). Subtle reveals live in site.v4.css + site.v3.js. */
 
 /* Web chat bot: scripted answers (no API, no credits). The floating WhatsApp button opens it; every path ends in WhatsApp. */
 (function () {
