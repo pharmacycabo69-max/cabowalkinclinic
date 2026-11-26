@@ -50,9 +50,9 @@ Concurrency/double booking: there is no shared live calendar yet, so availabilit
 | `RESEND_API_KEY`, `NOTIFY_EMAIL`, `NOTIFY_FROM` | existing | a test inbox | |
 | `TURNO_WEBHOOK_URL`, `WEB_PAYMENT_SECRET`, `TURNO_ORG_SLUG` | existing | leave empty (avoid test entries in the real agenda) | |
 | `ULTRAMSG_*`, `NOTIFY_WHATSAPP` | existing | empty | |
-| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | **new**: the Upstash database already used by the sister sites | a separate database or empty | keys prefixed `cwc:` |
-| `REQUEST_ENCRYPTION_KEY` | **new**: 32+ random characters, different per environment | | losing it makes stored contact data unreadable |
-| `CRON_SECRET` | **new** | | Vercel sends it to `/api/reconcile` |
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | **set 2026-11-26**: Upstash `cwc-requests` (Free) via Vercel Marketplace | same database | keys `cwc:` (production) and `cwc:preview:` (preview) |
+| `REQUEST_ENCRYPTION_KEY` | **set 2026-11-26** (generated, never displayed) | set, different value | losing it makes stored contact data unreadable |
+| `CRON_SECRET` | **set 2026-11-26** | set | Vercel sends it to `/api/reconcile` |
 | `REQUEST_WEBHOOK_URL`, `REQUEST_WEBHOOK_SECRET` | optional: CRM / concierge bot | empty | |
 | `PAYMENT_FULL_APPROVED` | leave unset until approved | unset | |
 

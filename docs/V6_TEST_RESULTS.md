@@ -42,7 +42,8 @@ All external services are **simulated** (Stripe, Resend, CRM webhook, QuickTurno
 - New variables set by Claude with the owner's CLI session (values generated locally, never displayed): `REQUEST_ENCRYPTION_KEY` and `CRON_SECRET`, different values for Production and Preview.
 
 ## Not verified (needs the owner or real accounts)
-- Register: there is no Upstash database on the Vercel team yet (no marketplace installation; the sister sites' database is not connected to this team). Creating one requires accepting Upstash/Vercel terms.
+- Register **verified on the preview**: Upstash for Redis `cwc-requests` (Free plan) created through the Vercel Marketplace and connected to Production and Preview. A test request returned folio CWC-YZPG-TD9S with `saved:true`; the same request again returned the same folio as a duplicate. Preview data is stored under `cwc:preview:` and never mixes with production.
+- Team notifications on the preview are not configured (Production-only Resend/WhatsApp variables), so `delivered:false` there is expected; real delivery must be confirmed after publishing.
 - That a real notice reaches the team inbox/WhatsApp (needs a preview with test credentials and someone to confirm receipt).
 - Stripe test-mode payment end to end (needs the Preview environment to use `sk_test_` keys — not confirmed).
 - Field Core Web Vitals (INP) — only lab numbers below.
