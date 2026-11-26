@@ -1,24 +1,23 @@
-// POST /api/stripe-webhook  (reusable: copy this single file into any Vercel project)
+// POST /api/stripe-webhook
 //
-// Stripe calls this when a Checkout payment is confirmed. It verifies the signature and
-// emails the owner ONE message with the booking details. Nothing is stored; Stripe is the record.
+// Stripe calls this for Checkout payments of this clinic. It verifies the signature, records the payment in the
+// register (when configured) and notifies the team through the existing channels: QuickTurno agenda, email (Resend)
+// and internal WhatsApp (UltraMsg, fallback when QuickTurno is not configured).
+// V6 additions: idempotency per event and per channel (Stripe retries never duplicate a notice or a QuickTurno entry),
+// opaque folio, alerts for failed/expired payments, refunds, disputes and payments without an associated request.
+// Notes, symptoms and clinical data are never read from or written to Stripe.
 //
 // Env vars (Vercel):
 //   STRIPE_WEBHOOK_SECRET  whsec_... of the Stripe webhook endpoint        (required)
-//   RESEND_API_KEY         Resend API key                                  (required)
-//   NOTIFY_EMAIL           recipient(s), comma-separated                   (required)
-//   NOTIFY_FROM            "Name <orders@your-verified-domain.com>"        (optional; default is Resend's
-//                          onboarding@resend.dev, which only delivers to your own Resend account email)
-//   BUSINESS_NAME          shown in the subject line and email header      (optional)
-//   BRAND_COLOR            #rrggbb for the email header and button         (optional, default #0b2a4a)
-//   ULTRAMSG_INSTANCE / ULTRAMSG_TOKEN / NOTIFY_WHATSAPP   also send the same notice by WhatsApp
-//                          (NOTIFY_WHATSAPP = number(s) with country code, comma-separated)  (optional)
-//
-// It reads the details from the Checkout Session metadata that the checkout endpoint sets:
-//   service_name, service_total_usd, booking_date, booking_time, customer_name,
-//   customer_phone, location, notes   (all optional)
-// Subscribe the endpoint to: checkout.session.completed and checkout.session.async_payment_succeeded.
+//   RESEND_API_KEY, NOTIFY_EMAIL, NOTIFY_FROM                              (required, except NOTIFY_FROM)
+//   BUSINESS_NAME, BRAND_COLOR                                             (optional)
+//   ULTRAMSG_INSTANCE / ULTRAMSG_TOKEN / NOTIFY_WHATSAPP                   (optional)
+//   TURNO_WEBHOOK_URL / WEB_PAYMENT_SECRET / TURNO_ORG_SLUG                (optional, QuickTurno agenda)
+//   KV_REST_API_URL / KV_REST_API_TOKEN / REQUEST_ENCRYPTION_KEY           (optional register; enables idempotency)
+// Subscribe the endpoint to: checkout.session.completed, checkout.session.async_payment_succeeded,
+//   checkout.session.async_payment_failed, checkout.session.expired, charge.refunded, charge.dispute.created.
 const crypto = require("crypto");
+const { getStore, loadRecord, setStatus, saveRecord, nowIso } = require("./_lib/store");
 
 const TOLERANCE_SECONDS = 300;
 
@@ -80,23 +79,23 @@ function compose(session) {
   const currency = (session.currency || "usd").toUpperCase();
   const lines = [
     `New paid booking: ${service}`,
+    `Folio: ${m.folio || "none — payment without an associated request"}`,
     `When: ${when || "not specified"} (Cabo time)`,
     `Customer: ${name || "-"}`,
     `Phone: ${phone || "-"}`,
     `Email: ${cd.email || "-"}`,
   ];
   if (location) lines.push(`Location: ${location}`);
-  if (m.notes) lines.push(`Notes: ${m.notes}`);
   lines.push(`Deposit paid: $${paid.toFixed(2)} ${currency}`);
   if (hasTotal) lines.push(`Balance due after service: $${(total - paid).toFixed(2)} (total $${total})`);
   if (session.payment_intent) lines.push(`Stripe: https://dashboard.stripe.com/payments/${session.payment_intent}`);
   const biz = process.env.BUSINESS_NAME ? `${process.env.BUSINESS_NAME} — ` : "";
   return {
-    subject: `${biz}Paid booking: ${service} — ${when || "no date"}`,
+    subject: `${biz}${m.folio ? "[" + m.folio + "] " : "[NO FOLIO] "}Paid booking: ${service} — ${when || "no date"}`,
     text: lines.join("\n"),
     html: renderHtml({
       biz: process.env.BUSINESS_NAME || "Bookings", service, when: formatWhen(m.booking_date, m.booking_time),
-      name, phone, email: cd.email || "", location, notes: m.notes || "", paid, total: hasTotal ? total : null,
+      name, phone, email: cd.email || "", location, notes: "", folio: m.folio || "", paid, total: hasTotal ? total : null,
       currency, intent: session.payment_intent || "",
     }),
   };
@@ -113,6 +112,7 @@ function renderHtml(d) {
     `<tr><td style="padding:10px 0;border-bottom:1px solid ${line};width:34%;font-size:13px;color:${mute};vertical-align:top">${label}</td>` +
     `<td style="padding:10px 0;border-bottom:1px solid ${line};font-size:15px;color:${ink};font-weight:600;vertical-align:top">${valueHtml}</td></tr>`;
   const rows = [
+    row("Folio", esc(d.folio) || "none"),
     row("Customer", esc(d.name) || "&mdash;"),
     row("Phone", d.phone ? esc(d.phone) + (digits.length >= 8 ? small(link("https://wa.me/" + digits, "Open in WhatsApp")) : "") : "&mdash;"),
     row("Email", d.email ? link("mailto:" + d.email, d.email) : "&mdash;"),
@@ -136,7 +136,7 @@ function renderHtml(d) {
 <tr><td style="padding:10px 28px 4px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows.join("")}</table></td></tr>
 <tr><td style="padding:18px 28px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f8fb;border-radius:12px"><tr><td style="padding:14px 18px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">${pay("Deposit paid (" + esc(d.currency) + ")", esc(money(d.paid)), true)}${balance !== null ? pay("Balance due after the service", esc(money(balance)), false) + pay("Service total", esc(money(d.total)), false) : ""}</table></td></tr></table></td></tr>
 ${button}
-<tr><td style="padding:0 28px 24px;font-size:12px;color:${mute};line-height:1.5;border-top:1px solid ${line}"><div style="padding-top:16px">Automated notice. Contact the customer to confirm the exact time. Nothing is stored: the payment is recorded in Stripe.</div></td></tr>
+<tr><td style="padding:0 28px 24px;font-size:12px;color:${mute};line-height:1.5;border-top:1px solid ${line}"><div style="padding-top:16px">Automated notice. Contact the customer to confirm the exact time. The payment is recorded in Stripe and in the clinic register under the folio.</div></td></tr>
 </table></td></tr></table></body></html>`;
 }
 
@@ -196,7 +196,7 @@ async function forwardToTurno(session) {
         booking_date: m.booking_date || "",
         booking_time: m.booking_time || "",
         location: m.location || (field && field.text && field.text.value) || "",
-        notes: m.notes || "",
+        notes: "",
         currency: session.currency || "usd",
         paid_amount: (session.amount_total || 0) / 100,
         total_amount: m.service_total_usd || null,
@@ -204,10 +204,66 @@ async function forwardToTurno(session) {
         lang: "en",
       }),
     })
-    if (!r.ok) console.error("turno forward failed:", r.status, await r.text().catch(() => ""))
+    if (!r.ok) console.error("turno forward failed:", r.status)
     else console.log("turno forward ok")
     return r.ok
   } catch (e) { console.error("turno forward failed:", e.message); return false }
+}
+
+// Runs `fn` once per key across Stripe retries when the register is available. Returns the channel result.
+async function once(store, key, fn) {
+  if (!store) return fn();
+  try { if ((await store.kv.get(key)) === "done") return true; } catch {}
+  const ok = await fn();
+  if (ok) { try { await store.kv.set(key, "done", 30 * 86400); } catch {} }
+  return ok;
+}
+
+const FOLIO_RE = /CWC-[2-9A-Z]{4}-[2-9A-Z]{4}/;
+const biz = () => (process.env.BUSINESS_NAME ? `${process.env.BUSINESS_NAME} — ` : "");
+
+async function plainAlert(store, id, subject, lines) {
+  return once(store, `ntf:${id}`, () => emailOps(`${biz()}${subject}`, lines.join("\n")));
+}
+
+async function emailOps(subject, text) {
+  try {
+    const r = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from: process.env.NOTIFY_FROM || "Bookings <onboarding@resend.dev>", to: process.env.NOTIFY_EMAIL.split(",").map((s) => s.trim()).filter(Boolean), subject, text }),
+    });
+    return r.ok;
+  } catch { return false; }
+}
+
+async function onPaid(store, session, eventId) {
+  const m = session.metadata || {};
+  const ref = m.folio || session.client_reference_id || "";
+  const pi = session.payment_intent || "";
+  if (store) {
+    try {
+      const rec = ref ? await loadRecord(store, ref) : null;
+      const pay = { sessionId: session.id, paymentIntent: pi, cents: session.amount_total || 0, currency: session.currency || "usd", paidAt: nowIso() };
+      if (rec) await setStatus(store, ref, "paid", { pay });
+      else await saveRecord(store, { ref: ref || `NOFOLIO-${session.id.slice(-10)}`, service: m.option || "", status: "paid", orphan: !ref, createdAt: nowIso(), updatedAt: nowIso(), pay, history: [{ at: nowIso(), status: "paid" }] });
+      if (pi) await store.kv.set(`pi:${pi}`, ref || session.id, 400 * 86400);
+      await store.kv.push("idx:payments", ref || session.id, 1000);
+    } catch { console.error("register update failed (paid)"); }
+  }
+  const msg = compose(session);
+  // QuickTurno first (it sends the WhatsApp to owner and client); direct WhatsApp only as fallback
+  const inTurno = await once(store, `ch:${session.id}:turno`, () => forwardToTurno(session));
+  if (!inTurno) await once(store, `ch:${session.id}:wa`, async () => { await sendWhatsapp(`💰 ${msg.text}`); return true; });
+  await once(store, `ch:${session.id}:email`, async () => { await sendEmail(msg); return true; });
+  return true;
+}
+
+async function lookupRef(store, pi, description) {
+  const fromText = (String(description || "").match(FOLIO_RE) || [])[0] || "";
+  if (fromText) return fromText;
+  if (store && pi) { try { return (await store.kv.get(`pi:${pi}`)) || ""; } catch {} }
+  return "";
 }
 
 async function handler(req, res) {
@@ -230,25 +286,58 @@ async function handler(req, res) {
 
   let event;
   try { event = JSON.parse(raw.toString("utf8")); } catch (e) { return res.status(400).send("Bad JSON"); }
-  const session = event.data && event.data.object;
-  const confirmed =
-    event.type === "checkout.session.async_payment_succeeded" ||
-    (event.type === "checkout.session.completed" && session && session.payment_status === "paid");
-  if (!confirmed) return res.status(200).send("ignored"); // unpaid or unrelated event: no email
-  // La cuenta de Stripe recibe pagos de otros servicios. Solo los del checkout de la clínica (api/checkout.js)
-  // llevan metadata.option, así que cualquier otro pago se ignora: ni correo, ni WhatsApp, ni envío a Turno.
-  if (!session.metadata || !session.metadata.option) return res.status(200).send("ignored: not a clinic booking");
+  const obj = (event.data && event.data.object) || {};
+  const store = getStore();
+  if (store && event.id) { try { if ((await store.kv.get(`evt:${event.id}`)) === "done") return res.status(200).send("duplicate"); } catch {} }
+  const finish = async (body) => { if (store && event.id) { try { await store.kv.set(`evt:${event.id}`, "done", 30 * 86400); } catch {} } return res.status(200).send(body); };
 
   try {
-    const msg = compose(session);
-    // Si Turno registró el pago, él manda los WhatsApp (dueño y cliente); si no, se usa el aviso directo de respaldo
-    const inTurno = await forwardToTurno(session);
-    if (!inTurno) await Promise.allSettled([sendWhatsapp(`💰 ${msg.text}`)]);
-    await sendEmail(msg);
-    return res.status(200).send("ok");
+    switch (event.type) {
+      case "checkout.session.completed":
+      case "checkout.session.async_payment_succeeded": {
+        const paid = event.type === "checkout.session.async_payment_succeeded" || obj.payment_status === "paid";
+        if (!paid) return finish("ignored: not paid yet");
+        // The Stripe account also receives payments of other services. Only this clinic's checkout sets metadata.option.
+        if (!obj.metadata || !obj.metadata.option) return finish("ignored: not a clinic booking");
+        await onPaid(store, obj, event.id);
+        return finish("ok");
+      }
+      case "checkout.session.async_payment_failed":
+      case "checkout.session.expired": {
+        if (!obj.metadata || !obj.metadata.option) return finish("ignored: not a clinic booking");
+        const ref = obj.metadata.folio || obj.client_reference_id || "";
+        const failed = event.type.endsWith("failed");
+        if (store && ref) { try { await setStatus(store, ref, failed ? "payment_failed" : "payment_expired"); } catch {} }
+        const m = obj.metadata;
+        await plainAlert(store, event.id, `[${ref || "NO FOLIO"}] ${failed ? "Payment FAILED" : "Checkout not completed"}: ${m.service_name || m.option}`, [
+          failed ? "The bank payment failed after checkout." : "The patient opened the payment page but did not pay within the time limit.",
+          `Folio: ${ref || "-"}`, `Service: ${m.service_name || m.option}`, `Preferred: ${[m.booking_date, m.booking_time].filter(Boolean).join(" ") || "-"}`,
+          `Name: ${m.customer_name || "-"}`, `Phone: ${m.customer_phone || "-"}`,
+          "", "Next: contact the patient to confirm or offer another way to pay. Do not discuss clinical details by email.",
+        ]);
+        return finish("ok");
+      }
+      case "charge.refunded":
+      case "charge.dispute.created": {
+        const pi = obj.payment_intent || "";
+        const ref = await lookupRef(store, pi, obj.description || (obj.charge && obj.charge.description));
+        const ours = !!ref || !!(obj.metadata && obj.metadata.option);
+        if (!ours) return finish("ignored: not a clinic payment");
+        const refund = event.type === "charge.refunded";
+        if (store && ref) { try { await setStatus(store, ref, refund ? "refunded" : "disputed", refund ? { refundedCents: obj.amount_refunded || 0 } : { dispute: { reason: obj.reason || "", amount: obj.amount || 0 } }); } catch {} }
+        await plainAlert(store, event.id, `[${ref || "?"}] ${refund ? "Refund issued" : "DISPUTE opened — respond in Stripe"}`, [
+          refund ? `Refunded: $${((obj.amount_refunded || 0) / 100).toFixed(2)} ${(obj.currency || "usd").toUpperCase()}` : `Disputed amount: $${((obj.amount || 0) / 100).toFixed(2)} — reason: ${obj.reason || "-"}`,
+          `Folio: ${ref || "-"}`, pi ? `Stripe: https://dashboard.stripe.com/payments/${pi}` : "",
+          refund ? "" : "Disputes have a deadline: upload evidence (booking record, confirmation, service notes without clinical details) in Stripe.",
+        ].filter(Boolean));
+        return finish("ok");
+      }
+      default:
+        return finish("ignored");
+    }
   } catch (e) {
     console.error("notify failed:", e.message);
-    return res.status(500).send("notify failed"); // Stripe will retry
+    return res.status(500).send("notify failed"); // Stripe retries; channels already done are skipped
   }
 }
 

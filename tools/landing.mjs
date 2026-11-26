@@ -21,7 +21,7 @@ const PEOPLE = {
   kevin: { img: '/images/dr-kevin-adame-portrait.jpg', w: 600, h: 800, name: 'Dr. Kevin Gonz&aacute;lez Adame', role: 'M&eacute;dico Cirujano y Partero &middot; Instituto Polit&eacute;cnico Nacional', meta: 'Clinic, house calls and video visits &middot; English &amp; Spanish', lic: '14796516' },
   myriam: { img: '/images/dra-myriam.webp', w: 480, h: 480, name: 'Dra. Myriam Aisse Palacios Alarc&oacute;n', role: 'M&eacute;dico General &middot; Centro de Estudios Universitarios Xochicalco', meta: 'Physician, subject to availability &middot; English &amp; Spanish', lic: '11664989' },
   jenifer: { img: '/images/jenifer-arciga-portrait.jpg', w: 600, h: 800, name: 'Lic. Jenifer Alexandra Arciga Acosta', role: 'Lic. en Radiolog&iacute;a e Imagenolog&iacute;a &middot; Universidad ITEC', meta: 'External imaging collaborator (not a medical specialist)', lic: '13435891' },
-  luis: { img: '/images/luis-camacho-portrait.jpg', w: 600, h: 800, name: 'Luis Antonio Camacho Villegas', role: 'T&eacute;cnico Radi&oacute;logo', meta: 'External imaging collaborator', lic: '4359616' },
+  luis: { img: '/images/luis-camacho-portrait.jpg', w: 600, h: 800, name: 'Luis Antonio Camacho Villegas', role: 'Imaging collaborator (title being verified)', meta: 'External imaging collaborator', lic: '4359616' },
 };
 const REVIEWS = [
   ['Christina V.', 'House call', 'The medical team was very fast with our house call, professional, and friendly. I&rsquo;m already feeling better.'],

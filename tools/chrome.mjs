@@ -16,6 +16,7 @@ export const PAIRS = {
   '/video-doctor-consultation/': '/es/videoconsulta-medica/',
   '/insurance-billing-cabo/': '/es/seguros-medicos-internacionales-cabo/',
   '/contact/': '/es/contacto/',
+  '/book/': '/es/reservar/',
 };
 const ES2EN = Object.fromEntries(Object.entries(PAIRS).map(([a, b]) => [b, a]));
 
@@ -47,10 +48,10 @@ const T = {
     foot: {
       tag: 'English-speaking doctors in downtown Cabo San Lucas. Walk-in visits, video visits and house calls.',
       visit: 'Visit', addr: 'Francisco I. Madero S/N, between Vicente Guerrero &amp; Miguel Hidalgo, Centro, 23450, Cabo San Lucas, B.C.S., Mexico',
-      hours: 'Clinic: 9:00 AM &ndash; 5:00 PM daily<br>After hours (5 PM &ndash; 8 AM): by appointment, confirmed by a doctor',
+      hours: 'Clinic: 9:00 AM &ndash; 5:00 PM daily, walk-ins welcome<br>After hours (5 PM &ndash; 8 AM): by appointment, confirmed by a doctor<br>Online requests received 24/7',
       maps: 'Get directions', care: 'Care', company: 'Clinic',
-      careLinks: [['/walk-in-clinic-doctor-cabo-san-lucas/', 'Walk-in clinic'], ['/video-doctor-consultation/', 'Video visit'], ['/home-doctor/', 'Doctor house call'], ['/iv-therapy/', 'IV therapy'], ['/lab-tests/', 'Lab tests'], ['/radiology-x-ray-cabo-san-lucas/', 'X-ray'], ['/nurse-care/', 'Nurse care'], ['/aesthetic-medicine-cabo/', 'Aesthetic medicine']],
-      coLinks: [['/about/', 'About &amp; team'], ['/insurance-billing-cabo/', 'Insurance &amp; billing'], ['/contact/', 'Contact &amp; location'], ['/book/', 'Book online'], ['/privacy-policy/', 'Privacy policy'], ['/terms-of-service/', 'Terms of service'], ['/refund-policy/', 'Refund policy'], ['/medical-disclaimer/', 'Medical disclaimer']],
+      careLinks: [['/walk-in-clinic-doctor-cabo-san-lucas/', 'Walk-in clinic'], ['/video-doctor-consultation/', 'Video visit'], ['/home-doctor/', 'Doctor house call'], ['/iv-therapy/', 'IV therapy'], ['/lab-tests/', 'Lab tests'], ['/radiology-x-ray-cabo-san-lucas/', 'X-ray'], ['/nurse-care/', 'Nurse care']],
+      coLinks: [['/about/', 'About &amp; team'], ['/insurance-billing-cabo/', 'Insurance &amp; billing'], ['/hotel-concierge-medical-partnerships/', 'Hotels &amp; concierge partners'], ['/contact/', 'Contact &amp; location'], ['/book/', 'Book online'], ['/privacy-policy/', 'Privacy policy'], ['/terms-of-service/', 'Terms of service'], ['/refund-policy/', 'Refund policy'], ['/medical-disclaimer/', 'Medical disclaimer']],
       badges: ['Prices in USD, tax included', 'Licensed physicians', 'US &amp; Canada insurance, subject to verification'],
       fine: '&copy; 2026 Cabo Walk-In Clinic. This site provides general information and does not replace professional medical advice. Video visits have limits: the doctor may ask you to come in or go to a hospital. <strong>Not for emergencies &mdash; call 911.</strong>',
       legal: 'Responsable sanitaria: Dra. Rosibel N&uacute;&ntilde;ez Rojo &middot; C&eacute;dula profesional 7408277 &middot; Aviso de funcionamiento 2603045036X00153',
@@ -71,14 +72,14 @@ const T = {
       ['/es/seguros-medicos-internacionales-cabo/', 'Seguros internacionales', 'EE. UU. y Canad&aacute;, sujeto a verificaci&oacute;n', ''],
       ['/es/contacto/', 'Contacto y ubicaci&oacute;n', 'C&oacute;mo llegar', ''],
     ],
-    links: { doctors: '/es/#equipo', insurance: '/es/seguros-medicos-internacionales-cabo/', location: '/es/contacto/#ubicacion', book: '/book/' },
+    links: { doctors: '/es/#equipo', insurance: '/es/seguros-medicos-internacionales-cabo/', location: '/es/contacto/#ubicacion', book: '/es/reservar/' },
     foot: {
       tag: 'M&eacute;dicos biling&uuml;es en el centro de Cabo San Lucas. Consulta en cl&iacute;nica, videoconsulta y m&eacute;dico a domicilio.',
       visit: 'Vis&iacute;tanos', addr: 'Francisco I. Madero S/N, entre Vicente Guerrero y Miguel Hidalgo, Centro, 23450, Cabo San Lucas, B.C.S., M&eacute;xico',
-      hours: 'Cl&iacute;nica: 9:00 a 17:00 todos los d&iacute;as<br>Fuera de horario (17:00 a 08:00): con cita, confirmada por un m&eacute;dico',
+      hours: 'Cl&iacute;nica: 9:00 a 17:00 todos los d&iacute;as, sin cita<br>Fuera de horario (17:00 a 08:00): con cita, confirmada por un m&eacute;dico<br>Solicitudes en l&iacute;nea 24/7',
       maps: 'C&oacute;mo llegar', care: 'Atenci&oacute;n', company: 'Cl&iacute;nica',
-      careLinks: [['/es/clinica-medica-cabo-san-lucas/', 'Consulta en cl&iacute;nica'], ['/es/videoconsulta-medica/', 'Videoconsulta'], ['/es/medico-a-domicilio-cabo-san-lucas/', 'M&eacute;dico a domicilio'], ['/iv-therapy/', 'Terapia IV (EN)'], ['/lab-tests/', 'Laboratorio (EN)'], ['/radiology-x-ray-cabo-san-lucas/', 'Rayos X (EN)'], ['/aesthetic-medicine-cabo/', 'Medicina est&eacute;tica (EN)']],
-      coLinks: [['/about/', 'Equipo (EN)'], ['/es/seguros-medicos-internacionales-cabo/', 'Seguros internacionales'], ['/es/contacto/', 'Contacto y ubicaci&oacute;n'], ['/book/', 'Reservar en l&iacute;nea'], ['/privacy-policy/', 'Aviso de privacidad (EN)'], ['/refund-policy/', 'Reembolsos (EN)']],
+      careLinks: [['/es/clinica-medica-cabo-san-lucas/', 'Consulta en cl&iacute;nica'], ['/es/videoconsulta-medica/', 'Videoconsulta'], ['/es/medico-a-domicilio-cabo-san-lucas/', 'M&eacute;dico a domicilio'], ['/iv-therapy/', 'Terapia IV (EN)'], ['/lab-tests/', 'Laboratorio (EN)'], ['/radiology-x-ray-cabo-san-lucas/', 'Rayos X (EN)']],
+      coLinks: [['/about/', 'Equipo (EN)'], ['/es/seguros-medicos-internacionales-cabo/', 'Seguros internacionales'], ['/es/contacto/', 'Contacto y ubicaci&oacute;n'], ['/es/reservar/', 'Reservar en l&iacute;nea'], ['/privacy-policy/', 'Aviso de privacidad (EN)'], ['/refund-policy/', 'Reembolsos (EN)']],
       badges: ['Precios en USD con impuestos incluidos', 'M&eacute;dicos con c&eacute;dula', 'Seguros de EE. UU. y Canad&aacute;, sujeto a verificaci&oacute;n'],
       fine: '&copy; 2026 Cabo Walk-In Clinic. Este sitio ofrece informaci&oacute;n general y no sustituye una consulta m&eacute;dica. La videoconsulta tiene l&iacute;mites: el m&eacute;dico puede pedirte acudir a la cl&iacute;nica o a un hospital. <strong>No es un servicio de emergencias &mdash; llama al 911.</strong>',
       legal: 'Responsable sanitaria: Dra. Rosibel N&uacute;&ntilde;ez Rojo &middot; C&eacute;dula profesional 7408277 &middot; Aviso de funcionamiento 2603045036X00153',
@@ -149,12 +150,13 @@ export function applyChrome(html, path) {
     h = h.replace(/(<link rel="canonical"[^>]*>)\n?/, `$1\n${alt}`);
   }
   if (lang === 'es') h = h.replace(/<html lang="[^"]*"/, '<html lang="es"');
-  // mobile action bar: page CTA + Call + WhatsApp (idempotent)
+  // mobile action bar (V6): Book + Call + Directions + WhatsApp (idempotent)
   h = h.replace(/<div class="stickybar">([\s\S]*?)<\/div>(?=\s*<script)/, (m, inner) => {
     inner = inner.replace(/<a class="sb-ic[\s\S]*?<\/a>/g, '');
     const call = `<a class="sb-ic" href="tel:+526242261023" aria-label="${lang === 'es' ? 'Llamar a la clínica' : 'Call the clinic'}">${I.phone}</a>`;
     const wa = /wa\.me/.test(inner) ? '' : `<a class="sb-ic sb-wa" href="${WA}?text=${encodeURIComponent(lang === 'es' ? 'Hola, tengo una pregunta para Cabo Walk-In Clinic.' : 'Hi! I have a question for Cabo Walk-In Clinic.')}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.05 0A11.9 11.9 0 001.74 17.84L.06 24l6.3-1.65A11.9 11.9 0 1012.05 0zm0 21.8a9.9 9.9 0 01-5.04-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.9 9.9 0 1118.27-5.27 9.9 9.9 0 01-9.89 9.9z"/></svg></a>`;
-    return `<div class="stickybar">${inner}${call}${wa}</div>`;
+    const dir = `<a class="sb-ic" href="${MAPS}" target="_blank" rel="noopener" aria-label="${lang === 'es' ? 'Cómo llegar' : 'Directions'}">${I.pin}</a>`;
+    return `<div class="stickybar">${inner}${call}${dir}${wa}</div>`;
   });
   return h;
 }

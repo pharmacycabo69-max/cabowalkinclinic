@@ -1,0 +1,39 @@
+{
+  "_doc": "Master catalog (V6, 2026-11-26). Single source for checkout, request API, booking wizard (tools/catalog.mjs) and tests. Public data only: never add internal costs or margins here (the repo is public). payment: deposit = 50% card deposit allowed now; optional = pay at the clinic, deposit optional; request = no online charge (team confirms first); quote = price after review. public:false = not listed until the owner confirms.",
+  "version": "2026-11-26",
+  "currency": "USD",
+  "taxIncluded": true,
+  "depositShare": 0.5,
+  "business": {
+    "name": "Cabo Walk-In Clinic",
+    "phone": "+52 624 226 1023",
+    "whatsapp": "5216242261023",
+    "address": {
+      "en": "Francisco I. Madero S/N, between Vicente Guerrero & Miguel Hidalgo, Centro, 23450, Cabo San Lucas, B.C.S., Mexico",
+      "es": "Francisco I. Madero S/N, entre Vicente Guerrero y Miguel Hidalgo, Centro, 23450, Cabo San Lucas, B.C.S., México"
+    },
+    "clinicHours": { "open": 9, "close": 17, "days": "daily" },
+    "afterHours": "by appointment, subject to doctor confirmation",
+    "onlineRequests": "24/7 (received online; visits are not guaranteed 24/7)"
+  },
+  "services": {
+    "clinic-consult":  { "en": "Walk-in clinic visit",          "es": "Consulta en clínica",            "price": 99,   "kind": "clinic", "group": "doctor", "payment": "optional", "page": "/walk-in-clinic-doctor-cabo-san-lucas/", "cancel": "/walk-in-clinic-doctor-cabo-san-lucas/" },
+    "home-doctor":     { "en": "Doctor house call",             "es": "Médico a domicilio",             "price": 189,  "kind": "mobile", "group": "doctor", "payment": "deposit",  "page": "/home-doctor/", "cancel": "/home-doctor/" },
+    "video-consult":   { "en": "Video doctor consultation",     "es": "Videoconsulta médica",           "price": 59,   "kind": "video",  "group": "doctor", "payment": "request",  "page": "/video-doctor-consultation/", "cancel": "/video-doctor-consultation/", "why": "Stripe lists telemedicine as prohibited for Mexico: no online charge until a permitted processor is confirmed" },
+    "iv-hydration":    { "en": "IV Hydration Drip",             "es": "Suero de hidratación",           "price": 159,  "kind": "mobile", "group": "iv",     "payment": "deposit",  "page": "/iv-therapy/", "cancel": "/iv-therapy/" },
+    "iv-recovery":     { "en": "IV Recovery Drip",              "es": "Suero de recuperación",          "price": 159,  "kind": "mobile", "group": "iv",     "payment": "deposit",  "page": "/iv-therapy/", "cancel": "/iv-therapy/" },
+    "iv-immune":       { "en": "IV Immune Support",             "es": "Suero de apoyo inmune",          "price": 169,  "kind": "mobile", "group": "iv",     "payment": "deposit",  "page": "/iv-therapy/", "cancel": "/iv-therapy/" },
+    "iv-postflight":   { "en": "IV Post-Flight Reset",          "es": "Suero post-vuelo",               "price": 169,  "kind": "mobile", "group": "iv",     "payment": "deposit",  "page": "/iv-therapy/", "cancel": "/iv-therapy/" },
+    "iv-glow":         { "en": "IV Glow Drip",                  "es": "Suero Glow",                     "price": 169,  "kind": "mobile", "group": "iv",     "payment": "deposit",  "page": "/iv-therapy/", "cancel": "/iv-therapy/" },
+    "iv-athletic":     { "en": "IV Athletic Recovery",          "es": "Suero de recuperación deportiva", "price": 169, "kind": "mobile", "group": "iv",     "payment": "deposit",  "page": "/iv-therapy/", "cancel": "/iv-therapy/" },
+    "iv-nad":          { "en": "NAD+ IV",                       "es": "Suero NAD+",                     "price": 279,  "kind": "mobile", "group": "iv",     "payment": "request",  "page": "/iv-therapy/", "cancel": "/iv-therapy/", "why": "new online charge needs owner approval; the doctor confirms suitability first" },
+    "iv-total-wellness": { "en": "Total Wellness IV",           "es": "Suero Total Wellness",           "price": 189,  "kind": "mobile", "group": "iv",     "payment": "request",  "page": "/iv-therapy/", "cancel": "/iv-therapy/", "public": false, "why": "V6: confirm it applies to the clinic" },
+    "iv-group":        { "en": "Group IV (3+ people)",          "es": "Suero para grupos (3+)",         "price": null, "kind": "mobile", "group": "iv",     "payment": "quote",    "page": "/iv-therapy/", "cancel": "/iv-therapy/" },
+    "nursing":         { "en": "Nursing care",                  "es": "Enfermería",                     "price": null, "kind": "mobile", "group": "care",   "payment": "quote",    "page": "/nurse-care/", "cancel": "/nurse-care/" },
+    "lab":             { "en": "Laboratory tests",              "es": "Estudios de laboratorio",        "price": null, "kind": "clinic", "group": "care",   "payment": "quote",    "page": "/lab-tests/", "cancel": "/lab-tests/" },
+    "xray":            { "en": "X-ray (with radiology partners)", "es": "Rayos X (con radiólogos colaboradores)", "price": null, "kind": "clinic", "group": "care", "payment": "quote", "page": "/radiology-x-ray-cabo-san-lucas/", "cancel": "/radiology-x-ray-cabo-san-lucas/" },
+    "insurance-check": { "en": "Insurance verification",        "es": "Verificación de seguro",         "price": 0,    "kind": "clinic", "group": "care",   "payment": "request",  "page": "/insurance-billing-cabo/", "cancel": "/insurance-billing-cabo/" },
+    "partner":         { "en": "Hotel / concierge partnership", "es": "Convenio con hotel o concierge", "price": null, "kind": "b2b",    "group": "b2b",    "payment": "quote",    "page": "/hotel-concierge-medical-partnerships/", "cancel": "/hotel-concierge-medical-partnerships/", "public": false },
+    "test-pago":       { "en": "Test payment (internal)",       "es": "Pago de prueba (interno)",       "price": 2,    "kind": "clinic", "group": "test",   "payment": "deposit",  "page": "/book/", "cancel": "/book/", "public": false }
+  }
+}
