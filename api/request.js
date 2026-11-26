@@ -5,7 +5,7 @@
 // No clinical data is requested; access notes are sealed and only go to the team email. Nothing goes to analytics or ads.
 const crypto = require("crypto");
 const CATALOG = require("./_catalog.json");
-const { getStore, seal, newFolio, saveRecord, setStatus, nowIso } = require("./_lib/store");
+const { getStore, seal, newFolio, saveRecord, loadRecord, setStatus, nowIso } = require("./_lib/store");
 const { emailTeam, emailClient, toCrm, whatsappTeam } = require("./_lib/notify");
 
 const WA = CATALOG.business.whatsapp;
@@ -116,7 +116,10 @@ async function handler(req, res) {
       const fresh = await store.kv.setIfAbsent(`dup:${dupHash}`, ref, DUP_WINDOW_S);
       if (!fresh) {
         const prev = await store.kv.get(`dup:${dupHash}`);
-        if (prev) return res.status(200).json({ ok: true, ref: prev, duplicate: true, saved: true, delivered: true, status: "received_pending_confirmation", whatsapp: waLink(data.lang, prev, label) });
+        if (prev) {
+          const old = await loadRecord(store, prev).catch(() => null);
+          return res.status(200).json({ ok: true, ref: prev, duplicate: true, saved: true, delivered: !!(old && !old.notifyPending), status: "received_pending_confirmation", whatsapp: waLink(data.lang, prev, label) });
+        }
       }
     } catch { /* store down: continue without it, the email is still sent */ }
   }

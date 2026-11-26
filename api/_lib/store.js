@@ -5,7 +5,9 @@
 // Without a configured store, getStore() returns null and callers must NOT claim that anything was saved.
 const crypto = require("crypto");
 
-const P = "cwc:";
+// Preview and Production share one Upstash database: preview data lives under its own prefix and never mixes with
+// production folios, digests or retries.
+const P = process.env.VERCEL_ENV === "preview" ? "cwc:preview:" : "cwc:";
 const DAY = 86400;
 
 function upstash(url, token) {

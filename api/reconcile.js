@@ -22,7 +22,8 @@ module.exports = async (req, res) => {
   for (const ref of [...new Set(queue)]) {
     const rec = await loadRecord(store, ref);
     if (!rec || !rec.notifyPending) continue;
-    const d = unseal(store, rec.sealed) || {};
+    const d = unseal(store, rec.sealed);
+    if (!d) { rec.notifyPending = false; rec.unreadable = true; await saveRecord(store, rec); continue; } // sealed with another environment's key: never send an empty notice
     const s = CATALOG.services[rec.service] || { en: rec.service };
     const ok = await emailTeam(`[${ref}] (retry) New request: ${s.en}`, [
       `Request ${ref} could not be notified when it arrived (${rec.createdAt}).`,
@@ -39,7 +40,7 @@ module.exports = async (req, res) => {
   const unattended = [], abandoned = [], disputed = [], orphan = [];
   for (const ref of refs) {
     const rec = await loadRecord(store, ref);
-    if (!rec) continue;
+    if (!rec || rec.unreadable) continue; // records from another environment (e.g. a preview test) stay out of the digest
     const age = now - Date.parse(rec.updatedAt || rec.createdAt);
     if (rec.status === "received" && age > 2 * HOUR) unattended.push(`${ref} · ${rec.service} · since ${rec.createdAt.slice(0, 16)}Z`);
     if ((rec.status === "payment_pending" || rec.status === "payment_expired" || rec.status === "payment_failed") && age > HOUR) abandoned.push(`${ref} · ${rec.service} · ${rec.status}`);
