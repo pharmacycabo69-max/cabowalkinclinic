@@ -58,8 +58,8 @@ Concurrency/double booking: there is no shared live calendar yet, so availabilit
 
 Without the register variables the site still works: requests are emailed and answered honestly ("received" only if the email was accepted); idempotency then relies on Stripe and Resend keys.
 
-## 5. Stripe dashboard (owner action)
-Add these events to the existing webhook endpoint `https://www.cabowalkinclinic.com/api/stripe-webhook`: `checkout.session.async_payment_failed`, `checkout.session.expired`, `charge.refunded`, `charge.dispute.created` (keep `checkout.session.completed` and `checkout.session.async_payment_succeeded`).
+## 5. Stripe dashboard
+**Done 2026-11-26** (destination we_1UX3ro5W1RAXluyqgbn1Kc1U now listens to 6 events). Note: the same Stripe account also has a destination to quickturno.app; check QuickTurno does not create a second entry for the same payment. Events added: to the existing webhook endpoint `https://www.cabowalkinclinic.com/api/stripe-webhook`: `checkout.session.async_payment_failed`, `checkout.session.expired`, `charge.refunded`, `charge.dispute.created` (keep `checkout.session.completed` and `checkout.session.async_payment_succeeded`).
 Verify in Stripe: legal entity, country, declared business activity and that medical services billed are within the account's accepted activities; settlement rules for services delivered by third parties (lab, X-ray).
 
 ## 6. Recovery when something fails
