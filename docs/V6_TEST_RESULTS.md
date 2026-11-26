@@ -32,8 +32,17 @@ All external services are **simulated** (Stripe, Resend, CRM webhook, QuickTurno
 - `/home-doctor/` modal with a simulated API: folio `CWC-TEST-2345`, status "received, pending confirmation… nothing has been charged".
 - `/hotel-concierge-medical-partnerships/`: renders; mobile bar Book · WhatsApp · Call · Directions.
 
+## Verified on the Vercel preview (2026-11-26, `vercel curl` with protection bypass)
+- `/`, `/book/`, `/es/reservar/`, `/hotel-concierge-medical-partnerships/`, `track.v4.js`, `book.v10.js` → 200.
+- `/aesthetic-medicine-cabo/` and `/aesthetic-medicine-cabo` → **410** with the "no longer offered" page.
+- `/english-speaking-doctor-pedregal-quivira/` → 308 to `/home-doctor/`.
+- `/api/reconcile` without the secret → 401.
+- `/api/request` with no register and no channel configured in Preview → **503 "not_registered"** (honest, no false confirmation); invalid input → 400.
+- `/api/checkout` video → 303 to the request flow (never Stripe); house call → WhatsApp fallback because Preview has **no Stripe key at all** (all payment variables are Production-only, so the preview cannot create real charges).
+- New variables set by Claude with the owner's CLI session (values generated locally, never displayed): `REQUEST_ENCRYPTION_KEY` and `CRON_SECRET`, different values for Production and Preview.
+
 ## Not verified (needs the owner or real accounts)
-- Vercel preview `https://cabowalkinclinic-git-dev-v6-platform-cabo-pharmacy.vercel.app/` built successfully but is behind Vercel login: 410 on `/aesthetic-medicine-cabo/`, live `/api/request`, cron.
+- Register: there is no Upstash database on the Vercel team yet (no marketplace installation; the sister sites' database is not connected to this team). Creating one requires accepting Upstash/Vercel terms.
 - That a real notice reaches the team inbox/WhatsApp (needs a preview with test credentials and someone to confirm receipt).
 - Stripe test-mode payment end to end (needs the Preview environment to use `sk_test_` keys — not confirmed).
 - Field Core Web Vitals (INP) — only lab numbers below.
