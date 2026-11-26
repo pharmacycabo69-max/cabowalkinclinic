@@ -89,7 +89,8 @@
     return d.toLocaleDateString(T.locale, { weekday: 'short', month: 'short', day: 'numeric' });
   }
   function tlabel(t) { return t === 'ASAP' ? T.asap : hlabel(+t.split(':')[0]); }
-  function track(name, extra) { try { if (window.cwcTrack) window.cwcTrack(name, extra || {}); } catch (e) {} }
+  /* V6 §21: never send the service (it can reveal a study or treatment) to analytics or ad platforms */
+  function track(name, extra) { try { var e = {}; if (extra && extra.value) { e.value = extra.value; e.currency = 'USD'; } if (window.cwcTrack) window.cwcTrack(name, e); } catch (x) {} }
   function attr() { var d = {}; try { var at = JSON.parse(localStorage.getItem('cwc_attr') || '{}'); ['utm_source', 'utm_campaign'].forEach(function (k) { if (at[k]) d[k] = String(at[k]).slice(0, 120); }); } catch (x) {} return d; }
 
   function Wizard(root, opts) {
@@ -396,7 +397,7 @@
     opts.appendChild(btn(T.back, function () { say(T.again); menu(); }));
     if (k !== 'emg') opts.appendChild(link('go', T.book, es ? '/es/reservar/' : '/book/'));
     opts.appendChild(link('wa', T.wa, waUrl(label + ' - ' + T.waMsg), true));
-    track('bot_answer_' + k);
+    track('bot_answer');
   }
   function human() {
     say(T.human, true); say(T.ask); opts.style.display = 'none'; clearForm();

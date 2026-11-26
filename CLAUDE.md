@@ -2,27 +2,30 @@
 
 Static site (HTML + Vercel serverless `api/`), deployed by Vercel from `main` of the **public** GitHub repo `pharmacycabo69-max/cabowalkinclinic`. Pushing `main` = publishing to production.
 
+This domain is the institutional brand for **general medicine**: walk-in clinic, house calls, video visits, diagnostics coordination (V6, 2026-11-26).
+
 ## Source of truth
-- Prompt Maestro V3.1 (2026-11-24) plus `docs/BUSINESS_MASTER_DATA.json` and `docs/PENDING_BUSINESS_DATA.md`.
-- Owner-confirmed data wins. Unresolved conflicts stay unpublished.
+- Prompt V6 (2026-11-26) > V4 > V3.1. Owner-confirmed data wins. Unresolved conflicts stay unpublished.
+- **Master catalog: `api/_catalog.json`** (prices, payment mode, groups). Checkout, `/api/request` and the wizard read it; after any change run `node tools/catalog.mjs`. Never put internal costs or margins in it (public repo).
 
 ## Hard rules
 - Never push to `main` or deploy without explicit owner approval. Work on a `dev/*` branch.
-- Prices (V4 2026-11-25): video $59, clinic $99, house call $189 (owner confirmed 2026-11-25), IV $159 standard / $169 others, NAD+ $279, USD tax included. Groups, lab, imaging: quote. Checkout prices live in `api/_prices.json`. The booking wizard (`assets/book/book.v*.js`) must match. Never change charges without owner approval.
-- Hours: clinic 9:00–17:00 daily. After-hours visits 17:00–08:00 by appointment, subject to doctor confirmation. Never write "24/7", "immediate availability" or arrival-time promises. The partner hospital's "24/7 emergency" is the only exception.
-- Insurance: US and Canada health and travel insurance accepted **subject to verification**. Never promise coverage, direct billing, reimbursement or no deductible. Never name insurers as partners. No Mexican national insurance. Never ask for policy documents in public forms, URLs or analytics.
-- **Dra. Rosibel Núñez Rojo (§3.1):** her full profile (title, UAG, cédula 7408277, photo once authorized) is allowed on this domain, plus her role as responsable sanitaria of this clinic only. Keep her data out of the other five brands.
-- Credentials: show only the name, title, cédula and role confirmed by the owner. Never publish a CURP, signatures, QR codes or documents. Jenifer Arciga is a Licenciada (not a medical specialist). Luis Camacho is a Técnico Radiólogo.
+- Prices (V6): video $59, clinic $99, house call $189, IV $159 standard / $169 others (owner 2026-11-24), NAD+ $279, Total Wellness IV $189 hidden until confirmed; nursing, lab, X-ray, IV groups by quote. USD, tax included. Never change charges without owner approval.
+- Payments (V6 §13): clinic visits never require prepayment; deposit 50% (100% prepared behind `PAYMENT_FULL_APPROVED`, off); **video consultations are never charged with Stripe** (telemedicine prohibited for MX accounts); quotes never charged online. Amounts only server-side.
+- Hours: clinic 9:00–17:00 daily. After-hours by appointment, subject to doctor confirmation. "24/7" only for **online requests** ("We receive online requests 24/7"), never for care. No "immediate" or arrival-time promises.
+- Requests: every request gets a folio; say "received, pending confirmation" only when it was stored or a team channel accepted it.
+- Insurance: US and Canada insurance **subject to verification**. Never promise coverage, direct billing or reimbursement. Never ask for policy documents in public forms, URLs or analytics.
+- **Aesthetic medicine is retired from this brand** (V6 §3): `/aesthetic-medicine-cabo/` answers 410; no aesthetics content, links, schema or Ads. Do not redirect it to unrelated pages.
+- Team (V6 §8): Dr. Kevin González Adame (operating physician, IPN, 14796516); Dra. Myriam Palacios (Xochicalco, 11664989, availability confirmed when booking); Dra. Rosibel Núñez Rojo (responsable sanitaria, UAG, 7408277 — shown on /about/ and the legal footer only, pending official document and visibility authorization). Lic. Jenifer Arciga is a Licenciada, not a medical specialist. **Luis Camacho: no title published until verified.**
+- Radiology (V6 §9): coordination with external licensed collaborators; never "our X-ray room"; portable X-ray only on request and after provider confirmation; no CT/MRI/ultrasound until formally confirmed; no specific studies or prices until the provider validates them. Lab: only confirmed tests, quote-based.
 - No COFEPRIS certification claims or official seals. Show the aviso de funcionamiento number only.
-- Radiology and lab pages are quote-based: no prices, techniques or result times until the owner confirms them. Aesthetics prices come from medicinaesteticaencabo.com (owner instruction 2026-11-24), shown in USD plus tax with a free evaluation (owner confirmed 2026-11-24), without brand names (no "Botox", Sculptra, Radiesse, Cosmelan) and without before/after photos. Aesthetics is linked only from the footer and About, never from Ads landing pages. No pharmacy or locations content on this site.
-- `/assets/` is cached for a year (immutable). Change a file's **name** (`.vN`) whenever you change its content, and update every page that references it.
-- `_drafts/`, `docs/` and `CLAUDE.md` are excluded from deploy (`.vercelignore`). The repo is public: never commit costs, margins, patient data or secrets.
-- Windows: 4 legacy files have `?` in their names; the checkout uses sparse-checkout to skip them (`git -c core.protectNTFS=false ...` if git complains).
+- Privacy (V6 §21): never send notes, symptoms, results, the service name or chat topics to Stripe, analytics or ad platforms (`track.v4.js`). No enhanced conversions, offline imports, remarketing or customer lists. Internal WhatsApp notices carry the folio only.
+- `/assets/` is cached for a year (immutable). Change a file's **name** (`.vN`) whenever you change its content, and update every page that references it. Keep the previous version file for cached pages.
+- `_drafts/`, `docs/`, `tools/` and `CLAUDE.md` are excluded from deploy. The repo is public: confidential documents go to `.private/` (git-excluded), never to `docs/`.
+- No pharmacy catalog, medication catalog or locations content on this site.
+- Windows: 4 legacy files have `?` in their names; the checkout uses sparse-checkout to skip them.
 
-## V4 (2026-11-25)
-- Design layer: `assets/shared/site.v4.css` + `site.v3.js`; header/footer generated by `node tools/chrome.mjs` (re-run after adding pages). Spanish pages from `node tools/es.mjs`.
-- Before any commit that touches pages or prices: `node tools/test.mjs` must pass (prices, claims, Rosibel visibility, Ads tag, hreflang, checkout mock).
-- Never send free-text notes or WhatsApp message text to Stripe metadata, analytics or ads.
-- Home X-ray only "on request, subject to confirmation" until equipment, scope and permits are validated.
-- AI or illustrative images must never be described as the real clinic.
-- Approvals pending: docs/PENDING_APPROVALS.md.
+## Workflow
+- Header/footer/mobile bar: `node tools/chrome.mjs`. Ads landings: `node tools/landing.mjs` (data in `tools/landings.data.mjs`). Wizard catalog: `node tools/catalog.mjs`.
+- Before any commit: `node tools/test.mjs` must pass. Integrations in tests are simulated; never call a mocked check "verified".
+- Docs: `docs/V6_*.md` (architecture, tests, Ads/SEO, release/rollback, URL inventory). Owner decisions: `.private/v6/INFORME_EJECUTIVO_V6.md`.

@@ -79,12 +79,14 @@ for (const { p, h } of live) ok(!/(\bCT\b|\bMRI\b|ultrasound|tomograf|resonancia
 for (const { p, h } of live) ok(!/X-ray at our|portable unit at your|our X-ray room|in-house X-ray|rayos X en nuestra cl/i.test(h), `${p}: no own radiology facility or unconfirmed portable X-ray claim (incl. schema)`);
 
 // ---------- 5. tracking + tags ----------
-const track = readFileSync(join(root, 'assets/shared/track.v3.js'), 'utf8');
-ok(/link_url:h\.split\('\?'\)\[0\]/.test(track), 'track.v3 strips WhatsApp ?text= from analytics');
+const track = readFileSync(join(root, 'assets/shared/track.v4.js'), 'utf8');
+ok(/link_url:h\.split\('\?'\)\[0\]/.test(track), 'track.v4 strips WhatsApp ?text= from analytics');
+ok(/delete extra\.service/.test(track) && /ev\('booking_start',\{\}\)/.test(track), 'track.v4 never sends the service (study/treatment) to analytics or ads');
+ok(/var e = \{\}; if \(extra && extra\.value\)/.test(wiz) && !/bot_answer_' \+/.test(wiz), 'wizard and bot send no service or topic to analytics');
 for (const { p, h } of live) {
   ok(/AW-16881895258/.test(h), `${p}: Google Ads tag present`);
-  ok(/\/assets\/shared\/track\.v3\.js/.test(h), `${p}: conversion tracking script present`);
-  ok(!/track\.v2\.js|book\.v[89]\.js|site\.v2\.js/.test(h), `${p}: no stale asset versions`);
+  ok(/\/assets\/shared\/track\.v4\.js/.test(h), `${p}: conversion tracking script present`);
+  ok(!/track\.v[23]\.js|book\.v[89]\.js|site\.v2\.js/.test(h), `${p}: no stale asset versions`);
   if (/data-book/.test(h)) ok(/\/assets\/book\/book\.v10\.js/.test(h), `${p}: booking wizard v10 loaded`);
   const sb = (h.match(/<div class="stickybar">[\s\S]*?<\/div>/) || [''])[0];
   if (sb) ok(/tel:\+526242261023/.test(sb) && /maps\.app\.goo\.gl/.test(sb) && /wa\.me/.test(sb), `${p}: mobile bar has call, directions and WhatsApp`);
